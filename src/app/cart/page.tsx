@@ -78,9 +78,6 @@ const Cart = () => {
       paymentStatus,
     });
     if (order.data.status === 200) {
-      setAddress("");
-      setPhoneNumber("");
-      clearCart();
       router.push(`/order/${order.data.orderId}`);
     }
   };
@@ -261,7 +258,7 @@ const Cart = () => {
                     phoneRef.current = val;
                     debouncedPhoneNumber(val);
                   }}
-                  placeholder="phone number"
+                  placeholder="+234 9030300300"
                   className="w-full outline-none p-1 rounded-sm border"
                 />
               </div>
@@ -271,7 +268,7 @@ const Cart = () => {
           <Separator className="my-3" />
           <div className="">
             <div className="grid grid-flow-col justify-between items-center">
-              <span className="w-full text-baseOrange ">product price</span>
+              <span className="w-full text-baseOrange ">Product price</span>
               <span className="text-baseOrange">
                 # {finalPrice.toFixed(2)}{" "}
               </span>
@@ -281,9 +278,8 @@ const Cart = () => {
               <span className="text-baseOrange  ">
                 #
                 {selectedPrice === null
-                  ? finalPrice + " + dist price"
+                  ? finalPrice + " + delivery price"
                   : finalPrice + (selectedPrice !== null ? selectedPrice : 0)}
-                :00
               </span>
             </div>
           </div>
@@ -304,6 +300,9 @@ const Cart = () => {
               ],
             }}
             onSuccess={(transaction) => {
+              setPhoneNumber("");
+              setAddress("");
+              clearCart();
               handleSuccess(transaction.reference, transaction.status);
             }}
             onClose={() => {}}

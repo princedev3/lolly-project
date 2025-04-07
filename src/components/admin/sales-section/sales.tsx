@@ -7,6 +7,7 @@ import { PaginationWithLinks } from "@/components/navbar/paginationwithlinks";
 import { useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
+import LoadingPage from "@/components/navbar/loading";
 
 const Sales = () => {
   const searchParams = useSearchParams();
@@ -17,7 +18,7 @@ const Sales = () => {
     setSearch(val);
   }, 500);
   if (isLoading) {
-    return <p className="">loading...</p>;
+    return <LoadingPage />;
   }
 
   return (

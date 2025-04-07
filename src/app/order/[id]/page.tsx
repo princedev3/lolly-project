@@ -1,5 +1,6 @@
 "use client";
 import { useFetchSingleOrderQuery } from "@/app/apis/_order_index.api";
+import LoadingPage from "@/components/navbar/loading";
 import { ProductOrder } from "@/static-data/types";
 import { Product } from "@prisma/client";
 import { HouseIcon, PackageCheckIcon, Truck } from "lucide-react";
@@ -12,7 +13,7 @@ const SngleOrderPage = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useFetchSingleOrderQuery(id as string);
   if (isLoading) {
-    return <p className="">loading...</p>;
+    return <LoadingPage />;
   }
   return (
     <div className="grid gap-y-4 my-4">

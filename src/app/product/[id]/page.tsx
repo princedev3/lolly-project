@@ -1,5 +1,6 @@
 "use client";
 import { useGetSingleProductQuery } from "@/app/apis/_product_index.api";
+import LoadingPage from "@/components/navbar/loading";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/static-data/cart-store";
 import { Heart, Share2 } from "lucide-react";
@@ -19,7 +20,7 @@ const SingleProduct = () => {
   const [selectedSize, setSelectedSize] = useState("");
 
   if (isLoading) {
-    return <p className="">loading...</p>;
+    return <LoadingPage />;
   }
   const copyToClipboard = async () => {
     try {

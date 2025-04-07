@@ -43,6 +43,16 @@ export const orderApi = createApi({
       }),
       invalidatesTags: ["Order"],
     }),
+    getALLOrderChartDatas: builder.query<
+      {
+        dailySales: { date: string; total: number }[];
+      },
+      { startDate: string; endDate: string }
+    >({
+      query: ({ startDate, endDate }) =>
+        `/order/chart?startDate=${startDate}&endDate=${endDate}`,
+      providesTags: ["Order"],
+    }),
   }),
 });
 
@@ -52,4 +62,6 @@ export const {
   useFetchSingleOrderQuery,
   useDeleteSingleOrderMutation,
   useUpdateOrderMutation,
+  useGetALLOrderChartDatasQuery,
+  useLazyGetALLOrderChartDatasQuery,
 } = orderApi;

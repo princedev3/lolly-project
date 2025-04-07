@@ -30,8 +30,11 @@ const Footer = () => {
           <span className="text-black text-lg font-semibold uppercase">
             Navigation
           </span>
-          <Link href={"/menu"} className="text-gray-600 text-sm cursor-pointer">
-            Menu
+          <Link
+            href={"/policy"}
+            className="text-gray-600 text-sm cursor-pointer"
+          >
+            Policy
           </Link>
           <Link
             href={"/about"}
@@ -49,35 +52,7 @@ const Footer = () => {
             Main
           </Link>
         </div>
-        <div className="grid gap-y-4 self-start ">
-          <span className="text-black text-lg font-semibold uppercase">
-            main
-          </span>
-          <Link
-            href={`/product?search=oakley`}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
-            Oakley
-          </Link>
-          <Link
-            href={`/product?search=ray-ban`}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
-            Ray-Ban
-          </Link>
-          <Link
-            href={`/product?search=gucci`}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
-            Gucci
-          </Link>
-          <Link
-            href={`/product?search=prada`}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
-            Prada
-          </Link>
-        </div>
+
         <div className="grid gap-y-5 self-start ">
           <span className="text-black text-lg font-semibold uppercase">
             FOLLOW US
@@ -93,6 +68,25 @@ const Footer = () => {
               <Twitter className="text-gray-600 group-hover:text-white" />
             </div>
           </div>
+        </div>
+        <div className="grid gap-y-4 self-start ">
+          <span className="text-black text-lg font-semibold uppercase">
+            Payment
+          </span>
+          <ul className="flex flex-col gap-4">
+            <span className="text-gray-600 text-sm cursor-pointer">
+              Paystack Integration
+            </span>
+            <li className="text-gray-600 text-sm cursor-pointer capitalize">
+              fast
+            </li>
+            <li className="text-gray-600 text-sm cursor-pointer capitalize">
+              reliable
+            </li>
+            <li className="text-gray-600 text-sm cursor-pointer capitalize">
+              secured
+            </li>
+          </ul>
         </div>
       </div>
       {/* middle */}

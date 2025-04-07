@@ -19,14 +19,16 @@ const Navbar = () => {
   }, []);
   return (
     <>
-      <div className="grid grid-flow-col  justify-between items-center w-full h-[80px]">
-        <Image
-          src={"/logo.svg"}
-          alt=""
-          width={50}
-          height={50}
-          className="min-w-[30px] min-h-[30px] md:min-w-[50px] md:min-h-[50px] object-cover"
-        />
+      <div className="grid grid-flow-col justify-between items-center w-full h-[80px]">
+        <Link href={"/"}>
+          <Image
+            src={"/logo.svg"}
+            alt=""
+            width={50}
+            height={50}
+            className="min-w-[30px] min-h-[30px] md:min-w-[50px] md:min-h-[50px] object-cover"
+          />
+        </Link>
         <div className="relative  lg:space-x-4 md:space-x-2 p-2 bg-white rounded-lg hidden md:flex">
           {navbarItems
             .filter(
@@ -69,8 +71,9 @@ const Navbar = () => {
             </div>
           </Link>
           <Menu
+            size={30}
             onClick={() => setOpenMenu(!openMenu)}
-            className="text-gray-500 md:hidden "
+            className="text-baseGreen  md:hidden "
           />
           <UserButton />
         </div>
@@ -90,12 +93,11 @@ const Navbar = () => {
                 : "-left-[100%] ease-in duration-500 transition-all w-full h-full fixed top-0 "
             }  !z-[1000000]`}
           >
-            <div className="motion-preset-shake w-fit ml-auto border-2 border-white rounded-full p-1 cursor-pointer">
-              <X
-                className="text-white"
-                size={25}
-                onClick={() => setOpenMenu(false)}
-              />
+            <div
+              onClick={() => setOpenMenu(false)}
+              className="motion-preset-shake z-50 w-fit ml-auto  border-2 border-white rounded-full p-1 cursor-pointer"
+            >
+              <X className="text-white z-50" size={25} />
             </div>
             <div className="flex flex-col justify-center items-center w-full h-full gap-5">
               {navbarItems.map((item) => (

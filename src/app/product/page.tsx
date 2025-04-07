@@ -18,6 +18,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { sanitizeQuery } from "@/static-data/helper-func";
+import LoadingPage from "@/components/navbar/loading";
 
 const formSchema = z.object({
   search: z.string(),
@@ -102,7 +103,7 @@ const Product = () => {
   }, [searchValue, query]);
 
   if (isLoading && page === 1) {
-    return <p className="">Loading...</p>;
+    return <LoadingPage />;
   }
 
   return (

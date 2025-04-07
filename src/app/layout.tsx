@@ -7,6 +7,7 @@ import { auth } from "@/static-data/auth";
 import AuthProvider from "@/static-data/auth-provider";
 import SessionProvider from "@/static-data/session-provider";
 import CartPopup from "@/static-data/cartpopup";
+import BackToTop from "@/components/navbar/back-to-top";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default async function RootLayout({
               <LayoutProvider>{children}</LayoutProvider>
               <CartPopup />
               <SoonerToast />
+              <BackToTop />
             </SessionProvider>
           </AuthProvider>
         </div>

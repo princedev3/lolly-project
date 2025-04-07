@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import {
@@ -10,7 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-const MapContainerShow = () => {
+const ShowMapContainer = () => {
   const icon = L.icon({
     iconUrl:
       "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
@@ -18,9 +18,13 @@ const MapContainerShow = () => {
     iconAnchor: [15, 30],
     className: "object-contain",
   });
+
   return (
-    <div className="!-z-10 ">
+    <div className="space-y-4">
+      {/* Header Section */}
       <h1 className="text-lg font-semibold text-baseGreen">Where we are?</h1>
+
+      {/* Breadcrumb Section */}
       <Breadcrumb>
         <BreadcrumbList className="text-baseGreen">
           <BreadcrumbItem>Nigeria</BreadcrumbItem>
@@ -31,9 +35,10 @@ const MapContainerShow = () => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="h-[400px] w-full pointer-events-none">
+      {/* Map Container */}
+      <div className="relative w-full h-[400px]">
         <MapContainer
-          center={[62.8924, 27.6778]}
+          center={[6.6129, 3.314]} // Lagos coordinates (adjust as needed)
           zoom={13}
           scrollWheelZoom={false}
           style={{ height: "100%", width: "100%" }}
@@ -42,12 +47,11 @@ const MapContainerShow = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          {/* Marker with Popup */}
           <Marker position={[6.6129, 3.314]} icon={icon}>
             <Popup>
               <div className="flex gap-1 w-full">
-                {/* <Image src={item?.images[0]} alt='' width={50} height={50}/> */}
-
-                <b>$ </b>
+                <b>$</b> {/* Add content inside the popup */}
               </div>
             </Popup>
           </Marker>
@@ -57,4 +61,4 @@ const MapContainerShow = () => {
   );
 };
 
-export default MapContainerShow;
+export default ShowMapContainer;

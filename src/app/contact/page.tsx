@@ -40,62 +40,61 @@ const ContactPage = () => {
         get in touch with us now!
       </div>
 
-      <div className="relative  mx-auto w-full   rounded-md p-4">
-        {/* Grid */}
+      <div className="relative  mx-auto w-full rounded-md p-4">
         <div className="grid grid-cols-2 grid-rows-2 gap-0 relative">
-          {/* Card 1 */}
-          <div className="p-2 md:p-6 flex flex-col items-start justify-center">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="tel:+20 11 16798756"
+            className="p-2 md:p-6 flex flex-col items-start justify-center"
+          >
             <PhoneOutgoing className="grid mx-auto" size={30} color="#17cf97" />
             <h3 className="sm:text-xl grid mx-auto font-bold text-baseGreen">
               {" "}
               Phone Number
             </h3>
-            <p className="grid mx-auto text-baseGreen">+91 80004 36640</p>
-          </div>
-
-          {/* Card 2 */}
-          <div className="p-2 md:p-6 flex flex-col items-start justify-center">
+            <p className="grid mx-auto text-baseGreen no-underline">
+              +91 80004 36640
+            </p>
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="mailto:someone@example.com"
+            className="p-2 md:p-6 flex flex-col items-start justify-center"
+          >
             <Mail className="grid mx-auto" color="#17cf97" size={30} />
-            <h3 className="sm:text-xl font-bold grid mx-auto text-baseGreen">
+            <h3 className="sm:text-xl  font-bold grid mx-auto text-baseGreen">
               {" "}
               Email
             </h3>
 
-            <p className="text-baseGreen grid mx-auto  break-all whitespace-normal text-wrap  break-words">
+            <p className="text-baseGreen no-underline  grid mx-auto  break-all whitespace-normal text-wrap  break-words">
               sales@gmail.com
             </p>
-          </div>
-
-          {/* Card 3 */}
+          </a>
           <div className="p-2 md:p-6  flex flex-col items-start justify-center">
             <MapPin className="grid mx-auto" color="#17cf97" size={30} />
             <h3 className="sm:text-xl font-bold grid mx-auto text-baseGreen ">
               Location
             </h3>
-            <p className="text-baseGreen grid mx-auto text-center">
+            <p className="text-baseGreen  no-underline grid mx-auto text-center">
               518, Rhythm Plaza, Amar Javan
             </p>
           </div>
-
-          {/* Card 4 */}
           <div className="p-2 md:p-6  flex flex-col items-start justify-center text-baseGreen">
             <Clock className="grid mx-auto" color="#17cf97" size={30} />
             <h3 className="sm:text-xl font-bold grid mx-auto ">
               Working Hours
             </h3>
             <p className=" grid mx-auto ">Mon To Sat</p>
-            <p className=" grid mx-auto ">8-AM To 9-PM</p>
+            <p className=" grid mx-auto no-underline">8-AM To 9-PM</p>
           </div>
-
-          {/* Vertical Line */}
           <div className="absolute top-[10%] bottom-[10%] left-1/2 w-px bg-[#17cf97]/30 " />
-
-          {/* Horizontal Line */}
           <div className="w-[40px] h-[40px]   absolute left-1/2 top-1/2 -translate-x-1/2 transform z-10 bg-white  -translate-y-1/2 rounded-full "></div>
           <div className="absolute left-[10%] right-[10%] top-1/2 h-px bg-[#17cf97]/30 " />
         </div>
       </div>
-
       <div className="  mt-4">
         <div className="w-full max-w-3xl mx-auto grid gap-y-4">
           <div className="grid gap-y-1 mb-3">

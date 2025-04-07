@@ -5,6 +5,7 @@ import AdminSingleCard from "./admin-single-card";
 import { useGetAllProductQuery } from "@/app/apis/_product_index.api";
 import { useSearchParams } from "next/navigation";
 import { PaginationWithLinks } from "@/components/navbar/paginationwithlinks";
+import LoadingPage from "@/components/navbar/loading";
 
 const AdminProductCard = () => {
   const searchParams = useSearchParams();
@@ -14,7 +15,7 @@ const AdminProductCard = () => {
     parseInt((page as string) || "1")
   );
   if (isLoading) {
-    return <p className="">loading..</p>;
+    return <LoadingPage />;
   }
   return (
     <div className="grid gap-y-4">
