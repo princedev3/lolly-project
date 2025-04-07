@@ -65,13 +65,13 @@ const SingleCard = ({
           <h1 className="text-2xl font-semibold skew-y-6">{brand} </h1>
         </div>
         <div className="flex justify-between">
-          <h1 className="w-[65%] text-gray-700 text-sm">{name} </h1>
+          <h1 className="w-[65%] text-gray-700 text-lg">{name} </h1>
           <div className="text-sm">
-            <h1 className="text-pink-600 font-semibold">
+            <h1 className="text-pink-600 font-semibold text-lg">
               <span className="">$</span>
               <span className="">{price}</span>
             </h1>
-            <span className="text-gray-700">QTY: {quantity} </span>
+            <span className="text-gray-700 text-lg">QTY: {quantity} </span>
           </div>
         </div>
         <button
