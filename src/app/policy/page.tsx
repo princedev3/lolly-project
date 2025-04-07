@@ -1,22 +1,23 @@
 "use client";
 
 import { X } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Policy = () => {
   const sections = {
     Introduction:
-      "This is an introduction to our privacy policyThis is an introduction to our privacy policyThis is an introduction to our privacy policyThis is an introduction to our privacy policyThis is an introduction to our privacy policyThis is an introduction to our privacy policy...",
+      "At Lollys, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard the data you share with us when you use our website or services.",
     "Data we collect":
-      "We collect the following types of dataWe collect the following types of dataWe collect the following types of dataWe collect the following types of dataWe collect the following types of dataWe collect the following types of dataWe collect the following types of dataWe collect the following types of data",
+      "We ONLY collect personal data that you voluntarily provide to us, including your name, email address, phone number, and delivery information when you place an order, sign up for our newsletter, or contact us directly.",
     "How we use your data":
-      "We use your data to improve your experience We use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experienceWe use your data to improve your experience...",
+      "We use the data we collect to process and fulfill your orders, communicate with you regarding your purchases or inquiries, and send promotional emails or newsletters if you have subscribed. Additionally, your data helps us improve our website, products, and overall customer experience. It also enables us to ensure the security and integrity of our platform, and to comply with applicable legal and regulatory obligations.",
     "How we share your information":
-      "We share your data with trusted partners We share your data with trusted partnersWe share your data with trusted partnersWe share your data with trusted partnersWe share your data with trusted partnersWe share your data with trusted partners...",
+      "Legal authorities, if we are required to do so by law, court order, or to respond to a legal process.",
     "Your choices & obligation":
-      "You have control over your data You have control over your dataYou have control over your dataYou have control over your dataYou have control over your dataYou have control over your dataYou have control over your data...",
+      "You have control over your personal data and how it's used. You may update, correct, or delete your personal information by contacting us directly. If you no longer wish to receive marketing emails or newsletters, you can unsubscribe at any time using the link provided in our emails. Additionally, you can manage or disable cookies and tracking technologies through your browser settings.",
     "Other important information":
-      "Additional privacy-related informationAdditional privacy-related informationAdditional privacy-related informationAdditional privacy-related informationAdditional privacy-related informationAdditional privacy-related informationAdditional privacy-related information...",
+      "Your privacy is important to us. This Privacy Policy outlines the types of information we collect, how we use it, and the choices you have regarding your data. By using our website or services, you agree to the terms outlined here. We are committed to protecting your personal information and ensuring transparency in how it is handled.",
   } as const;
 
   type SectionKeys = keyof typeof sections;
@@ -45,18 +46,21 @@ const Policy = () => {
           </div>
           <h1 className="text-3xl text-gray-600">Your Privacy Matters</h1>
           <p className="text-sm text-gray-600 text-justify">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dignissimos, quidem quod exercitationem aliquid rem ab nihil ipsum
-            fuga quos ea, corrupti nesciunt praesentium vitae facere explicabo!
-            Iusto sed perferendis repellat illum. Debitis doloremque iste
-            obcaecati ducimus aspernatur.{" "}
+            At Lollys, your privacy is a top priority. We are committed to
+            handling your personal information with care, transparency, and
+            respect. This Privacy Policy outlines what data we collect, how we
+            use it, and the choices you have. Our goal is to ensure your
+            experience with us is not only enjoyable but also secure.
             <span className="font-medium text-baseGreen mx-1 cursor-pointer">
               Cookie Policy
             </span>{" "}
-            quaerat ab inventore!
-            <span className="font-medium text-baseGreen ml-1 cursor-pointer">
+            and
+            <Link
+              href={"/contact"}
+              className="font-medium text-baseGreen ml-1 cursor-pointer"
+            >
               Help Center
-            </span>
+            </Link>
           </p>
         </div>
 

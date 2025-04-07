@@ -36,7 +36,7 @@ const SingleCard = ({
           height={100}
           className="object-contain min-w-[100px] min-h-[100px] "
         />
-        <div className="absolute right-2 top-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:right-4 z-20">
+        <div className="absolute  top-4  transition-all duration-300 right-4 z-20">
           <div className="grid gap-y-[6px]">
             <Heart size={35} className="shadow-sm rounded-full p-2" />
             <TooltipProvider>

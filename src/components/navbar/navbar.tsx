@@ -71,9 +71,9 @@ const Navbar = () => {
             </div>
           </Link>
           <Menu
-            size={30}
+            size={35}
             onClick={() => setOpenMenu(!openMenu)}
-            className="text-baseGreen  md:hidden "
+            className="text-baseGreen  md:hidden"
           />
           <UserButton />
         </div>

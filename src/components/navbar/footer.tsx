@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="grid gap-y-10 relative bg-white z-0">
+    <div className="grid gap-y-10 relative mb-5 bg-white z-0">
       {/* top */}
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
         <div className="self-start grid gap-y-3 z-20">
@@ -19,7 +19,7 @@ const Footer = () => {
               className="object-cover w-[70px] h-[70px]"
             />
           </Link>
-          <span className="text-gray-600 text-sm">
+          <span className="text-gray-600">
             A good pair of sunglasses isn&rsquo;t just an accessory; it&rsquo;s
             an attitude. Wear them with confidence and let the world wonder
             what&rsquo;s behind the lenses. Put on some shades and find your
@@ -30,26 +30,14 @@ const Footer = () => {
           <span className="text-black text-lg font-semibold uppercase">
             Navigation
           </span>
-          <Link
-            href={"/policy"}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
+          <Link href={"/policy"} className="text-gray-600  cursor-pointer">
             Policy
           </Link>
-          <Link
-            href={"/about"}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
+          <Link href={"/about"} className="text-gray-600  cursor-pointer">
             About us{" "}
           </Link>
-          <Link
-            href={"/contact"}
-            className="text-gray-600 text-sm cursor-pointer"
-          >
+          <Link href={"/contact"} className="text-gray-600  cursor-pointer">
             Contact us{" "}
-          </Link>
-          <Link href={"/menu"} className="text-gray-600 text-sm cursor-pointer">
-            Main
           </Link>
         </div>
 
@@ -74,16 +62,14 @@ const Footer = () => {
             Payment
           </span>
           <ul className="flex flex-col gap-4">
-            <span className="text-gray-600 text-sm cursor-pointer">
+            <span className="text-gray-600  cursor-pointer">
               Paystack Integration
             </span>
-            <li className="text-gray-600 text-sm cursor-pointer capitalize">
-              fast
-            </li>
-            <li className="text-gray-600 text-sm cursor-pointer capitalize">
+            <li className="text-gray-600  cursor-pointer capitalize">fast</li>
+            <li className="text-gray-600 cursor-pointer capitalize">
               reliable
             </li>
-            <li className="text-gray-600 text-sm cursor-pointer capitalize">
+            <li className="text-gray-600  cursor-pointer capitalize">
               secured
             </li>
           </ul>

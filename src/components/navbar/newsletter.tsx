@@ -4,7 +4,7 @@ const Newsletter = () => {
   return (
     <div className="w-full my-10 bg-baseGreen px-5 lg:px-0  py-6">
       <div className="grid gap-3 md:gap-5 justify-center">
-        <h1 className="mx-auto text-white font-semibold text-xl md:text-2xl lg:text-3xl">
+        <h1 className="mx-auto text-white font-semibold text-center text-xl md:text-2xl lg:text-3xl">
           Get our free newsletter + bonus content{" "}
         </h1>
         <p className="mx-auto text-center text-white font-semibold md:text-lg lg:text-xl ">
