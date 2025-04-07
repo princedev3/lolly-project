@@ -86,7 +86,7 @@ const SingleCard = ({
               color: "#000",
             })
           }
-          className="bg-baseGreen text-white font-medium cursor-pointer py-2 rounded-sm "
+          className="bg-baseGreen pointer-events-auto text-white font-medium cursor-pointer py-2 rounded-sm "
         >
           Add to cart
         </button>

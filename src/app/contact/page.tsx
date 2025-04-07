@@ -1,5 +1,5 @@
 "use client";
-import Maps from "@/components/map";
+
 import { Button } from "@/components/ui/button";
 import { Clock, LoaderCircle, Mail, MapPin, PhoneOutgoing } from "lucide-react";
 import React, { useState } from "react";
@@ -160,9 +160,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-      <div className="">
-        <Maps />
-      </div>
+      <div className="">{/* <Maps /s> */}</div>
     </div>
   );
 };
