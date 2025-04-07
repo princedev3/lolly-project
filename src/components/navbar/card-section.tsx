@@ -4,13 +4,14 @@ import React from "react";
 import SingleCard from "./single-card";
 import { useGetAllProductQuery } from "@/app/apis/_product_index.api";
 import { PaginationWithLinks } from "./paginationwithlinks";
+import LoadingPage from "./loading";
 
 const CardSection = ({ page }: { page: string }) => {
   const { data, isLoading, isError } = useGetAllProductQuery(
     parseInt((page as string) || "1")
   );
   if (isLoading) {
-    return <p className="">loading..</p>;
+    return <LoadingPage />;
   }
 
   return (

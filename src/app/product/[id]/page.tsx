@@ -18,6 +18,7 @@ const SingleProduct = () => {
   const [copied, setCopied] = useState(false);
   const [selectColored, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  const [imageIndex, setImageIndex] = useState(0);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -61,7 +62,7 @@ const SingleProduct = () => {
       <div className="w-full self-start">
         <div className="relative w-full h-[270px] ">
           <Image
-            src={data?.getSingleFetch.images[0] as string}
+            src={data?.getSingleFetch.images[imageIndex] as string}
             alt=""
             fill
             className="object-contain"
@@ -77,6 +78,7 @@ const SingleProduct = () => {
         <div className="flex gap-3 flex-wrap w-full ">
           {data?.getSingleFetch?.images?.map((item, idx) => (
             <Image
+              onClick={() => setImageIndex(idx)}
               key={idx}
               src={item}
               alt=""
