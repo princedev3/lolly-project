@@ -112,34 +112,31 @@ const SngleOrderPage = () => {
         </div>
       </div>
       <div className="">
-        {data.message.product.map((item: ProductOrder) => (
-          <table
-            key={item.id}
-            className="w-full border-collapse border border-gray-300 table-fixed"
-          >
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="border  hidden lg:table-cell  border-gray-300 px-4 py-2  text-center capitalize">
-                  ID
-                </th>
-                <th className="border  border-gray-300 px-4 py-2  text-center capitalize">
-                  Price
-                </th>
-                <th className="border hidden lg:table-cell border-gray-300 px-4 py-2  text-center capitalize">
-                  name
-                </th>
-                <th className="border border-gray-300 px-4 py-2  text-center capitalize">
-                  quantity
-                </th>
-                <th className="border border-gray-300 px-4 py-2  text-center capitalize">
-                  size
-                </th>
-                <th className="border hidden lg:table-cell border-gray-300 px-4 py-2  text-center capitalize">
-                  color
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+        <table className="w-full border-collapse border border-gray-300 table-fixed">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border  hidden lg:table-cell  border-gray-300 px-4 py-2  text-center capitalize">
+                ID
+              </th>
+              <th className="border  border-gray-300 px-4 py-2  text-center capitalize">
+                Price
+              </th>
+              <th className="border hidden lg:table-cell border-gray-300 px-4 py-2  text-center capitalize">
+                name
+              </th>
+              <th className="border border-gray-300 px-4 py-2  text-center capitalize">
+                quantity
+              </th>
+              <th className="border border-gray-300 px-4 py-2  text-center capitalize">
+                size
+              </th>
+              <th className="border hidden lg:table-cell border-gray-300 px-4 py-2  text-center capitalize">
+                color
+              </th>
+            </tr>
+          </thead>
+          {data.message.product.map((item: ProductOrder) => (
+            <tbody key={item.id}>
               <tr className="hover:bg-gray-100 group" key={item.id}>
                 <td className="border hidden lg:table-cell border-gray-300 px-4 py-2 whitespace-nowrap text-center">
                   {item?.id.slice(0, 10)}
@@ -164,8 +161,8 @@ const SngleOrderPage = () => {
                 </td>
               </tr>
             </tbody>
-          </table>
-        ))}
+          ))}
+        </table>
       </div>
       <div className="flex gap-2 flex-wrap">
         {data.message.product.map((item: ProductOrder) => (
