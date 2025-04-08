@@ -47,13 +47,22 @@ const Footer = () => {
           </span>
           <div className="flex items-center gap-4">
             <div className="border p-2 rounded-full group hover:bg-baseBlue  flex items-center justify-center">
-              <FacebookIcon className="text-gray-600 group-hover:text-white" />
+              <FacebookIcon
+                size={30}
+                className="text-gray-600 group-hover:text-white"
+              />
             </div>
             <div className="border p-2 rounded-full group hover:bg-baseBlue/65 flex items-center justify-center">
-              <Instagram className="text-gray-600 group-hover:text-white" />
+              <Instagram
+                size={30}
+                className="text-gray-600 group-hover:text-white"
+              />
             </div>
             <div className="border p-2 rounded-full group hover:bg-pink-500 flex items-center justify-center">
-              <Twitter className="text-gray-600 group-hover:text-white" />
+              <Twitter
+                size={30}
+                className="text-gray-600 group-hover:text-white"
+              />
             </div>
           </div>
         </div>

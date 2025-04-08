@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type Product = {
+export type ProductCartType = {
   name: string;
   id: string;
   price: number;
@@ -9,15 +9,16 @@ type Product = {
   color: string;
   image: string;
   quantity: number;
+  initialQuantity: number;
 };
 
 type CartType = {
-  products: Product[];
+  products: ProductCartType[];
   totalPrice: number;
   totalItems: number;
 
-  addToCart: (item: Product) => void;
-  removeFromCart: (item: Product) => void;
+  addToCart: (item: ProductCartType) => void;
+  removeFromCart: (item: ProductCartType) => void;
   incrementQuantity: (id: string) => void;
   clearCart: () => void;
 };
@@ -34,7 +35,7 @@ export const useCartStore = create(
       products: INITIAL_STATE.products,
       totalItems: INITIAL_STATE.totalItems,
       totalPrice: INITIAL_STATE.totalPrice,
-      addToCart: (item: Product) => {
+      addToCart: (item: ProductCartType) => {
         const productsInstate = get().products;
         const findProduct = productsInstate.find((each) => each.id === item.id);
         if (findProduct) {
@@ -60,7 +61,7 @@ export const useCartStore = create(
           }));
         }
       },
-      removeFromCart: (item: Product) => {
+      removeFromCart: (item: ProductCartType) => {
         set((state) => ({
           products: state.products.filter((product) => product.id !== item.id),
           totalItems: state.totalItems - item.quantity,

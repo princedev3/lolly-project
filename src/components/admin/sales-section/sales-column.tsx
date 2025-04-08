@@ -53,7 +53,11 @@ export const orderColumns: ColumnDef<Order>[] = [
   },
   {
     accessorKey: "deliveryStatus",
-    header: "Delivery Status",
+    header: () => <div className="hidden lg:block">Delivery Status</div>,
+    cell: ({ row }) => {
+      const deliveryStatus = row.getValue("deliveryStatus");
+      return <div className="hidden lg:block">{deliveryStatus as string}</div>;
+    },
   },
   {
     accessorKey: "amount",

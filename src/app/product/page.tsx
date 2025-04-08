@@ -17,8 +17,8 @@ import SingleCard from "@/components/navbar/single-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
-import { sanitizeQuery } from "@/static-data/helper-func";
 import LoadingPage from "@/components/navbar/loading";
+import { sanitizeQuery } from "@/static-data/helper-func";
 
 const formSchema = z.object({
   search: z.string(),

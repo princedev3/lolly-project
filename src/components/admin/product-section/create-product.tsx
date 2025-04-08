@@ -49,7 +49,7 @@ const CreateProduct = () => {
     <Drawer>
       <DrawerTrigger asChild>
         <div className="inline-flex w-[48px] h-[48px] rounded-full font-bold text-3xl text-white bg-baseGreen shadow-md shadow-baseGreen hover:bg-baseGreen cursor-pointer items-center justify-center leading-none">
-          <span className="mb-1"> +</span>
+          <span className=""> +</span>
         </div>
       </DrawerTrigger>
       <DrawerContent className="">

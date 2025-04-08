@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/user/verify-register-email"
+    "src/app/api/user/verify-register-email",
+    "src/static-data/helper-func.tss"
   ],
   "exclude": ["node_modules"]
 }

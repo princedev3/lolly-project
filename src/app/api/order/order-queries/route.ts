@@ -15,19 +15,42 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    const createdOrder = await prisma.order.create({
-      data: {
-        product: body.product,
-        amount: body.amount,
-        useremail: session?.user?.email as string,
-        orderAddress: body.orderAddress,
-        userId: body.userId,
-        userPhone: body.phoneNumber,
-        username: session?.user?.name as string,
-        deliveryStatus: "one",
-        paymentStatus: body.paymentStatus,
-        payStackId: body.payStackId,
-      },
+    const createdOrder = await prisma.$transaction(async (tx) => {
+      for (const item of body.product) {
+        const product = await tx.product.findUnique({
+          where: { id: item.id },
+        });
+
+        if (!product || product.quantity < item.quantity) {
+          throw new Error(`Insufficient stock for product: ${item.name}`);
+        }
+
+        await tx.product.update({
+          where: { id: item.id },
+          data: {
+            quantity: {
+              decrement: item.quantity,
+            },
+          },
+        });
+      }
+
+      const order = await tx.order.create({
+        data: {
+          product: body.product,
+          amount: body.amount,
+          useremail: session?.user?.email as string,
+          orderAddress: body.orderAddress,
+          userId: body.userId,
+          userPhone: body.phoneNumber,
+          username: session?.user?.name as string,
+          deliveryStatus: "one",
+          paymentStatus: body.paymentStatus,
+          payStackId: body.payStackId,
+        },
+      });
+
+      return order;
     });
 
     if (createdOrder) {

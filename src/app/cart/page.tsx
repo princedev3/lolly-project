@@ -19,6 +19,7 @@ import {
 import { PaystackButton } from "react-paystack";
 import { useCreateOrderMutation } from "../apis/_order_index.api";
 import { useDebouncedCallback } from "use-debounce";
+import { toast } from "sonner";
 
 const Cart = () => {
   const router = useRouter();
@@ -82,6 +83,10 @@ const Cart = () => {
     }
   };
 
+  if (!session) {
+    toast.error("login or created an account");
+    router.push("/login");
+  }
   if (!product.length) {
     return (
       <div className="w-full h-[400px] bg-gray-50 shadow-md rounded-lg my-8 flex items-center justify-center ">
@@ -181,10 +186,22 @@ const Cart = () => {
               </div>
               <span className="justify-end text-xl">
                 <Plus
-                  onClick={() => incrementQuantity(item.id)}
-                  className="w-7 h-7 cursor-pointer"
+                  onClick={() => {
+                    if (item.quantity < item.initialQuantity) {
+                      incrementQuantity(item.id);
+                    } else {
+                      toast.warning(
+                        "You've reached the maximum available quantity."
+                      );
+                    }
+                  }}
+                  className={`w-7 h-7 ${
+                    item.quantity >= item.initialQuantity
+                      ? "cursor-not-allowed opacity-40"
+                      : "cursor-pointer"
+                  }`}
                   size={30}
-                />{" "}
+                />
               </span>
             </div>
           ))}

@@ -3,6 +3,7 @@ import { useGetSingleProductQuery } from "@/app/apis/_product_index.api";
 import LoadingPage from "@/components/navbar/loading";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/static-data/cart-store";
+import { disAbleCart } from "@/static-data/helper-func";
 import { Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -11,7 +12,7 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 
 const SingleProduct = () => {
-  const { addToCart } = useCartStore();
+  const { addToCart, products: cartProductsList } = useCartStore();
   const pathname = usePathname();
   const { id } = useParams();
   const { data, isLoading } = useGetSingleProductQuery(id as string);
@@ -55,8 +56,15 @@ const SingleProduct = () => {
       size: selectedSize,
       color: selectColored,
       quantity: 1,
+      initialQuantity: data?.getSingleFetch.quantity as number,
     });
   };
+  const isOutOfStock = disAbleCart(
+    cartProductsList,
+    data?.getSingleFetch.id as string,
+    data?.getSingleFetch.quantity as number
+  );
+
   return (
     <div className="grid md:grid-cols-2 my-6 gap-5 gap-y-5">
       <div className="w-full self-start">
@@ -90,7 +98,7 @@ const SingleProduct = () => {
         </div>
       </div>
       <div className="self-start grid gap-4">
-        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold capitalize">
           {data?.getSingleFetch.name}{" "}
         </h1>
         <p className="text-red-600 text-5xl">
@@ -104,7 +112,7 @@ const SingleProduct = () => {
               <div
                 key={item}
                 className={`${
-                  selectColored === item ? "border-2 " : ""
+                  selectColored === item ? "border-2 border-gray-600" : ""
                 } w-7 h-7 rounded-full  flex  items-center justify-center`}
               >
                 <div
@@ -135,8 +143,9 @@ const SingleProduct = () => {
         <p className="text-xl text-gray-600">{data?.getSingleFetch?.brand} </p>
         <p className=" text-gray-600">{data?.getSingleFetch?.desc}</p>
         <Button
+          disabled={isOutOfStock}
           onClick={addToCarts}
-          className="bg-baseGreen hover:bg-baseGreen/80"
+          className="bg-baseGreen hover:bg-baseGreen/80 py-2 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
         >
           Add to cart
         </Button>

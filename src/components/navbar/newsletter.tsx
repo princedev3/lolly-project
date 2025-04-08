@@ -2,7 +2,7 @@ import React from "react";
 
 const Newsletter = () => {
   return (
-    <div className="w-full my-10 bg-baseGreen px-5 lg:px-0  py-6">
+    <div className="w-full my-10 bg-baseGreen px-5 lg:px-0 rounded-sm py-6">
       <div className="grid gap-3 md:gap-5 justify-center">
         <h1 className="mx-auto text-white font-semibold text-center text-xl md:text-2xl lg:text-3xl">
           Get our free newsletter + bonus content{" "}
