@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { Plus } from "lucide-react";
+import { Bike, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
@@ -43,7 +43,7 @@ const Cart = () => {
 
   const selectedPrice: number | null = selectedState
     ? nigeriaStates[selectedState as keyof typeof nigeriaStates]
-    : null;
+    : 0;
 
   const product = useCartStore((state) => state.products);
   const remove = useCartStore((state) => state.removeFromCart);
@@ -161,20 +161,30 @@ const Cart = () => {
                 />
 
                 <div className="grid gap-[1px] auto-rows-max ">
-                  <span className="capitalize font-medium text-lg">
+                  <span className="capitalize font-medium text-lg text-gray-700">
                     {item.name}{" "}
                   </span>
-                  <span className="">QTY: {item.quantity} </span>
-                  <span className="">size: {item.size} </span>
-                  <div className=" flex items-center">
+                  <span className="text-gray-700">
+                    QTY: <span className="ml-2">{item.quantity}</span>{" "}
+                  </span>
+                  <span className="text-gray-700">
+                    size: <span className="ml-2">{item.size}</span>{" "}
+                  </span>
+                  <div className="text-gray-700 capitalize flex items-center gap-2">
                     color:{" "}
                     <div
                       style={{ backgroundColor: item.color }}
                       className={`w-4 h-4 rounded-full`}
                     />
                   </div>
-                  <div className="text-baseGreens">
-                    price: $<span className=" font-semibold">{item.price}</span>{" "}
+                  <div className="text-gray-700 capitalize">
+                    price:
+                    <span className="font-semibold text-xl ml-2">
+                      #{" "}
+                      <span className="text-base">
+                        {item.price.toLocaleString()}
+                      </span>
+                    </span>{" "}
                   </div>
                   <span
                     className="text-baseOrange cursor-pointer"
@@ -210,22 +220,22 @@ const Cart = () => {
           <h1 className="text-lg font-semibold text-baseGreen">
             Order Summary
           </h1>
-          <div className="grid grid-flow-col justify-between  items-center">
+          <div className="grid grid-flow-col justify-between text-gray-700 items-center">
             <span className="w-full">Total Item</span>
             <span className="">{itemCount} </span>
           </div>
-          <div className="grid grid-flow-col justify-between  items-center">
+          <div className="grid grid-flow-col justify-between text-gray-700 items-center">
             <span className="w-full">Shipping & handling</span>
             <span className="">-</span>
           </div>
-          <div className="grid grid-flow-col justify-between  items-center">
+          <div className="grid grid-flow-col justify-between text-gray-700 items-center">
             <span className="w-full">Estimated Tax</span>
             <span className="">vax (inclusive) </span>
           </div>
           {session ? (
             <>
               <div className="grid grid-cols-[100px,1fr] gap-4 items-center">
-                <div className="w-full">
+                <div className="w-full text-gray-700">
                   State <span className="text-red-600">*</span>
                 </div>
                 <Select onValueChange={handleStateChange}>
@@ -248,7 +258,7 @@ const Cart = () => {
                 </Select>
               </div>
               <div className="grid grid-cols-[100px,1fr] gap-4 items-center">
-                <div className="w-full">
+                <div className="w-full text-gray-700">
                   Address <span className="text-red-600">*</span>
                 </div>
                 <input
@@ -263,7 +273,7 @@ const Cart = () => {
                 />
               </div>
               <div className="grid grid-cols-[100px,1fr] gap-4 items-center">
-                <div className="w-full">
+                <div className="w-full text-gray-700">
                   Phone <span className="text-red-600">*</span>
                 </div>
 
@@ -287,16 +297,17 @@ const Cart = () => {
             <div className="grid grid-flow-col justify-between items-center">
               <span className="w-full text-baseOrange ">Product price</span>
               <span className="text-baseOrange">
-                # {finalPrice.toFixed(2)}{" "}
+                <span className="font-semibold text-xl">#</span>{" "}
+                {finalPrice.toLocaleString()}{" "}
               </span>
             </div>
             <div className="grid grid-flow-col justify-between  items-center">
               <span className="w-full text-baseOrange">Total Price</span>
-              <span className="text-baseOrange  ">
-                #
-                {selectedPrice === null
-                  ? finalPrice + " + delivery price"
-                  : finalPrice + (selectedPrice !== null ? selectedPrice : 0)}
+              <span className="text-baseOrange">
+                <span className="font-semibold text-xl">#</span>{" "}
+                {(
+                  finalPrice + (selectedPrice !== null ? selectedPrice : 0)
+                ).toLocaleString()}
               </span>
             </div>
           </div>

@@ -60,18 +60,20 @@ export const UserButton = () => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>Log Out</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href={"/like"} className="cursor-pointer">
+              Likes
+            </Link>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     );
   }
   return (
-    <div className="hidden md:flex space-x-2 justify-end w-full">
+    <div className="flex space-x-2 justify-end w-full">
       <Button className="text-white cursor-pointer hover:bg-baseGreen bg-baseGreen text-xl py-6 px-6 motion-preset-shake motion-duration-1000">
         <Link href={"/login"}>Sign in</Link>
       </Button>
-      {/* <Button className="text-white cursor-pointer hover:bg-baseGreen bg-baseGreen text-xl py-6 px-6 capitalize motion-preset-shake motion-duration-1000">
-        <Link href={"/register"}> get started</Link>
-      </Button> */}
     </div>
   );
 };

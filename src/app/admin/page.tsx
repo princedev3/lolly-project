@@ -30,8 +30,8 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="flex gap-6 my-3 min-h-[100vh] ">
-      <div className="h-full">
+    <div className="flex gap-2 md:gap-6 my-3 min-h-[100vh]">
+      <div className="">
         <AdminSideBar
           selectedSection={selectedSection}
           setSelectedSection={setSelectedSection}

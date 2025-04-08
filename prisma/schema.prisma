@@ -31,7 +31,7 @@ model User {
   createdAt DateTime @default(now())
   product Product[]
   order Order[]
-
+userLikesProduct UserLikesProduct[]
 }
  
 model Account {
@@ -115,6 +115,7 @@ user User @relation( fields: [userId],references: [id])
 quantity Int
 brand String?
 createAt DateTime @default(now())
+userLikesProduct UserLikesProduct[]
 }
 model  Order{
   id      String   @id @default(uuid())
@@ -130,6 +131,7 @@ model  Order{
   deliveryStatus DeliveryNum @default(one)
   user User @relation(fields: [userId],references: [id])
   createdAt DateTime @default(now())
+
 }
 enum DeliveryNum{
   one
@@ -138,9 +140,20 @@ enum DeliveryNum{
 }
 
 model NewsletterSubscriber {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)
+}
+
+
+model UserLikesProduct {
+id      String   @id @default(uuid())
+  userId     String
+  productId  String
+  createdAt    DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id])
+  @@index([userId, productId]) 
 }

@@ -41,7 +41,6 @@ export default async function RootLayout({
           <AuthProvider>
             <SessionProvider session={session}>
               <LayoutProvider>{children}</LayoutProvider>
-              <CartPopup />
               <SoonerToast />
               <BackToTop />
             </SessionProvider>

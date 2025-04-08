@@ -17,6 +17,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { eyeglassBrands } from "@/static-data/staticdata";
 import { toast } from "sonner";
+import LoadingPage from "@/components/navbar/loading";
 
 const ProductEditPage = () => {
   const router = useRouter();
@@ -35,7 +36,7 @@ const ProductEditPage = () => {
   }, [data]);
 
   if (isLoading) {
-    return <p className="">loading...</p>;
+    return <LoadingPage />;
   }
 
   const handleDeleteImage = (img: string) => {

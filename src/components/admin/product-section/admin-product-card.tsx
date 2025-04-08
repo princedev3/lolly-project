@@ -27,7 +27,7 @@ const AdminProductCard = () => {
       </div>
       {data?.message.count && (
         <PaginationWithLinks
-          pageSize={8}
+          pageSize={Number(process.env.NEXT_PUBLIC_POST_PER_PAGE)}
           page={parseInt((page as string) || "1")}
           totalCount={data?.message.count as number}
         />

@@ -41,12 +41,17 @@ const AdminSingleCard = ({
   };
   return (
     <div className=" p-3 bg-gray-50/40 shadow-md rounded-md grid gap-3">
-      <div className="w-full h-[130px] relative">
-        <Image src={images[0]} alt="" fill className="object-contain" />
+      <div className="w-[130px] h-[130px] relative mx-auto">
+        <Image
+          src={images[0]}
+          alt=""
+          fill
+          className="object-cover rounded-full"
+        />
       </div>
       <div className="grid gap-1">
-        <span className="w-[65%] text-gray-600 text-sm">{name} </span>
-        <span className="text-gray-600">qty: {quantity} </span>
+        <span className="w-[65%] text-gray-600 capitalize">{name} </span>
+        <span className="text-gray-600 capitalize">qty: {quantity} </span>
       </div>
       <div className="flex justify-between items-center">
         <Link href={`/admin/product/${id}`}>

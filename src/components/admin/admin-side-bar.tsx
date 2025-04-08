@@ -24,7 +24,7 @@ const AdminSideBar = ({
           onClick={() => setSelectedSection(item.activeState as string)}
           className={`${
             selectedSection === item.activeState ? "bg-gray-200" : ""
-          } flex relative items-center gap-3 cursor-pointer group hover:bg-gray-200 rounded-sm transition-all duration-600 py-2 px-3 md:px-6`}
+          } flex relative items-center justify-center gap-3 cursor-pointer group hover:bg-gray-200 rounded-sm transition-all duration-600 py-2  px-4 md:px-6`}
         >
           <div
             className={`${
@@ -34,13 +34,13 @@ const AdminSideBar = ({
           <span className="text-xl font-normal text-gray-700 capitalize hidden md:block">
             {item.title}{" "}
           </span>
-          <div className="relative">
-            <item.icon size={26} color="#374151" className="hidden md:block" />
+          <item.icon size={26} color="#374151" className="hidden md:block " />
+          <div className="relative flex items-center justify-center">
             <div className="md:hidden">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <item.icon size={26} color="#374151" className="" />
+                    <item.icon size={30} color="#374151" className="" />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{item.title}</p>

@@ -67,21 +67,21 @@ const SingleProduct = () => {
 
   return (
     <div className="grid md:grid-cols-2 my-6 gap-5 gap-y-5">
-      <div className="w-full self-start">
-        <div className="relative w-full h-[270px] ">
+      <div className="w-full self-start  relative">
+        <div className="relative w-[250px] h-[250px] mx-auto mb-4">
           <Image
             src={data?.getSingleFetch.images[imageIndex] as string}
             alt=""
             fill
-            className="object-contain"
+            className="object-cover rounded-full"
           />
-          <div className="absolute top-2 w-full  justify-between flex  px-8">
-            <Share2
-              onClick={copyToClipboard}
-              className={`${copied ? "text-gray-400" : "text-gray-600"}`}
-            />
-            <Heart className="text-gray-500" />
-          </div>
+        </div>
+        <div className="absolute top-2 w-full  justify-between flex  px-8">
+          <Share2
+            onClick={copyToClipboard}
+            className={`${copied ? "text-gray-400" : "text-gray-600"}`}
+          />
+          <Heart className="text-gray-500" />
         </div>
         <div className="flex gap-3 flex-wrap w-full ">
           {data?.getSingleFetch?.images?.map((item, idx) => (
@@ -92,7 +92,7 @@ const SingleProduct = () => {
               alt=""
               width={80}
               height={80}
-              className="w-[80px] h-[50px] border object-contain cursor-pointer p-1"
+              className="w-[80px] h-[80px] border object-cover cursor-pointer p-1"
             />
           ))}
         </div>

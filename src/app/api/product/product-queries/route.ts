@@ -74,7 +74,8 @@ export const POST = async (req: NextRequest) => {
 export const GET = async (req: NextRequest) => {
   try {
     const page = req.nextUrl.searchParams.get("page") as string;
-    const POST_PER_PAGE = 8;
+    let PER_PAGE = process.env.POST_PER_PAGE as string;
+    const POST_PER_PAGE = Number(PER_PAGE);
 
     if (isNaN(parseInt(page)) || parseInt(page) < 1) {
       return NextResponse.json({ message: "Invalid page number", status: 400 });

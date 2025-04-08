@@ -45,9 +45,9 @@ const Navbar = () => {
                   href={item.pathName}
                   className={`${
                     pathName === item.pathName
-                      ? "text-[#17CF97]   font-medium "
+                      ? "text-[#17CF97] font-medium"
                       : ""
-                  }  relative capitalize block z-10 px-5 py-2 text-[#17CF97]  `}
+                  }  relative capitalize block z-10 px-5 py-2 text-[#17CF97]`}
                 >
                   <div
                     className={`${
@@ -65,7 +65,7 @@ const Navbar = () => {
             href={"/cart"}
             className={`${totalItems === 0 ? "hidden" : ""} relative`}
           >
-            <ShoppingCart className="text-gray-500" />
+            <ShoppingCart className="text-[#17CF97]" />
             <div className="min-w-[24px] cursor-pointer absolute -top-4 -right-3 text-white font-normal min-h-[24px] rounded-full bg-baseGreen flex items-center justify-center ">
               {totalItems}{" "}
             </div>
@@ -89,13 +89,13 @@ const Navbar = () => {
           <div
             className={`${
               openMenu
-                ? "md:hidden w-full h-full fixed top-0 left-0 bg-[#17CF97]   ease-in duration-500 transition-all"
+                ? "md:hidden w-full h-full fixed top-0 left-0 bg-[#17CF97] ease-in duration-500 transition-all"
                 : "-left-[100%] ease-in duration-500 transition-all w-full h-full fixed top-0 "
             }  !z-[1000000]`}
           >
             <div
               onClick={() => setOpenMenu(false)}
-              className="motion-preset-shake z-50 w-fit ml-auto  border-2 border-white rounded-full p-1 cursor-pointer"
+              className="motion-preset-shake z-50 w-fit ml-auto border-2 border-white rounded-full p-1 cursor-pointer"
             >
               <X className="text-white z-50" size={25} />
             </div>
@@ -105,7 +105,7 @@ const Navbar = () => {
                   onClick={() => setOpenMenu(false)}
                   key={item.id}
                   className={`
-                 text-xl cursor-pointer capitalize text-white font-medium `}
+                 text-xl cursor-pointer capitalize text-white font-medium`}
                   href={item.pathName}
                 >
                   {item.title}{" "}

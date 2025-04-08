@@ -13,7 +13,6 @@ const CardSection = ({ page }: { page: string }) => {
   if (isLoading) {
     return <LoadingPage />;
   }
-
   return (
     <div className="">
       <h1 className="text-2xl font-semibold capitalize text-baseGreen text-center mx-auto my-7">
@@ -29,7 +28,7 @@ const CardSection = ({ page }: { page: string }) => {
 
       {data?.message.count && (
         <PaginationWithLinks
-          pageSize={8}
+          pageSize={Number(process.env.NEXT_PUBLIC_POST_PER_PAGE)}
           page={parseInt((page as string) || "1")}
           totalCount={data?.message.count as number}
         />

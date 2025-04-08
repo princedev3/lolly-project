@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useCartStore } from "@/static-data/cart-store";
 import { Product } from "@prisma/client";
 import { disAbleCart } from "@/static-data/helper-func";
+import { useCreateLikeMutation } from "@/app/apis/like_index_api";
 
 const SingleCard = ({
   name,
@@ -27,25 +28,34 @@ const SingleCard = ({
 }: Product) => {
   const { addToCart, products: cartProducts } = useCartStore();
   const isOutOfStock = disAbleCart(cartProducts, id, quantity);
-
+  const [createLike] = useCreateLikeMutation();
+  const handleLike = async () => {
+    try {
+      console.log("hi");
+      await createLike({ hi: "hi" });
+    } catch (error) {}
+  };
   return (
     <div className="h-[425px]  bg-gray-100 p-3  hover:shadow-[16px_0px_52px_-15px_#17CF97] group">
       <div className="relative h-[180px] bg-white flex items-center justify-center w-full">
-        <Image
-          src={images[0]}
-          alt=""
-          width={100}
-          height={100}
-          className="object-contain min-w-[100px] min-h-[100px] "
-        />
-        <div className="absolute  top-4  transition-all duration-300 right-3 z-20">
+        <div className="w-[120px] relative h-[120px] rounded-full overflow-hidden bg-gray-50">
+          <Image src={images[0]} alt="" fill className="object-cover" />
+        </div>
+        <div className="absolute  top-4  transition-all duration-300 right-2 z-50">
           <div className="grid gap-y-[6px]">
-            <Heart size={35} className="shadow-sm rounded-full p-2" />
+            <Heart
+              onClick={handleLike}
+              size={35}
+              className="shadow-sm text-baseGreen rounded-full p-2"
+            />
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
                   <Link href={`/product/${id}`}>
-                    <Eye size={35} className="shadow-sm rounded-full p-2" />
+                    <Eye
+                      size={35}
+                      className="shadow-sm rounded-full p-2 text-baseGreen"
+                    />
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -68,18 +78,18 @@ const SingleCard = ({
       </div>
       <div className="grid gap-y-4">
         <div className="w-[70px] h-[70px] mx-auto flex items-center justify-center font-serif text-gray-700">
-          <h1 className="text-2xl font-semibold skew-y-2 capitalize">
+          <h1 className="text-2xl text-gray-600 font-semibold skew-y-1 capitalize">
             {brand}{" "}
           </h1>
         </div>
         <div className="flex justify-between">
           <h1 className="w-[65%] text-gray-700 text-lg capitalize">{name} </h1>
           <div className="text-sm">
-            <h1 className="text-pink-600 font-semibold text-lg">
-              <span className="">$</span>
-              <span className="">{price}</span>
+            <h1 className="text-gray-700 text-lg">
+              <span className="text-xl font-semibold">#</span>
+              <span className="">{price.toLocaleString()}</span>
             </h1>
-            <span className="text-gray-700 text-lg">QTY: {quantity} </span>
+            <span className="text-gray-600 text-lg">QTY: {quantity} </span>
           </div>
         </div>
         <button
@@ -96,7 +106,7 @@ const SingleCard = ({
               initialQuantity: quantity,
             })
           }
-          className={`bg-baseGreen z-50 pointer-events-auto text-white font-medium cursor-pointer py-2 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
+          className={`bg-baseGreen z-50 pointer-events-auto text-white font-medium cursor-pointer py-3 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
         >
           Add to cart
         </button>
