@@ -78,7 +78,7 @@ const SingleCard = ({
       </div>
       <div className="grid gap-y-4">
         <div className="w-[70px] h-[70px] mx-auto flex items-center justify-center font-serif text-gray-700">
-          <h1 className="text-2xl text-gray-600 font-semibold skew-y-1 capitalize">
+          <h1 className="text-xl text-gray-600 font-semibold skew-y-1 capitalize">
             {brand}{" "}
           </h1>
         </div>
