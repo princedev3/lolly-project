@@ -116,7 +116,7 @@ const SingleProduct = () => {
                 } w-7 h-7 rounded-full  flex  items-center justify-center`}
               >
                 <div
-                  className={` w-5 h-5 rounded-full cursor-pointer`}
+                  className={`w-5 h-5 rounded-full cursor-pointer`}
                   style={{ backgroundColor: item }}
                   onClick={() => handleColorChange(item)}
                 ></div>
@@ -145,7 +145,7 @@ const SingleProduct = () => {
         <Button
           disabled={isOutOfStock}
           onClick={addToCarts}
-          className="bg-baseGreen hover:bg-baseGreen/80 py-2 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
+          className="bg-baseGreen hover:bg-baseGreen/80 py-4 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
         >
           Add to cart
         </Button>

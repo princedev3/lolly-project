@@ -1,7 +1,7 @@
 "use client";
 import { Eye, Heart, Truck, X } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -12,7 +12,13 @@ import Link from "next/link";
 import { useCartStore } from "@/static-data/cart-store";
 import { Product } from "@prisma/client";
 import { disAbleCart } from "@/static-data/helper-func";
-import { useCreateLikeMutation } from "@/app/apis/like_index_api";
+import {
+  useCreateLikeMutation,
+  useGetLikesQuery,
+} from "@/app/apis/like_index_api";
+import { userStore } from "@/static-data/user-session";
+import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 const SingleCard = ({
   name,
@@ -29,31 +35,60 @@ const SingleCard = ({
   const { addToCart, products: cartProducts } = useCartStore();
   const isOutOfStock = disAbleCart(cartProducts, id, quantity);
   const [createLike] = useCreateLikeMutation();
+  const { data, isLoading } = useGetLikesQuery(null);
+
+  const session = userStore((state) => state.session);
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading && data?.message) {
+      setLiked(data?.message?.includes(id));
+    }
+  }, [data, id, isLoading]);
+
   const handleLike = async () => {
     try {
-      console.log("hi");
-      await createLike({ hi: "hi" });
+      if (!session) {
+        toast.error("kindly logins");
+        return;
+      }
+
+      const res = await createLike({ id, userId: session.user?.id });
+      setLiked((prev) => !prev);
     } catch (error) {}
   };
+
   return (
-    <div className="h-[425px]  bg-gray-100 p-3  hover:shadow-[16px_0px_52px_-15px_#17CF97] group">
+    <motion.div
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 100 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="h-[425px]  bg-gray-100 p-3  hover:shadow-[16px_0px_52px_-15px_#17CF97] group"
+    >
       <div className="relative h-[180px] bg-white flex items-center justify-center w-full">
         <div className="w-[120px] relative h-[120px] rounded-full overflow-hidden bg-gray-50">
           <Image src={images[0]} alt="" fill className="object-cover" />
         </div>
         <div className="absolute  top-4  transition-all duration-300 right-2 z-50">
           <div className="grid gap-y-[6px]">
-            <Heart
+            <motion.div
+              whileTap={{ scale: 0.85 }}
               onClick={handleLike}
-              size={35}
-              className="shadow-sm text-baseGreen rounded-full p-2"
-            />
+              className="cursor-pointer"
+            >
+              <Heart
+                size={40}
+                className={`${
+                  liked ? "fill-red-500 stroke-red-500" : ""
+                } shadow-sm text-baseGreen rounded-full p-2`}
+              />
+            </motion.div>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
                   <Link href={`/product/${id}`}>
                     <Eye
-                      size={35}
+                      size={40}
                       className="shadow-sm rounded-full p-2 text-baseGreen"
                     />
                   </Link>
@@ -92,7 +127,8 @@ const SingleCard = ({
             <span className="text-gray-600 text-lg">QTY: {quantity} </span>
           </div>
         </div>
-        <button
+        <motion.button
+          whileTap={{ scale: 0.95 }}
           disabled={quantity <= 0 || isOutOfStock}
           onClick={() =>
             addToCart({
@@ -109,9 +145,9 @@ const SingleCard = ({
           className={`bg-baseGreen z-50 pointer-events-auto text-white font-medium cursor-pointer py-3 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
         >
           Add to cart
-        </button>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
