@@ -132,7 +132,7 @@ export const adminDetails = [
     id: "3",
     title: "customer",
     icon: UsersRound,
-    activeState: "customer",
+    activeState: "users",
   },
   {
     id: "4",

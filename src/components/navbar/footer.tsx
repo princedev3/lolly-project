@@ -46,12 +46,17 @@ const Footer = () => {
             FOLLOW US
           </span>
           <div className="flex items-center gap-4">
-            <div className="border p-2 rounded-full group hover:bg-baseBlue  flex items-center justify-center">
+            <a
+              href="https://www.facebook.com/share/17n56qzU3S/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border p-2 rounded-full group hover:bg-baseBlue cursor-pointer flex items-center justify-center"
+            >
               <FacebookIcon
                 size={30}
                 className="text-gray-600 group-hover:text-white"
               />
-            </div>
+            </a>
             <div className="border p-2 rounded-full group hover:bg-baseBlue/65 flex items-center justify-center">
               <Instagram
                 size={30}

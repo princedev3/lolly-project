@@ -37,6 +37,8 @@ const Login = async () => {
                 await signIn("credentials", {
                   email,
                   password,
+                  redirect: true,
+                  callbackUrl: "/",
                 });
               }}
               className="w-full grid gap-y-5 bg-white"

@@ -14,7 +14,7 @@ export const POST = async (req: NextRequest) => {
     });
     if (!existingToken) {
       return NextResponse.json({
-        message: "fail to verify email",
+        message: "No token found",
         status: 500,
       });
     }
@@ -25,7 +25,7 @@ export const POST = async (req: NextRequest) => {
     });
     if (!existingUser) {
       return NextResponse.json({
-        message: "fail to verify email",
+        message: "No user found",
         status: 500,
       });
     }

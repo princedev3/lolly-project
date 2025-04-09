@@ -24,7 +24,7 @@ const AdminSideBar = ({
           onClick={() => setSelectedSection(item.activeState as string)}
           className={`${
             selectedSection === item.activeState ? "bg-gray-200" : ""
-          } flex relative items-center justify-center gap-3 cursor-pointer group hover:bg-gray-200 rounded-sm transition-all duration-600 py-2  px-4 md:px-6`}
+          } flex relative items-center gap-3 cursor-pointer group hover:bg-gray-200 rounded-sm transition-all duration-600 py-2  px-4 md:px-6`}
         >
           <div
             className={`${

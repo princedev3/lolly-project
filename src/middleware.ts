@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-const authRoute = ["/login", "/register", "/verify-email", "/forgot-email"];
+const authRoute = [
+  "/login",
+  "/register",
+  "/verify-email",
+  "/enter-new-password",
+  "/forgot-password",
+];
 export default async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const token = await getToken({
@@ -8,10 +14,17 @@ export default async function middleware(req: NextRequest) {
     secret: process.env.AUTH_SECRET,
     cookieName: "next-auth.session-token",
   });
-  // console.log("token ", token);
+
   if (token && authRoute.includes(pathname)) {
     return NextResponse.redirect(new URL("/", req.url));
   }
+  if (
+    (pathname === "/admin" || pathname.startsWith("/admin")) &&
+    token?.role !== "ADMIN"
+  ) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
   return NextResponse.next();
 }
 

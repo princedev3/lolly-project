@@ -18,6 +18,7 @@ const VerifyEmailRegistration = () => {
       if (res.data.status === 200) {
         toast.success(res.data.message);
         router.push("/login");
+        return;
       }
       if (res.data.status !== 200) {
         toast.error(res.data.message);
