@@ -6,7 +6,7 @@ const AllUser = () => {
       <h1 className="text-2xl font-semibold my-4 text-baseGreen capitalize">
         Manage user
       </h1>
-      <div className="">hhh</div>
+      <div className="">hhhff</div>
     </div>
   );
 };
