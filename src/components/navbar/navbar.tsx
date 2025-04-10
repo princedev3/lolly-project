@@ -8,15 +8,26 @@ import { usePathname } from "next/navigation";
 import { navbarItems } from "@/static-data/staticdata";
 import { userStore } from "@/static-data/user-session";
 import { useCartStore } from "@/static-data/cart-store";
-
+// import { useSession } from "next-auth/react";
 const Navbar = () => {
   const { totalItems } = useCartStore();
   const pathName = usePathname();
   const [openMenu, setOpenMenu] = useState(false);
+
+  // const setSession = userStore((state) => state.setSession);
   const session = userStore((state) => state.session);
+
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
+  // const { data: session, status } = useSession();
+
+  // useEffect(() => {
+  //   if (session === null) {
+  //     return;
+  //   }
+  //   setSession(session);
+  // }, [session]);
   return (
     <>
       <div className="grid grid-flow-col justify-between items-center w-full h-[80px]">

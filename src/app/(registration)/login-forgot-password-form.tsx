@@ -35,7 +35,7 @@ const LoginForgotPasswordForm = () => {
           <button
             type="button"
             disabled={loadingPassword || !verifyEmail.trim()}
-            className="bg-[#17CF97] text-white font-medium px-4 py-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-600"
+            className="bg-[#17CF97] hover:bg-[#17CF97] text-white font-medium px-4 py-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loadingPassword ? "Sending..." : "Send"}
           </button>

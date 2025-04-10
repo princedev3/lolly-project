@@ -33,13 +33,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
   return (
     <html lang="en">
       <body>
         <div className={`${roboto.className}  antialiased`}>
           <AuthProvider>
-            <SessionProvider session={session}>
+            <SessionProvider>
               <LayoutProvider>{children}</LayoutProvider>
               <SoonerToast />
               <BackToTop />
