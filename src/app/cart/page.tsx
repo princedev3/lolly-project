@@ -331,6 +331,7 @@ const Cart = () => {
               setPhoneNumber("");
               setAddress("");
               clearCart();
+              toast.success("Payment successful, Thank you");
               handleSuccess(transaction.reference, transaction.status);
             }}
             onClose={() => {}}

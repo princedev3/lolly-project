@@ -5,6 +5,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL_API as string,
   }),
+  tagTypes: ["Users"],
   endpoints: (builder) => ({
     createUser: builder.mutation({
       query: (userData) => {
@@ -23,8 +24,36 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
+    getAllUser: builder.query({
+      query: (userData) => ({
+        url: "/user/user-queries",
+        method: "GET",
+      }),
+      providesTags: ["Users"],
+    }),
+    deleteAUser: builder.mutation({
+      query: (id) => ({
+        url: `/user/user-queries/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    updateAUser: builder.mutation({
+      query: ({ id, role }) => ({
+        url: `/user/user-queries/${id}`,
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: { role },
+      }),
+      invalidatesTags: ["Users"],
+    }),
   }),
 });
 
-export const { useCreateUserMutation, useVerifyRegisterEmailMutation } =
-  userApi;
+export const {
+  useCreateUserMutation,
+  useVerifyRegisterEmailMutation,
+  useGetAllUserQuery,
+  useDeleteAUserMutation,
+  useUpdateAUserMutation,
+} = userApi;
