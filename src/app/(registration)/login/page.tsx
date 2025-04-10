@@ -7,10 +7,11 @@ import React from "react";
 import LoginForgotPasswordForm from "../login-forgot-password-form";
 import { auth, signIn } from "@/static-data/auth";
 import { redirect } from "next/navigation";
+import ClientLoginForm from "@/components/registration/client-login";
 
 const Login = async () => {
   const session = await auth();
-
+  console.log("sesion ", session);
   if (session) {
     redirect("/");
   }
@@ -29,7 +30,11 @@ const Login = async () => {
               height={50}
               className="w-[50px] h-[50px] mx-auto"
             />
-            <form
+            <ClientLoginForm />
+            <div className="w-full">
+              <LoginForgotPasswordForm />
+            </div>
+            {/* <form
               action={async (formData) => {
                 "use server";
                 const password = formData.get("password");
@@ -78,7 +83,7 @@ const Login = async () => {
                   dont have an account? Register
                 </Link>
               </div>
-            </form>
+            </form> */}
             <form
               action={async () => {
                 "use server";
@@ -93,23 +98,31 @@ const Login = async () => {
                 </p>
                 <div className=" flex-grow border-b border-zinc-400"></div>
               </div>
-              <button className="w-full cursor-pointer">
-                <Badge
-                  variant="outline"
-                  className="text-zinc-700 w-full !rounded-lg p-2 hover:bg-gray-100 text-center flex items-center justify-center "
+              <div className="">
+                <button className="w-full cursor-pointer">
+                  <Badge
+                    variant="outline"
+                    className="text-zinc-700 w-full !rounded-lg p-2 hover:bg-gray-100 text-center flex items-center justify-center "
+                  >
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={"/google.png"}
+                        width={13}
+                        height={13}
+                        alt=""
+                        className="w-5 h-5 object-cover"
+                      />
+                      Google
+                    </div>
+                  </Badge>
+                </button>
+                <Link
+                  href={"/register"}
+                  className="text-[12px] text-gray-500 cursor-pointer text-center flex items-center justify-center"
                 >
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src={"/google.png"}
-                      width={13}
-                      height={13}
-                      alt=""
-                      className="w-5 h-5 object-cover"
-                    />
-                    Google
-                  </div>
-                </Badge>
-              </button>
+                  dont have an account? Register
+                </Link>
+              </div>
             </form>
           </div>
         </div>
