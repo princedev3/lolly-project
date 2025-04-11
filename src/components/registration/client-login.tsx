@@ -9,6 +9,7 @@ import LoginPassword from "@/components/registration/login-password";
 import SlideIn from "@/components/slide-in";
 import { Badge } from "@/components/ui/badge";
 import React, { useState } from "react";
+import { LoaderCircle } from "lucide-react";
 
 const ClientLoginForm = () => {
   const router = useRouter();
@@ -61,7 +62,15 @@ const ClientLoginForm = () => {
             type="submit"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? (
+              <LoaderCircle
+                className="animate-spin grid mx-auto"
+                color="white"
+                size={22}
+              />
+            ) : (
+              "Login"
+            )}
           </button>
         </div>
       </form>

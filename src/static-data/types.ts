@@ -36,3 +36,17 @@ export type ProductOrder = {
   color: string;
   image: string;
 };
+
+export type CreatedComment = {
+  id: string;
+  productId: string;
+  userId: string;
+  value: number;
+  comment: string | null;
+  createdAt: Date;
+  user: {
+    id: string;
+    name: string | null;
+    image: string | null;
+  };
+};

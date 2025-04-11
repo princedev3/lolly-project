@@ -187,3 +187,36 @@ export const nigeriaStates = {
   // Zamfara: 6000,
   // "FCT-Abuja": 6000,
 };
+
+export const ratings = [
+  {
+    productId: "prod_1",
+    userId: "user_1",
+    value: 5,
+    comment: "Amazing product! Highly recommend.",
+  },
+  {
+    productId: "prod_1",
+    userId: "user_2",
+    value: 4,
+    comment: "Very good, just a bit pricey.",
+  },
+  {
+    productId: "prod_2",
+    userId: "user_3",
+    value: 3,
+    comment: "Average quality, not bad for the price.",
+  },
+  {
+    productId: "prod_1",
+    userId: "user_4",
+    value: 2,
+    comment: "Expected more based on the reviews.",
+  },
+  {
+    productId: "prod_2",
+    userId: "user_5",
+    value: 1,
+    comment: "Not satisfied at all.",
+  },
+];

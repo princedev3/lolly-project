@@ -55,7 +55,9 @@ const SingleCard = ({
 
       const res = await createLike({ id, userId: session.user?.id });
       setLiked((prev) => !prev);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -130,7 +132,7 @@ const SingleCard = ({
         <motion.button
           whileTap={{ scale: 0.95 }}
           disabled={quantity <= 0 || isOutOfStock}
-          onClick={() =>
+          onClick={() => {
             addToCart({
               name,
               id,
@@ -140,8 +142,9 @@ const SingleCard = ({
               size: "M",
               color: "#000",
               initialQuantity: quantity,
-            })
-          }
+            });
+            toast.success("added to cart");
+          }}
           className={`bg-baseGreen z-50 pointer-events-auto text-white font-medium cursor-pointer py-3 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
         >
           Add to cart
