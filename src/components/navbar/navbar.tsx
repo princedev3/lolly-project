@@ -8,7 +8,29 @@ import { usePathname } from "next/navigation";
 import { navbarItems } from "@/static-data/staticdata";
 import { userStore } from "@/static-data/user-session";
 import { useCartStore } from "@/static-data/cart-store";
+import { motion, AnimatePresence } from "framer-motion";
 // import { useSession } from "next-auth/react";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15, // slight delay between children
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4, // 1 second
+      ease: "easeOut",
+    },
+  },
+};
 const Navbar = () => {
   const { totalItems } = useCartStore();
   const pathName = usePathname();
@@ -22,12 +44,6 @@ const Navbar = () => {
   }, []);
   // const { data: session, status } = useSession();
 
-  // useEffect(() => {
-  //   if (session === null) {
-  //     return;
-  //   }
-  //   setSession(session);
-  // }, [session]);
   return (
     <>
       <div className="grid grid-flow-col justify-between items-center w-full h-[80px]">
@@ -89,43 +105,52 @@ const Navbar = () => {
           <UserButton />
         </div>
       </div>
-      {
-        <div
-          className={`${
-            openMenu
-              ? "bg-gray-700/60 backdrop-blur-lg  md:hidden w-full h-full top-0 left-0 fixed z-50"
-              : ""
-          }`}
-        >
-          <div
-            className={`${
-              openMenu
-                ? "md:hidden w-full h-full fixed top-0 left-0 bg-[#17CF97] ease-in duration-500 transition-all"
-                : "-left-[100%] ease-in duration-500 transition-all w-full h-full fixed top-0 "
-            }  !z-[1000000]`}
+      <AnimatePresence>
+        {openMenu && (
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="bg-gray-700/60 backdrop-blur-lg md:hidden w-full h-full top-0 left-0 fixed z-50"
           >
-            <div
-              onClick={() => setOpenMenu(false)}
-              className="motion-preset-shake z-50 w-fit ml-auto border-2 border-white rounded-full p-1 cursor-pointer"
+            <motion.div
+              key="menu"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.4 }}
+              className="md:hidden w-full h-full fixed top-0 left-0 bg-[#17CF97] !z-[1000000]"
             >
-              <X className="text-white z-50" size={25} />
-            </div>
-            <div className="flex flex-col justify-center items-center w-full h-full gap-5">
-              {navbarItems.map((item) => (
-                <Link
-                  onClick={() => setOpenMenu(false)}
-                  key={item.id}
-                  className={`
-                 text-xl cursor-pointer capitalize text-white font-medium`}
-                  href={item.pathName}
-                >
-                  {item.title}{" "}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      }
+              <div
+                onClick={() => setOpenMenu(false)}
+                className="z-50 w-fit ml-auto border-2 border-white rounded-full p-1 cursor-pointer"
+              >
+                <X className="text-white z-50" size={25} />
+              </div>
+
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col justify-center items-center w-full h-full gap-5"
+              >
+                {navbarItems.map((item) => (
+                  <motion.div key={item.id} variants={itemVariants}>
+                    <Link
+                      onClick={() => setOpenMenu(false)}
+                      href={item.pathName}
+                      className="text-xl cursor-pointer capitalize text-white font-medium"
+                    >
+                      {item.title}
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -14,17 +14,17 @@ export const navbarItems = [
     pathName: "/about",
   },
   {
-    id: "4",
+    id: "3",
     title: "policy",
     pathName: "/policy",
   },
   {
-    id: "5",
+    id: "4",
     title: "product",
     pathName: "/product",
   },
   {
-    id: "3",
+    id: "5",
     title: "admin",
     pathName: "/admin",
   },
