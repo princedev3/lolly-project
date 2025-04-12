@@ -20,6 +20,7 @@ export type userType = {
 export type ProductType = {
   message: {
     allProducts: Product[];
+    isFallback?: boolean;
     count: number;
   };
 };

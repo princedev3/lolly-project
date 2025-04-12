@@ -22,6 +22,9 @@ export const GET = async (req: NextRequest) => {
     const [allProducts, count] = await prisma.$transaction([
       prisma.product.findMany({
         where: whereCondition,
+        orderBy: {
+          createAt: "desc",
+        },
         take: POST_PER_PAGE,
         skip: POST_PER_PAGE * (parseInt(page) - 1),
       }),
@@ -30,6 +33,23 @@ export const GET = async (req: NextRequest) => {
       }),
     ]);
 
+    let isFallback = false;
+
+    if (allProducts.length === 0 && search) {
+      isFallback = true;
+      let [allProducts, count] = await prisma.$transaction([
+        prisma.product.findMany({
+          orderBy: { createAt: "desc" },
+          take: POST_PER_PAGE,
+          skip: POST_PER_PAGE * (parseInt(page) - 1),
+        }),
+        prisma.product.count(),
+      ]);
+      return NextResponse.json({
+        message: { allProducts, count, isFallback },
+        status: 200,
+      });
+    }
     return NextResponse.json({ message: { allProducts, count }, status: 200 });
   } catch (error) {
     console.log(error);

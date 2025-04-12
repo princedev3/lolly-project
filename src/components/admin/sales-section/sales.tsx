@@ -20,7 +20,6 @@ const Sales = () => {
   if (isLoading) {
     return <LoadingPage />;
   }
-
   return (
     <div>
       <h1 className="text-xl font-semibold mb-4 text-baseGreen">
@@ -44,7 +43,7 @@ const Sales = () => {
       )}
       {data && data?.allOrders?.length > 0 && (
         <PaginationWithLinks
-          pageSize={5}
+          pageSize={Number(process.env.NEXT_PUBLIC_POST_PER_PAGE)}
           page={parseInt((page as string) || "1")}
           totalCount={data?.count as number}
         />

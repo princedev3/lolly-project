@@ -97,12 +97,10 @@ export const GET = async (req: NextRequest) => {
         take: POST_PER_PAGE,
         skip: POST_PER_PAGE * (parseInt(page) - 1),
         orderBy: {
-          createdAt: "asc",
+          createdAt: "desc",
         },
       }),
-      prisma.order.count({
-        where: whereCondition,
-      }),
+      prisma.order.count(),
     ]);
 
     return NextResponse.json({ allOrders: allProducts, count, status: 200 });

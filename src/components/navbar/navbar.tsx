@@ -9,13 +9,12 @@ import { navbarItems } from "@/static-data/staticdata";
 import { userStore } from "@/static-data/user-session";
 import { useCartStore } from "@/static-data/cart-store";
 import { motion, AnimatePresence } from "framer-motion";
-// import { useSession } from "next-auth/react";
 
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15, // slight delay between children
+      staggerChildren: 0.15,
     },
   },
 };
@@ -26,7 +25,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.4, // 1 second
+      duration: 0.4,
       ease: "easeOut",
     },
   },

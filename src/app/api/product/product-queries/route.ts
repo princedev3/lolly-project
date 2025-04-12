@@ -84,6 +84,9 @@ export const GET = async (req: NextRequest) => {
       prisma.product.findMany({
         take: POST_PER_PAGE,
         skip: POST_PER_PAGE * (parseInt(page) - 1),
+        orderBy: {
+          createAt: "desc",
+        },
       }),
       prisma.product.count(),
     ]);

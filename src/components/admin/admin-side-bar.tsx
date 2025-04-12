@@ -16,7 +16,7 @@ const AdminSideBar = ({
   selectedSection: string;
 }) => {
   return (
-    <div className="bg-gray-50 h-full relative  flex flex-col gap-4 py-5 rounded-md">
+    <div className="bg-gray-50  relative  flex flex-col gap-4 py-5 rounded-md">
       <div className="h-full w-[2px] bg-black/5 absolute left-0 top-0"></div>
       {adminDetails.map((item) => (
         <div

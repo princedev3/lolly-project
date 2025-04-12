@@ -1,7 +1,5 @@
 import nodemailer from "nodemailer";
-
 import fs from "fs/promises";
-
 import { Order } from "@prisma/client";
 import { generateOrderPdf } from "./generate-pdf";
 import { cleanupTempFolder } from "./cleantemp";
@@ -21,13 +19,13 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
     const orderLink = `${process.env.BASE_URL_!}/order/${orderDetails.id}`;
 
     const mailOptions = {
-      from: process.env.EMAIL,
+      from: `Lolly Collections ${process.env.EMAIL}`,
       to: orderDetails.useremail,
       subject: "Your Order Confirmation",
       html: `
         <p>Hello ${orderDetails.useremail},</p>
         <p>Thank you for your order! Your order details are attached.</p>
-      <a href="${orderLink}">Click here to confirm see order</a>
+      <a href="${orderLink}">To view your order</a>
       `,
       attachments: [
         {

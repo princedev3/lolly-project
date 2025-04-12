@@ -278,7 +278,7 @@ const Cart = () => {
                 </div>
 
                 <input
-                  type="tel"
+                  type="number"
                   defaultValue={phoneNumber}
                   onChange={(e) => {
                     const val = e.target.value;

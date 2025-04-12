@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import {
   Form,
   FormControl,
@@ -35,9 +36,7 @@ const Product = () => {
   const [page, setPage] = useState<number>(1);
   const [allProducts, setAllProducts] = useState<any[]>([]);
   const [hasMore, setHasMore] = useState(true);
-
   const productSet = useRef(new Set());
-
   const { data, isLoading } = useGetSearchProductQuery({ page, query });
 
   useEffect(() => {
@@ -107,7 +106,7 @@ const Product = () => {
   }
 
   return (
-    <div>
+    <div className="mb-5">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -130,7 +129,12 @@ const Product = () => {
           </Button>
         </form>
       </Form>
-
+      {data?.message.isFallback && (
+        <p className="text-sm text-gray-600 mb-4">
+          No results found for "<strong>{urlQuery}</strong>". Showing popular
+          products instead.
+        </p>
+      )}
       <InfiniteScroll
         scrollThreshold={0.6}
         dataLength={allProducts.length}
@@ -172,7 +176,7 @@ const Product = () => {
             <b>No Product Left</b>
           </p>
         }
-        className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-5"
+        className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] h-full  gap-5 !overflow-hidden"
       >
         {allProducts.map((item) => (
           <SingleCard key={item.id} {...item} />
