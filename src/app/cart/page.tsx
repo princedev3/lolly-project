@@ -9,6 +9,7 @@ import { useCartStore } from "@/static-data/cart-store";
 import Link from "next/link";
 import { userStore } from "@/static-data/user-session";
 import { nigeriaStates } from "@/static-data/staticdata";
+import confetti from "canvas-confetti";
 import {
   Select,
   SelectContent,
@@ -69,6 +70,13 @@ const Cart = () => {
   };
 
   const handleSuccess = async (payStackId: string, paymentStatus: string) => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x: 0.95, y: 0.05 },
+      angle: 180,
+      startVelocity: 40,
+    });
     const order = await createOrder({
       amount: finalPrice + (selectedPrice !== null ? selectedPrice : 0),
       userId: session?.user?.id as string,

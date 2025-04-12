@@ -15,7 +15,6 @@ const AllUser = () => {
     return <LoadingPage />;
   }
 
-  console.log(data);
   return (
     <div>
       <h1 className="text-2xl font-semibold my-4 text-baseGreen capitalize">

@@ -1,4 +1,5 @@
 import { Product } from "@prisma/client";
+import { z } from "zod";
 
 export type CardTypes = {
   id: string;
@@ -51,3 +52,14 @@ export type CreatedComment = {
     image: string | null;
   };
 };
+
+export const couponSchema = z.object({
+  duration: z
+    .string()
+    .min(1, { message: "price is required" })
+    .refine((val) => !isNaN(Number(val)), {
+      message: "Price must be a valid number.",
+    })
+    .transform((val) => Number(val)),
+  code: z.string().min(1, { message: "desc is required" }),
+});

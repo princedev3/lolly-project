@@ -9,11 +9,11 @@ const Notification = () => {
       <div className="flex ">
         <div className="flex items-center gap-2 motion-preset-bounce">
           <Image
-            src={"/sun1.jpg"}
+            src={"/sun1.png"}
             alt=""
             width={120}
             height={40}
-            className="w-[120px] h-[40px] object-cover"
+            className="w-[120px] h-[50px] object-contain"
           />
 
           <div className="wave-text text-gray-700 text-lg">
