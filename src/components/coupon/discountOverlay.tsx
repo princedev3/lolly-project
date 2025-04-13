@@ -4,11 +4,15 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { Check } from "lucide-react";
+import { useGetCouponQuery } from "@/app/apis/_coupon_index_api";
 
 export default function DiscountOverlay() {
+  const { data } = useGetCouponQuery(null);
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (!data?.existingCoupon?.code) return;
     const hasSeen = localStorage.getItem("hasSeenDiscount");
     if (!hasSeen) {
       localStorage.setItem("hasSeenDiscount", "true");
@@ -21,14 +25,14 @@ export default function DiscountOverlay() {
         startVelocity: 40,
       });
     }
-  }, []);
+  }, [data]);
 
   const handleClose = () => setIsVisible(false);
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard
-      .writeText("WELCOME10")
+      .writeText(data.existingCoupon.code)
       .then(() => {
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
@@ -60,9 +64,16 @@ export default function DiscountOverlay() {
             >
               ✕
             </button>
-            <h2 className="text-xl font-bold text-baseGreen mb-2">Welcome!</h2>
+            <h2 className="text-xl font-bold text-baseGreen mb-2">
+              {data.existingCoupon.code}{" "}
+            </h2>
             <p className="text-gray-700 mb-4">
-              Here&rsquo;s a special 10% off code just for you:
+              Here&rsquo;s a special{" "}
+              {parseInt(
+                data?.existingCoupon?.code.match(/[0-9]/g)?.join("") || "0",
+                10
+              )}
+              % off code just for you:
             </p>
             <div
               className="bg-baseGreen text-white font-semibold py-2 px-4 rounded-md mb-3 select-all cursor-pointer"

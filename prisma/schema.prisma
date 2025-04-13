@@ -156,16 +156,16 @@ id      String   @id @default(uuid())
   userId     String
   productId  String
   createdAt    DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
-  product    Product  @relation(fields: [productId], references: [id])
+  user       User     @relation(fields: [userId], references: [id],onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id],onDelete: Cascade)
   @@index([userId, productId]) 
 }
 
 model Rating {
   id        String   @id @default(uuid())
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id],onDelete: Cascade)
   productId String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id],onDelete: Cascade)
   userId    String
   value     Int    
   comment   String?

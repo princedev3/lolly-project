@@ -58,6 +58,37 @@ export const eyeglassBrands = [
   "Vogue Eyewear",
 ];
 
+export const carouselData = [
+  {
+    name: "Ama Princess",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit amet consectetur adipisicingLorem ipsum dolor sit amet consectetur adipisicing ",
+    path: "/p1.jpg",
+    position: "ceo & cto",
+    rating: 3,
+  },
+  {
+    name: "Zee Jolli",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit amet consectetur adipisicingLorem ipsum dolor sit amet consectetur adipisicing ",
+    path: "/person-1.png",
+    position: "student",
+    rating: 4,
+  },
+  {
+    name: "Joy Regina",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit amet consectetur adipisicingLorem ipsum dolor sit amet consectetur adipisicing ",
+    path: "/p2.jpg",
+    position: "cashier",
+    rating: 4.2,
+  },
+  {
+    name: "Vera Jasmine",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit amet consectetur adipisicingLorem ipsum dolor sit amet consectetur adipisicing ",
+    path: "/p3.jpg",
+    position: "developer",
+    rating: 4.2,
+  },
+];
+
 export const dataItems = [
   {
     id: "1",

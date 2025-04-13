@@ -63,3 +63,17 @@ export const couponSchema = z.object({
     .transform((val) => Number(val)),
   code: z.string().min(1, { message: "desc is required" }),
 });
+
+export type SliderCommentType = {
+  id: string;
+  comment: string;
+  value: number;
+  createdAt: string; // or `Date` if you're converting to Date
+  userId: string;
+  productId: string;
+  user: {
+    id: string;
+    name: string;
+    image: string;
+  };
+};

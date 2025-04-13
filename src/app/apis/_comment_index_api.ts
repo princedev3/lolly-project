@@ -1,4 +1,4 @@
-import { CreatedComment } from "@/static-data/types";
+import { CreatedComment, SliderCommentType } from "@/static-data/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const commentApi = createApi({
@@ -25,7 +25,22 @@ export const commentApi = createApi({
 
       invalidatesTags: [{ type: "COMMENT", id: "LIST" }],
     }),
-
+    getCommentForSider: builder.query<
+      { sliderComment: SliderCommentType[] },
+      null
+    >({
+      query: () => ({
+        url: "/comment/slider",
+        method: "GET",
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              { type: "COMMENT", id: "SLIDER" },
+              { type: "COMMENT", id: "LIST" },
+            ]
+          : [{ type: "COMMENT", id: "SLIDER" }],
+    }),
     getAllComment: builder.query<
       { createdComment: CreatedComment[]; averageRating: number },
       string
@@ -52,4 +67,5 @@ export const {
   useCreateCommentMutation,
   useGetAllCommentQuery,
   useDeleteCommentMutation,
+  useGetCommentForSiderQuery,
 } = commentApi;

@@ -39,3 +39,20 @@ export const POST = async (req: NextRequest) => {
     });
   }
 };
+
+export const GET = async (req: NextRequest) => {
+  try {
+    const existingCoupon = await prisma.coupon.findMany();
+
+    return NextResponse.json({
+      existingCoupon: existingCoupon[0],
+      status: 200,
+    });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({
+      message: "can not get coupon",
+      status: 500,
+    });
+  }
+};

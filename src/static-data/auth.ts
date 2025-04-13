@@ -70,7 +70,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     }),
   ],
   pages: {
-    error: "/error?error=auth_failed",
+    error: "/auth/error",
   },
   callbacks: {
     async signIn({ user, account }) {
@@ -151,6 +151,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 24 * 3,
+  },
+  jwt: {
+    maxAge: 60 * 60 * 24 * 3,
   },
   cookies: {
     sessionToken: {

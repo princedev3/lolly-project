@@ -71,7 +71,7 @@ const SingleCard = ({
         <div className="w-[120px] relative h-[120px] rounded-full overflow-hidden bg-gray-50">
           <Image src={images[0]} alt="" fill className="object-cover" />
         </div>
-        <div className="absolute  top-4  transition-all duration-300 right-2 z-50">
+        <div className="absolute  top-4  transition-all duration-300 right-2 ">
           <div className="grid gap-y-[6px]">
             <motion.div
               whileTap={{ scale: 0.85 }}
@@ -145,7 +145,7 @@ const SingleCard = ({
             });
             toast.success("added to cart");
           }}
-          className={`bg-baseGreen z-50 pointer-events-auto text-white font-medium cursor-pointer py-3 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
+          className={`bg-baseGreen  pointer-events-auto text-white font-medium cursor-pointer py-3 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
         >
           Add to cart
         </motion.button>

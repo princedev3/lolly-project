@@ -13,8 +13,27 @@ export const couponApi = createApi({
         method: "POST",
         body: couponData,
       }),
+      invalidatesTags: ["COUPON"],
+    }),
+    getCoupon: builder.query({
+      query: () => ({
+        url: `/coupon`,
+        method: "GET",
+      }),
+      providesTags: ["COUPON"],
+    }),
+    deleteCoupon: builder.mutation({
+      query: (id) => ({
+        url: `/coupon/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["COUPON"],
     }),
   }),
 });
 
-export const { useCreateCouponMutation } = couponApi;
+export const {
+  useCreateCouponMutation,
+  useGetCouponQuery,
+  useDeleteCouponMutation,
+} = couponApi;

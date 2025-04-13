@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { Bike, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
@@ -21,9 +21,12 @@ import { PaystackButton } from "react-paystack";
 import { useCreateOrderMutation } from "../apis/_order_index.api";
 import { useDebouncedCallback } from "use-debounce";
 import { toast } from "sonner";
+import { useGetCouponQuery } from "../apis/_coupon_index_api";
+import LoadingPage from "@/components/navbar/loading";
 
 const Cart = () => {
   const router = useRouter();
+  const { data, isLoading } = useGetCouponQuery(null);
   const [createOrder] = useCreateOrderMutation();
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const session = userStore((state) => state.session);
@@ -52,11 +55,23 @@ const Cart = () => {
 
   const incrementQuantity = useCartStore((state) => state.incrementQuantity);
   const itemCount = useCartStore((state) => state.totalItems);
+  const discountPercent = Number(
+    data?.existingCoupon?.code.match(/\d+/)?.[0] || "0"
+  );
+
+  const validDiscountPercent = isNaN(discountPercent) ? 0 : discountPercent;
 
   const finalPrice = product.reduce((acc, cur) => acc + cur.price, 0);
+
+  const discountedPrice =
+    finalPrice - (finalPrice * validDiscountPercent) / 100;
+
+  const deliveryFee = selectedPrice ?? 0;
+  const totalAmount = discountedPrice + deliveryFee;
+
   const componentProps = {
     email: session?.user?.email as string,
-    amount: (finalPrice + (selectedPrice !== null ? selectedPrice : 0)) * 100,
+    amount: totalAmount * 100,
     metadata: {
       name: session?.user?.name as string,
       phoneNumber: phoneNumber ? phoneNumber : "",
@@ -91,6 +106,9 @@ const Cart = () => {
     }
   };
 
+  if (isLoading) {
+    return <LoadingPage />;
+  }
   if (!session) {
     toast.error("login or created an account");
     router.push("/login");
@@ -290,10 +308,12 @@ const Cart = () => {
                   defaultValue={phoneNumber}
                   onChange={(e) => {
                     const val = e.target.value;
+                    if (!/^\d*$/.test(val)) return;
+                    if (val.length > 11) return;
                     phoneRef.current = val;
                     debouncedPhoneNumber(val);
                   }}
-                  placeholder="+234 9030300300"
+                  placeholder="09030300300"
                   className="w-full outline-none p-1 rounded-sm border"
                 />
               </div>
@@ -313,11 +333,20 @@ const Cart = () => {
               <span className="w-full text-baseOrange">Total Price</span>
               <span className="text-baseOrange">
                 <span className="font-semibold text-xl">#</span>{" "}
-                {(
-                  finalPrice + (selectedPrice !== null ? selectedPrice : 0)
-                ).toLocaleString()}
+                {totalAmount.toLocaleString()}
               </span>
             </div>
+            {validDiscountPercent > 0 && (
+              <div className="grid grid-flow-col justify-between  items-center">
+                <span className="w-full text-baseOrange">
+                  Discount ({validDiscountPercent}%)
+                </span>
+                <div className="text-baseOrange">
+                  <span className="font-semibold text-xl">-#</span>{" "}
+                  {((finalPrice * validDiscountPercent) / 100).toLocaleString()}
+                </div>
+              </div>
+            )}
           </div>
 
           <PaystackButton
