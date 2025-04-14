@@ -30,7 +30,7 @@ const ClientLoginForm = () => {
 
     setLoading(false);
 
-    if (res?.ok) {
+    if (res?.ok && !res.error) {
       toast.success("Login successful!");
       router.push("/");
     } else {

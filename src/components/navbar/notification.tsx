@@ -40,7 +40,7 @@ const Notification = () => {
   const seconds = Math.floor((timeLeft / 1000) % 60);
 
   return (
-    <Marquee speed={20} className="h-[50px] w-full bg-slate-50/50">
+    <Marquee speed={20} className="h-[60px] w-full bg-slate-50/50">
       <div className="flex items-center gap-4 px-4">
         <Image
           src={"/sun1.png"}
@@ -75,7 +75,7 @@ const Notification = () => {
               height={40}
               className="w-[120px] h-[40px] object-cover"
             />
-            <p className="text-sm text-gray-600">
+            <p className="text-gray-700">
               {`${hours}h ${minutes}m ${seconds}s`}
             </p>
           </>

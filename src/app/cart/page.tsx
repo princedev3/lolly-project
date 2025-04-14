@@ -76,7 +76,7 @@ const Cart = () => {
       name: session?.user?.name as string,
       phoneNumber: phoneNumber ? phoneNumber : "",
     },
-    publicKey: process.env.NEXT_PUBLIC_PAYSTACT_PUBLIC_KEY as string,
+    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY as string,
     text: "payment for purchase",
     onSuccess: () => {
       alert("thank you for purchase");

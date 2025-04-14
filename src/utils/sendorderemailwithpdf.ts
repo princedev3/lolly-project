@@ -64,7 +64,7 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
     const orderLink = `${process.env.BASE_URL_!}/order/${orderDetails.id}`;
 
     const res = await resend.emails.send({
-      from: process.env.RESEND_DOMAIN as string,
+      from: "Shop Admin <lolly@prexasoft.com>",
       to: orderDetails.useremail,
       subject: "Your Order Confirmation",
       html: `

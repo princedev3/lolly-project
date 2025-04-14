@@ -54,13 +54,13 @@ const ContactPage = () => {
               Phone Number
             </h3>
             <p className="grid mx-auto text-baseGreen no-underline">
-              +91 80004 36640
+              +20 11 16798756
             </p>
           </a>
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="mailto:someone@example.com"
+            href="mailto:Ojetundeopeyemi0@gmail.com"
             className="p-2 md:p-6 flex flex-col items-start justify-center"
           >
             <Mail className="grid mx-auto" color="#17cf97" size={30} />
@@ -70,7 +70,7 @@ const ContactPage = () => {
             </h3>
 
             <p className="text-baseGreen no-underline  grid mx-auto  break-all whitespace-normal text-wrap  break-words">
-              sales@gmail.com
+              Ojetundeopeyemi0@gmail.com
             </p>
           </a>
           <div className="p-2 md:p-6  flex flex-col items-start justify-center">
@@ -79,7 +79,7 @@ const ContactPage = () => {
               Location
             </h3>
             <p className="text-baseGreen  no-underline grid mx-auto text-center">
-              518, Rhythm Plaza, Amar Javan
+              12, Fatima Okanlawon
             </p>
           </div>
           <div className="p-2 md:p-6  flex flex-col items-start justify-center text-baseGreen">

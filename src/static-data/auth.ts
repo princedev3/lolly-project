@@ -22,19 +22,15 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
       authorize: async (credentials) => {
         try {
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email as string },
+          });
+
+          if (!user) return null;
           const { email, password } = credentials;
 
           if (!email || !password) {
-            return null;
-          }
-
-          const user = await prisma.user.findUnique({
-            where: {
-              email: email as string,
-            },
-          });
-
-          if (!user) {
+            console.warn("Missing email or password");
             return null;
           }
 

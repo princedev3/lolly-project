@@ -5,16 +5,15 @@ import { createTransport } from "nodemailer";
 const transport = createTransport({
   service: "gmail",
   auth: {
-    user: process.env.NODEMAILER_USER,
-    pass: process.env.NODEMAILER_PASS_KEY,
+    user: process.env.NODEMAILER_USER as string,
+    pass: process.env.NODEMAILER_PASS_KEY as string,
   },
 });
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${process.env
-    .NEXT_PUBLIC_BASE_URL!}/verify-email?token=${token}`;
+  const confirmLink = `${process.env.BASE_URL_!}/verify-email?token=${token}`;
   const mailOptions: Mail.Options = {
-    from: "Lolly's",
+    from: `Lolly's Collection <${process.env.NODEMAILER_USER} > `,
     to: email,
     subject: "Email Confirmation",
     html: `
@@ -110,6 +109,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   };
   try {
     const info = await transport.sendMail(mailOptions);
+    return info;
   } catch (error) {
     console.error("Error occurred:", error);
   }

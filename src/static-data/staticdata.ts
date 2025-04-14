@@ -203,7 +203,7 @@ export const nigeriaStates = {
   // Kebbi: 6000,
   // Kogi: 6000,
   // Kwara: 6000,
-  Lagos: 1800,
+  Lagos: 4000,
   // Nasarawa: 6000,
   // Niger: 6000,
   // Ogun: 3000,

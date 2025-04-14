@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { FacebookIcon, Instagram, Twitter } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 import Link from "next/link";
 
 const Footer = () => {
@@ -58,16 +59,30 @@ const Footer = () => {
               />
             </a>
             <div className="border p-2 rounded-full group hover:bg-baseBlue/65 flex items-center justify-center">
-              <Instagram
-                size={30}
+              <a
+                href="https://www.instagram.com/ashabiade_ope/profilecard/?igsh=MXg0ZTZld3NqbnN6ag=="
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 group-hover:text-white"
-              />
+                // className="border p-2 rounded-full group hover:bg-baseBlue cursor-pointer flex items-center justify-center"
+              >
+                <Instagram
+                  size={30}
+                  className="text-gray-600 group-hover:text-white"
+                />
+              </a>
             </div>
             <div className="border p-2 rounded-full group hover:bg-pink-500 flex items-center justify-center">
-              <Twitter
-                size={30}
-                className="text-gray-600 group-hover:text-white"
-              />
+              <a
+                href="https://www.tiktok.com/@lollys.collection7"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTiktok
+                  size={30}
+                  className="text-gray-600 group-hover:text-white"
+                />
+              </a>
             </div>
           </div>
         </div>
