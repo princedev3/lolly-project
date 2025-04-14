@@ -1,4 +1,3 @@
-"use client";
 import VerifyEmailRegistration from "@/components/registration/verify-email-registration";
 import SlideIn from "@/components/slide-in";
 import Image from "next/image";

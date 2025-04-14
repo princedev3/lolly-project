@@ -27,6 +27,7 @@ const VerifyEmailRegistration = () => {
     };
     verifyEmail();
   }, [token]);
+
   return (
     <form action="" className="grid mx-auto">
       <div className="flex items-center gap-1">
