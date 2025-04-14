@@ -16,6 +16,7 @@ const RegistrationForm = () => {
       const res = await createUser(formdata);
       if (res.data.status === 200) {
         toast.success(res.data.message);
+        return;
       }
       toast.success(res.data.message);
     } catch (error) {
