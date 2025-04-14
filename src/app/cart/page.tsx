@@ -34,6 +34,9 @@ const Cart = () => {
   const [address, setAddress] = useState("");
   const addressRef = useRef("");
   const phoneRef = useRef("");
+  const isCouponValid =
+    data?.existingCoupon &&
+    new Date(data.existingCoupon.expiryDate) > new Date();
 
   const handleStateChange = (value: string) => {
     setSelectedState(value);
@@ -55,9 +58,9 @@ const Cart = () => {
 
   const incrementQuantity = useCartStore((state) => state.incrementQuantity);
   const itemCount = useCartStore((state) => state.totalItems);
-  const discountPercent = Number(
-    data?.existingCoupon?.code.match(/\d+/)?.[0] || "0"
-  );
+  const discountPercent = isCouponValid
+    ? Number(data?.existingCoupon?.code.match(/\d+/)?.[0] || "0")
+    : 0;
 
   const validDiscountPercent = isNaN(discountPercent) ? 0 : discountPercent;
 
