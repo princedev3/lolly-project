@@ -20,8 +20,8 @@ export const UserButton = () => {
   const handleLogout = async () => {
     await signOut({ redirect: false });
 
-    document.cookie =
-      "authjs.session-token=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0";
+    // document.cookie =
+    // "authjs.session-token=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0";
     router.push("/login");
   };
 
