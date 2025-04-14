@@ -8,6 +8,9 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {
+    if (status === "loading") {
+      return;
+    }
     if (!session) {
       return router.push("/login");
     }
