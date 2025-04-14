@@ -7,6 +7,7 @@ import Marquee from "react-fast-marquee";
 const Notification = () => {
   const { data, isLoading } = useGetCouponQuery(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (!data?.existingCoupon?.expiryDate) {
@@ -31,6 +32,16 @@ const Notification = () => {
     return () => clearInterval(interval);
   }, [data]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (isLoading) {
     return null;
   }
@@ -40,7 +51,10 @@ const Notification = () => {
   const seconds = Math.floor((timeLeft / 1000) % 60);
 
   return (
-    <Marquee speed={20} className="h-[60px] w-full bg-slate-50/50">
+    <Marquee
+      speed={20}
+      className={`${isScrolled ? "bg-white" : "bg-slate-50/50"} h-[60px] w-full transition-all duration-100`}
+    >
       <div className="flex items-center gap-4 px-4">
         <Image
           src={"/sun1.png"}

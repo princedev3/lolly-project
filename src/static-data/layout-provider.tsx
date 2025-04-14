@@ -24,9 +24,9 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
   if (readyState) {
     return (
-      <div className=" grid w-full max-w-6xl   mx-auto px-3 overflow-x-hidden xl:p-0">
+      <div className=" grid w-full max-w-6xl pt-[140px]   mx-auto px-3 overflow-x-hidden xl:px-0">
         <Provider store={store}>
-          <div className="">
+          <div className="fixed w-full grid top-0  z-50 max-w-6xl mx-auto">
             {!authRoute.includes(pathName) && <Notification />}
             {!authRoute.includes(pathName) && <Navbar />}
           </div>

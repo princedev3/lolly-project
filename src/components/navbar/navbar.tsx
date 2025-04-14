@@ -45,7 +45,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="grid grid-flow-col justify-between items-center w-full h-[80px]">
+      <div className="grid grid-flow-col bg-white justify-between items-center w-full h-[80px]">
         <Link href={"/"}>
           <Image
             src={"/logo.svg"}
