@@ -29,7 +29,7 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
           {!authRoute.includes(pathName) && <Notification />}
           {!authRoute.includes(pathName) && <Navbar />}
           {children}
-          {!authRoute.includes(pathName) && <CartPopup />}
+          {/* {!authRoute.includes(pathName) && <CartPopup />} */}
           {!authRoute.includes(pathName) && <Footer />}
           <Toaster position="bottom-right" />
         </Provider>
