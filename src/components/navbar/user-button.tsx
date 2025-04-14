@@ -19,9 +19,8 @@ export const UserButton = () => {
   const router = useRouter();
   const handleLogout = async () => {
     await signOut({ redirect: false });
+    await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
 
-    // document.cookie =
-    // "authjs.session-token=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0";
     router.push("/login");
   };
 
