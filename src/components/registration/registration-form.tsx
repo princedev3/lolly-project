@@ -17,6 +17,7 @@ const RegistrationForm = () => {
       if (res.data.status === 200) {
         toast.success(res.data.message);
       }
+      toast.success(res.data.message);
     } catch (error) {
       console.log(error);
     }
