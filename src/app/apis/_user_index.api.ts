@@ -38,12 +38,37 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Users"],
     }),
+    forgotPassword: builder.mutation({
+      query: (userdDetails) => ({
+        url: `/user/forgot-password`,
+        method: "POST",
+        body: { email: userdDetails },
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    handleResetPassword: builder.mutation({
+      query: (userdDetails) => ({
+        url: `/user/verify-forgot-password`,
+        method: "POST",
+        body: { token: userdDetails },
+      }),
+      invalidatesTags: ["Users"],
+    }),
     updateAUser: builder.mutation({
       query: ({ id, role }) => ({
         url: `/user/user-queries/${id}`,
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: { role },
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    newPassword: builder.mutation({
+      query: ({ password, email }) => ({
+        url: `/user/new-password`,
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: { password, email },
       }),
       invalidatesTags: ["Users"],
     }),
@@ -56,4 +81,7 @@ export const {
   useGetAllUserQuery,
   useDeleteAUserMutation,
   useUpdateAUserMutation,
+  useForgotPasswordMutation,
+  useHandleResetPasswordMutation,
+  useNewPasswordMutation,
 } = userApi;

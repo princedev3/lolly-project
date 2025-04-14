@@ -1,11 +1,36 @@
 "use client";
+import { useNewPasswordMutation } from "@/app/apis/_user_index.api";
 import { Eye, EyeOff } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const EnterNewPasswordForm = () => {
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email") as string;
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [newPassword] = useNewPasswordMutation();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const target = e.target as HTMLFormElement;
+      const formdata = new FormData(target);
+      const password = formdata.get("password");
+      const res = await newPassword({ password, email });
+      if (res.data.status === 200) {
+        toast.success(res.data.message);
+        router.push("/login");
+        return;
+      }
+      toast.error(res?.data?.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <form action="" className="grid gap-y-4">
+    <form action="" onSubmit={handleSubmit} className="grid gap-y-4">
       <div className="grid gap-y-1">
         <label htmlFor="" className="text-xl capitalize text-gray-600">
           enter new password:

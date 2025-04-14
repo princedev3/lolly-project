@@ -10,12 +10,12 @@ const transport = createTransport({
   },
 });
 
-export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${process.env.BASE_URL_!}/verify-email?token=${token}`;
+export const sendResetEmail = async (email: string, token: string) => {
+  const confirmLink = `${process.env.BASE_URL_!}/forgot-password?token=${token}`;
   const mailOptions: Mail.Options = {
     from: `Lolly's Collection <${process.env.NODEMAILER_USER} > `,
     to: email,
-    subject: "Email Confirmation",
+    subject: "Reset Password Email Confirmation",
     html: `
 <html>
   <head>
@@ -89,13 +89,13 @@ export const sendVerificationEmail = async (email: string, token: string) => {
       <h1>Verify your email address</h1>
       <p>Kindly click the link below to verify your email</p>
       <div class="btn">
-        <a href="${confirmLink}">Click here to confirm your email</a>
+        <a href="${confirmLink}"> Reset Password Here</a>
       </div>
 
-      <div class="footer">
+      <div class="footer"> 
         <p>Follow us on</p>
         <div class="social-links">
-          <a href="https://www.instagram.com/ashabiade_ope/profilecard/?igsh=MXg0ZTZld3NqbnN6ag==" target="_blank">Instagram</a>
+       <a href="https://www.instagram.com/ashabiade_ope/profilecard/?igsh=MXg0ZTZld3NqbnN6ag==" target="_blank">Instagram</a>
           <a  href="https://www.facebook.com/share/17n56qzU3S/?mibextid=wwXIfr" target="_blank">Facebook</a>
           <a  href="https://www.tiktok.com/@lollys.collection7" target="_blank">Tiktok</a>
         </div>

@@ -1,8 +1,28 @@
 "use client";
-import React from "react";
+import { useHandleResetPasswordMutation } from "@/app/apis/_user_index.api";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
 import { BeatLoader } from "react-spinners";
+import { toast } from "sonner";
 
 const ForgotPasswordVerifyForm = () => {
+  const [handleResetPassword] = useHandleResetPasswordMutation();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleAction = async () => {
+      const res = await handleResetPassword(token);
+      if (res.data.status === 200) {
+        router.push(`/enter-new-password?email=${res?.data?.email}`);
+        toast.success(res.data.message);
+        return;
+      }
+      toast.success(res.data.message);
+    };
+    handleAction();
+  }, [token]);
   return (
     <form action="" className="grid mx-auto">
       <div className="flex items-center gap-1">
