@@ -30,7 +30,7 @@ export default function BackToTop() {
         type="button"
         variant={"outline"}
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full shadow-lg  transition"
+        className="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full shadow-lg  transition"
         aria-label="Back to Top"
       >
         <ArrowUp />
