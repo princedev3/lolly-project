@@ -16,7 +16,7 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
       },
     });
 
-    const orderLink = `${process.env.BASE_URL_!}/order/${orderDetails.id}`;
+    const orderLink = `${process.env.BASE_URL_!}order/${orderDetails.id}`;
 
     const mailOptions = {
       from: `Lolly Collections ${process.env.EMAIL}`,
@@ -40,6 +40,7 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
 
     await fs.unlink(pdfPath);
     console.log("🧹 Temporary PDF deleted");
+    return "send";
   } catch (error) {
     console.error("❌ Error sending email:", error);
   } finally {
