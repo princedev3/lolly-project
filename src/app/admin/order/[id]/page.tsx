@@ -16,6 +16,7 @@ import {
   useFetchSingleOrderQuery,
   useUpdateOrderMutation,
 } from "@/app/apis/_order_index.api";
+import LoadingPage from "@/components/navbar/loading";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const OrderDetails = () => {
   const [updateOrder] = useUpdateOrderMutation();
   const { data, isLoading } = useFetchSingleOrderQuery(id);
   if (isLoading) {
-    return <p className="">loading</p>;
+    return <LoadingPage />;
   }
   const order = data?.message;
 

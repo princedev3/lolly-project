@@ -1,5 +1,6 @@
 import { auth } from "@/static-data/auth";
 import prisma from "@/static-data/prisma";
+import { sendEmailWithPdf } from "@/utils/sendorderemailwithpdf";
 import { NextRequest, NextResponse } from "next/server";
 
 type ParamType = {
@@ -39,7 +40,7 @@ export const PUT = async (req: NextRequest, { params }: ParamType) => {
         deliveryStatus: body,
       },
     });
-
+    await sendEmailWithPdf(fetchOrder);
     return NextResponse.json({ message: "order updated", status: 200 });
   } catch (error) {
     console.log(error);
