@@ -26,10 +26,13 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
     return (
       <div className=" grid w-full max-w-6xl pt-[140px]   mx-auto px-3 overflow-x-hidden xl:px-0">
         <Provider store={store}>
-          <div className="fixed w-full grid top-0  z-50 max-w-6xl mx-auto">
-            {!authRoute.includes(pathName) && <Notification />}
-            {!authRoute.includes(pathName) && <Navbar />}
+          <div className="fixed top-0 left-0 w-full z-50 bg-white">
+            <div className="mx-auto w-full max-w-6xl px-3">
+              {!authRoute.includes(pathName) && <Notification />}
+              {!authRoute.includes(pathName) && <Navbar />}
+            </div>
           </div>
+
           {children}
           {/* {!authRoute.includes(pathName) && <CartPopup />} */}
           {!authRoute.includes(pathName) && <Footer />}
