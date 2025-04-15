@@ -120,7 +120,7 @@ const Footer = () => {
       </div>
 
       <div className="w-full border-b-[1px] border-gray-300"></div>
-      {/* down */}
+
       <div className="grid gap-y-2 sm:grid-flow-col">
         <div className="">
           <span className="text-gray-600 text-sm">
