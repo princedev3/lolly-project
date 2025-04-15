@@ -65,7 +65,7 @@ const SingleCard = ({
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 100 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="h-[425px]  bg-gray-100 p-3  hover:shadow-[16px_0px_52px_-15px_#17CF97] group"
+      className="min-h-[425px]  bg-gray-100 p-3  hover:shadow-[16px_0px_52px_-15px_#17CF97] group"
     >
       <div className="relative h-[180px] bg-white flex items-center justify-center w-full">
         <div className="w-[120px] relative h-[120px] rounded-full overflow-hidden bg-gray-50">
