@@ -128,8 +128,18 @@ const Footer = () => {
           </span>
         </div>
         <div className="grid grid-flow-col auto-cols-max gap-5 sm:justify-end">
-          <span className="text-gray-600 text-sm">Terms of Service</span>
-          <span className="text-gray-600 text-sm">Privacy Policy</span>
+          <Link
+            href={"/policy"}
+            className="text-gray-600 text-sm cursor-pointer"
+          >
+            Terms of Service
+          </Link>
+          <Link
+            href={"/policy"}
+            className="text-gray-600 text-sm cursor-pointer"
+          >
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </div>
