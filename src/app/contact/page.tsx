@@ -148,7 +148,10 @@ const ContactPage = () => {
                 }`}
                 placeholder="Enter your message "
               />
-              <Button className="my-3 !py-2 text-xl bg-baseGreen hover:bg-baseGreen/80 ">
+              <Button
+                type="submit"
+                className="my-3 !py-2 text-xl bg-baseGreen hover:bg-baseGreen/80 "
+              >
                 {loading ? (
                   <LoaderCircle
                     className="animate-spin text-center"
