@@ -3,7 +3,12 @@ import { useFetchSingleOrderQuery } from "@/app/apis/_order_index.api";
 import LoadingPage from "@/components/navbar/loading";
 import { ProductOrder } from "@/static-data/types";
 import { Product } from "@prisma/client";
-import { HouseIcon, PackageCheckIcon, Truck } from "lucide-react";
+import {
+  HouseIcon,
+  MessageCircleWarning,
+  PackageCheckIcon,
+  Truck,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -17,6 +22,10 @@ const SngleOrderPage = () => {
   }
   return (
     <div className="grid gap-y-4 my-4">
+      <p className="mx-auto flex text-gray-600">
+        <MessageCircleWarning className="text-gray-600" />
+        kindly check mail inbox/spam for your copy
+      </p>
       <div className="flex justify-between">
         <div
           className="grid gap-x-4 gap-y-3"
@@ -95,8 +104,8 @@ const SngleOrderPage = () => {
             data.message.deliveryStatus === "one"
               ? 0
               : data.message.deliveryStatus === "two"
-              ? 50
-              : 100
+                ? 50
+                : 100
           }
         />
         <div className="flex justify-between text-xs mt-1">

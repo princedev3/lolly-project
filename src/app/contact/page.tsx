@@ -1,38 +1,33 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Clock, LoaderCircle, Mail, MapPin, PhoneOutgoing } from "lucide-react";
 import React, { useState } from "react";
+import { useCreateMessageMutation } from "../apis/_contact_index_api";
+import { toast } from "sonner";
 
 const ContactPage = () => {
+  const [createMessage] = useCreateMessageMutation();
   const [isFocused, setIsFocused] = useState(false);
   const [isFocused1, setIsFocused1] = useState(false);
   const [isFocused2, setIsFocused2] = useState(false);
   const [loading, setLoading] = useState(false);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const target = event?.target as HTMLFormElement;
     const formData = new FormData(target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
     setLoading(true);
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEBFORM as string);
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    });
-    const result = await response.json();
-    if (result.success) {
+    const res = await createMessage({ name, email, message });
+    if (res.data.status === 200) {
       target.reset();
+      toast.success(res.data.message);
       setLoading(false);
+      return;
     }
-    setLoading(false);
+    toast.error(res.data.message);
   }
   return (
     <div className="mb-4">
@@ -102,7 +97,7 @@ const ContactPage = () => {
               Any questions or remarks? Just write to write us a message!
             </div>
           </div>
-          <div className="mb-[30px] ">
+          <div className="mb-[30px]">
             <form onSubmit={handleSubmit} className="w-full grid gap-y-6">
               <div className="w-full grid mx-auto md:grid-flow-col gap-6">
                 <div className="grid gap-y-2">
@@ -111,9 +106,9 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="enter your email"
+                    placeholder="Enter your email"
                     name="email"
-                    className={`border placeholder:text-[#17cf97]/60 text-gray-500 outline-none p-2 rounded-3xl border-[#17cf97]/20 transition-all ${
+                    className={`border placeholder:text-[#17cf97]/60 text-gray-500 outline-none p-2 rounded-xl border-[#17cf97]/20 transition-all ${
                       isFocused ? "bg-transparent" : "bg-[#17cf97]/10 "
                     }`}
                     onFocus={() => setIsFocused(true)}
@@ -127,8 +122,8 @@ const ContactPage = () => {
                   <input
                     type="text"
                     name="name"
-                    placeholder="enter your name"
-                    className={`border p-2 rounded-3xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
+                    placeholder="Enter your name"
+                    className={`border p-2 rounded-xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
                       isFocused1 ? "bg-transparent" : "bg-[#17cf97]/10 "
                     }`}
                     onFocus={() => setIsFocused1(true)}
@@ -141,19 +136,19 @@ const ContactPage = () => {
                 name="message"
                 onFocus={() => setIsFocused2(true)}
                 onBlur={() => setIsFocused2(false)}
-                className={`border border-[#17cf97]/10 p-2 rounded-3xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
+                className={`border border-[#17cf97]/10 p-2 rounded-xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
                   isFocused2 ? "bg-transparent" : "bg-[#17cf97]/10 "
                 }`}
-                placeholder="enter your message "
+                placeholder="Enter your message "
               />
-              <Button className="my-3 !py-7 text-xl bg-baseGreen hover:bg-baseGreen/80 ">
+              <Button className="my-3 !py-2 text-xl bg-baseGreen hover:bg-baseGreen/80 ">
                 {loading ? (
                   <LoaderCircle
                     className="animate-spin text-center"
-                    size={20}
+                    size={25}
                   />
                 ) : (
-                  "submit"
+                  "Submit"
                 )}
               </Button>
             </form>
