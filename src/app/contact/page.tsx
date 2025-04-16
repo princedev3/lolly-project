@@ -19,6 +19,10 @@ const ContactPage = () => {
     const name = formData.get("name");
     const email = formData.get("email");
     const message = formData.get("message");
+    if (!email || !message || !name) {
+      toast.error("fill form correctly");
+      return;
+    }
     setLoading(true);
     const res = await createMessage({ name, email, message });
     if (res.data.status === 200) {
@@ -106,6 +110,7 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="text"
+                    required
                     placeholder="Enter your email"
                     name="email"
                     className={`border placeholder:text-[#17cf97]/60 text-gray-500 outline-none p-2 rounded-xl border-[#17cf97]/20 transition-all ${
@@ -122,6 +127,7 @@ const ContactPage = () => {
                   <input
                     type="text"
                     name="name"
+                    required
                     placeholder="Enter your name"
                     className={`border p-2 rounded-xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
                       isFocused1 ? "bg-transparent" : "bg-[#17cf97]/10 "
@@ -134,6 +140,7 @@ const ContactPage = () => {
               <textarea
                 rows={7}
                 name="message"
+                required
                 onFocus={() => setIsFocused2(true)}
                 onBlur={() => setIsFocused2(false)}
                 className={`border border-[#17cf97]/10 p-2 rounded-xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
