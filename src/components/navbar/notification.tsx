@@ -43,7 +43,7 @@ const Notification = () => {
   }, []);
 
   if (isLoading) {
-    return null;
+    return <div className="h-[60px] w-full"></div>;
   }
 
   const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
