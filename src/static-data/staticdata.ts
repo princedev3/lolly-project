@@ -10,28 +10,23 @@ export const navbarItems = [
   },
   {
     id: "2",
+    title: "collection",
+    pathName: "/product",
+  },
+  {
+    id: "3",
     title: "about",
     pathName: "/about",
   },
   {
-    id: "3",
-    title: "policy",
-    pathName: "/policy",
-  },
-  {
     id: "4",
-    title: "product",
-    pathName: "/product",
+    title: "contact us",
+    pathName: "/contact",
   },
   {
     id: "5",
     title: "admin",
     pathName: "/admin",
-  },
-  {
-    id: "6",
-    title: "contact",
-    pathName: "/contact",
   },
 ];
 

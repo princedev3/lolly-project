@@ -33,10 +33,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // px-[10px] sm:px-[30px] lg:px-[70px]
   return (
     <html lang="en">
       <body>
-        <div className={`${roboto.className}  antialiased`}>
+        <div className={`${roboto.className} px-2   antialiased`}>
           <AuthProvider>
             <SessionProvider>
               <LayoutProvider>{children}</LayoutProvider>

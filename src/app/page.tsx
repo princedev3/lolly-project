@@ -2,6 +2,7 @@ import DiscountOverlay from "@/components/coupon/discountOverlay";
 import CardSection from "@/components/navbar/card-section";
 import CarouselComponent from "@/components/navbar/carousel";
 import HeroSection from "@/components/navbar/hero-section";
+import NavbarHeader from "@/components/navbar/navbar-header";
 import Newsletter from "@/components/navbar/newsletter";
 import React from "react";
 
@@ -15,9 +16,10 @@ const Home = async ({ searchParams }: PageProps) => {
   const { page } = await searchParams;
 
   return (
-    <div className="flex flex-col gap-5 lg:gap-10">
+    <div className="flex flex-col">
       <DiscountOverlay />
       <HeroSection />
+      <NavbarHeader />
       <CardSection page={page as string} />
       <CarouselComponent />
       <Newsletter />

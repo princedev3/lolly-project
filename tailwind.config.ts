@@ -14,6 +14,7 @@ export default {
     extend: {
       colors: {
         baseBlue: "#1e81b0",
+        baseBlack: "#0B0C0E",
         baseGreen: "#17CF97",
         baseOrange: "#EA6D27",
         background: "hsl(var(--background))",

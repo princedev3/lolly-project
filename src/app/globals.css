@@ -132,3 +132,15 @@
 .wave:nth-child(8) {
   animation-delay: 0.7s;
 }
+
+.custom-scroll-bar::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 cursor-grabbing;
+}
