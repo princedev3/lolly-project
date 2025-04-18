@@ -204,7 +204,8 @@ const Navbar = () => {
                     <div className="flex space-x-1 bg-black hover:bg-black">
                       <UserIcon
                         size={35}
-                        color="#fff min-w-[35px] min-h-[35px]"
+                        className="min-w-[35px] min-h-[35px]"
+                        color="#fff"
                       />
                       <ChevronDown className="w-4 h-4 text-white" />
                     </div>
