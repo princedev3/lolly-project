@@ -4,12 +4,10 @@ import { Clock, LoaderCircle, Mail, MapPin, PhoneOutgoing } from "lucide-react";
 import React, { useState } from "react";
 import { useCreateMessageMutation } from "../apis/_contact_index_api";
 import { toast } from "sonner";
+import { contactInfo } from "@/static-data/staticdata";
 
 const ContactPage = () => {
   const [createMessage] = useCreateMessageMutation();
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFocused1, setIsFocused1] = useState(false);
-  const [isFocused2, setIsFocused2] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -33,79 +31,81 @@ const ContactPage = () => {
     }
     toast.error(res.data.message);
   }
+
   return (
     <div className="mb-4">
-      <div className="w-full mx-auto bg-baseGreen py-5 font-semibold text-2xl capitalize text-white text-center ">
-        get in touch with us now!
-      </div>
-
-      <div className="relative  mx-auto w-full rounded-md p-4">
-        <div className="grid grid-cols-2 grid-rows-2 gap-0 relative">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="tel:+20 11 16798756"
-            className="p-2 md:p-6 flex flex-col items-start justify-center"
-          >
-            <PhoneOutgoing className="grid mx-auto" size={30} color="#17cf97" />
-            <h3 className="sm:text-xl grid mx-auto font-bold text-baseGreen">
-              {" "}
-              Phone Number
-            </h3>
-            <p className="grid mx-auto text-baseGreen no-underline">
-              +20 11 16798756
-            </p>
-          </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="mailto:Ojetundeopeyemi0@gmail.com"
-            className="p-2 md:p-6 flex flex-col items-start justify-center"
-          >
-            <Mail className="grid mx-auto" color="#17cf97" size={30} />
-            <h3 className="sm:text-xl  font-bold grid mx-auto text-baseGreen">
-              {" "}
-              Email
-            </h3>
-
-            <p className="text-baseGreen no-underline  grid mx-auto  break-all whitespace-normal text-wrap  break-words">
-              Ojetundeopeyemi0@gmail.com
-            </p>
-          </a>
-          <div className="p-2 md:p-6  flex flex-col items-start justify-center">
-            <MapPin className="grid mx-auto" color="#17cf97" size={30} />
-            <h3 className="sm:text-xl font-bold grid mx-auto text-baseGreen ">
-              Location
-            </h3>
-            <p className="text-baseGreen  no-underline grid mx-auto text-center">
-              12, Fatima Okanlawon
-            </p>
+      <div className="bg-[#FFFBF5]  p-[30px] md:p-[60px]">
+        <h1 className="mx-auto text-center font-semibold text-[22px] mb-[30px] md:text-[44px]  ">
+          Get in Touch With Us Now
+        </h1>
+        <div className="">
+          <div className="grid md:grid-cols-2 gap-8">
+            {contactInfo.map((item, Idx) => {
+              if (item.type === "email" || item.type === "Phone Number") {
+                return (
+                  <a
+                    key={Idx}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={item.to}
+                    className="p-2 md:p-6 flex gap-3 items-center border rounded-xl border-baseBlack"
+                  >
+                    <item.icon
+                      size={50}
+                      className="min-w-[50px] min-h-[50px] "
+                    />
+                    <div className="grid gap-y-2">
+                      <h3 className="sm:text-xl grid capitalize  font-bold">
+                        {" "}
+                        {item.type}
+                      </h3>
+                      <div className="max-w-full w-full text-center">
+                        <span className="text-center grid mx-auto text-lg no-underline capitalize break-words whitespace-normal">
+                          {item.to}
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                );
+              } else {
+                return (
+                  <div
+                    key={Idx}
+                    className="p-2 md:p-6 flex items-center gap-3 border rounded-xl border-baseBlack"
+                  >
+                    <item.icon
+                      size={50}
+                      className="min-w-[50px] min-h-[50px] "
+                    />
+                    <div className="grid gap-y-2">
+                      <h3 className="sm:text-xl grid capitalize font-bold">
+                        {" "}
+                        {item.type}
+                      </h3>
+                      <p className="grid mx-auto text-lg no-underline">
+                        {item.to}
+                      </p>
+                    </div>
+                  </div>
+                );
+              }
+            })}
           </div>
-          <div className="p-2 md:p-6  flex flex-col items-start justify-center text-baseGreen">
-            <Clock className="grid mx-auto" color="#17cf97" size={30} />
-            <h3 className="sm:text-xl font-bold grid mx-auto ">
-              Working Hours
-            </h3>
-            <p className=" grid mx-auto ">Mon To Sat</p>
-            <p className=" grid mx-auto no-underline">8-AM To 9-PM</p>
-          </div>
-          <div className="absolute top-[10%] bottom-[10%] left-1/2 w-px bg-[#17cf97]/30 " />
-          <div className="w-[40px] h-[40px]   absolute left-1/2 top-1/2 -translate-x-1/2 transform z-10 bg-white  -translate-y-1/2 rounded-full "></div>
-          <div className="absolute left-[10%] right-[10%] top-1/2 h-px bg-[#17cf97]/30 " />
         </div>
       </div>
-      <div className="  mt-4">
-        <div className="w-full max-w-3xl mx-auto grid gap-y-4">
+
+      <div className=" p-[30px] md:p-[60px] mt-4">
+        <div className="w-full mx-auto grid gap-y-4">
           <div className="grid gap-y-1 mb-3">
-            <div className="text-center text-xl font-semibold text-baseGreen/70">
-              Any questions or remarks? Just write to write us a message!
+            <div className="text-center text-2xl md:text-3xl capitalize font-semibold text-baseBlack">
+              Send Us A message
             </div>
           </div>
-          <div className="mb-[30px]">
+          <div className="">
             <form onSubmit={handleSubmit} className="w-full grid gap-y-6">
               <div className="w-full grid mx-auto md:grid-flow-col gap-6">
                 <div className="grid gap-y-2">
-                  <label htmlFor="" className="text-baseGreen/70 text-xl">
+                  <label htmlFor="" className="text-xl">
                     Email
                   </label>
                   <input
@@ -113,15 +113,13 @@ const ContactPage = () => {
                     required
                     placeholder="Enter your email"
                     name="email"
-                    className={`border placeholder:text-[#17cf97]/60 text-gray-500 outline-none p-2 rounded-xl border-[#17cf97]/20 transition-all ${
-                      isFocused ? "bg-transparent" : "bg-[#17cf97]/10 "
-                    }`}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
+                    className={`border outline-none p-3 transition-all
+                    
+                    `}
                   />
                 </div>
                 <div className="grid gap-y-2">
-                  <label htmlFor="" className="text-baseGreen/70 text-xl">
+                  <label htmlFor="" className="text-xl">
                     Name
                   </label>
                   <input
@@ -129,11 +127,7 @@ const ContactPage = () => {
                     name="name"
                     required
                     placeholder="Enter your name"
-                    className={`border p-2 rounded-xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
-                      isFocused1 ? "bg-transparent" : "bg-[#17cf97]/10 "
-                    }`}
-                    onFocus={() => setIsFocused1(true)}
-                    onBlur={() => setIsFocused1(false)}
+                    className={`border p-3 outline-none transition-all `}
                   />
                 </div>
               </div>
@@ -141,16 +135,12 @@ const ContactPage = () => {
                 rows={7}
                 name="message"
                 required
-                onFocus={() => setIsFocused2(true)}
-                onBlur={() => setIsFocused2(false)}
-                className={`border border-[#17cf97]/10 p-2 rounded-xl placeholder:text-[#17cf97]/60 text-gray-500 outline-none transition-all ${
-                  isFocused2 ? "bg-transparent" : "bg-[#17cf97]/10 "
-                }`}
+                className={`border p-2   outline-none transition-all `}
                 placeholder="Enter your message "
               />
               <Button
                 type="submit"
-                className="my-3 !py-2 text-xl bg-baseGreen hover:bg-baseGreen/80 "
+                className="my-3 rounded-3xl !py-6 text-xl bg-baseGreen hover:bg-baseGreen/80 "
               >
                 {loading ? (
                   <LoaderCircle
@@ -165,7 +155,10 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-      <div className="">{/* <Maps /s> */}</div>
+      {/* <div className="p-[30px] md:p-[60px]">
+        {" "}
+        <Maps />{" "}
+      </div> */}
     </div>
   );
 };

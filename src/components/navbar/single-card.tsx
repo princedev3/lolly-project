@@ -65,33 +65,35 @@ const SingleCard = ({
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 100 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="min-h-[425px]  bg-gray-100 p-3  hover:shadow-[16px_0px_52px_-15px_#17CF97] group"
+      className="min-h-[405px] flex flex-col gap-2 border border-gray-200 "
     >
-      <div className="relative h-[180px] bg-white flex items-center justify-center w-full">
-        <div className="w-[120px] relative h-[120px] rounded-full overflow-hidden bg-gray-50">
-          <Image src={images[0]} alt="" fill className="object-cover" />
-        </div>
+      <div className="relative h-[230px] bg-white flex items-center justify-center w-full border-b">
+        <Image src={images[0]} alt="" fill className="object-cover" />
+
         <div className="absolute  top-4  transition-all duration-300 right-2 ">
-          <div className="grid gap-y-[6px]">
+          <div className="flex flex-col gap-3">
             <motion.div
               whileTap={{ scale: 0.85 }}
               onClick={handleLike}
-              className="cursor-pointer"
+              className="cursor-pointer w-[33px] h-[33px] p-[6px] bg-white rounded-full flex items-center justify-center"
             >
               <Heart
-                size={40}
+                size={30}
                 className={`${
                   liked ? "fill-red-500 stroke-red-500" : ""
-                } shadow-sm text-baseGreen rounded-full p-2`}
+                }  text-baseBlack rounded-full `}
               />
             </motion.div>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Link href={`/product/${id}`}>
+                  <Link
+                    href={`/product/${id}`}
+                    className="cursor-pointer w-[33px] h-[33px] p-[6px] bg-white rounded-full flex items-center justify-center"
+                  >
                     <Eye
-                      size={40}
-                      className="shadow-sm rounded-full p-2 text-baseGreen"
+                      size={30}
+                      className="shadow-sm rounded-full  text-baseBlack"
                     />
                   </Link>
                 </TooltipTrigger>
@@ -102,33 +104,18 @@ const SingleCard = ({
             </TooltipProvider>
           </div>
         </div>
-        <div className="absolute bottom-2 grid grid-flow-col gap-2 items-center">
-          <Truck className="text-baseGreen" />
-          <span
-            className={`${
-              quantity <= 0 || isOutOfStock ? "line-through" : ""
-            } text-baseGreen text-sm font-medium capitalize`}
-          >
-            avaliable
+      </div>
+
+      <div className="flex flex-col mt-[20px] gap-2 items-center w-full">
+        <div className="max-w-full w-full text-center">
+          <span className="text-gray-700 text-center capitalize break-words whitespace-normal">
+            {name}
           </span>
         </div>
-      </div>
-      <div className="grid gap-y-4">
-        <div className="w-[70px] h-[70px] mx-auto flex items-center justify-center font-serif text-gray-700">
-          <h1 className="text-xl text-gray-600 font-semibold skew-y-1 capitalize">
-            {brand}{" "}
-          </h1>
-        </div>
-        <div className="flex justify-between">
-          <h1 className="w-[65%] text-gray-700 text-lg capitalize">{name} </h1>
-          <div className="text-sm">
-            <h1 className="text-gray-700 text-lg">
-              <span className="text-xl font-semibold">#</span>
-              <span className="">{price.toLocaleString()}</span>
-            </h1>
-            <span className="text-gray-600 text-lg">QTY: {quantity} </span>
-          </div>
-        </div>
+        <h1 className="text-gray-700 text-lg">
+          <span className="text-xl font-semibold">₦</span>
+          <span className="">{price.toLocaleString()}</span>
+        </h1>
         <motion.button
           whileTap={{ scale: 0.95 }}
           disabled={quantity <= 0 || isOutOfStock}
@@ -145,7 +132,7 @@ const SingleCard = ({
             });
             toast.success("added to cart");
           }}
-          className={`bg-baseGreen  pointer-events-auto text-white font-medium cursor-pointer py-3 rounded-sm disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
+          className={`bg-baseGreen w-[80%] rounded-[30px] pointer-events-auto text-white font-medium cursor-pointer py-3 disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
         >
           Add to cart
         </motion.button>

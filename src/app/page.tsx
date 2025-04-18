@@ -4,6 +4,7 @@ import CarouselComponent from "@/components/navbar/carousel";
 import HeroSection from "@/components/navbar/hero-section";
 import NavbarHeader from "@/components/navbar/navbar-header";
 import Newsletter from "@/components/navbar/newsletter";
+import TestimonialSlider from "@/components/navbar/slider-testimonial";
 import React from "react";
 
 interface Params {
@@ -20,6 +21,7 @@ const Home = async ({ searchParams }: PageProps) => {
       <DiscountOverlay />
       <HeroSection />
       <NavbarHeader />
+      {/* <TestimonialSlider /> */}
       <CardSection page={page as string} />
       <CarouselComponent />
       <Newsletter />

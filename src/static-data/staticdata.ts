@@ -1,6 +1,10 @@
 import { ShoppingBasket, UsersRound, ChartBar } from "lucide-react";
 import { FaNairaSign } from "react-icons/fa6";
 import { CiDiscount1 } from "react-icons/ci";
+import TelIcon from "@/icons/tel-icon";
+import Email from "@/icons/email";
+import Location from "@/icons/location";
+import Time from "@/icons/time";
 
 export const navbarItems = [
   {
@@ -10,21 +14,26 @@ export const navbarItems = [
   },
   {
     id: "2",
-    title: "collection",
+    title: "shop",
     pathName: "/product",
   },
   {
     id: "3",
+    title: "collection",
+    pathName: "/product",
+  },
+  {
+    id: "4",
     title: "about",
     pathName: "/about",
   },
   {
-    id: "4",
+    id: "5",
     title: "contact us",
     pathName: "/contact",
   },
   {
-    id: "5",
+    id: "6",
     title: "admin",
     pathName: "/admin",
   },
@@ -245,5 +254,70 @@ export const ratings = [
     userId: "user_5",
     value: 1,
     comment: "Not satisfied at all.",
+  },
+];
+
+export const contactInfo = [
+  {
+    type: "email",
+    to: "Ojetundeopeyemi0@gmail.com",
+    icon: Email,
+  },
+  {
+    type: "Phone Number",
+    to: "+20 11 16798756",
+    icon: TelIcon,
+  },
+  {
+    type: "Loaction",
+    to: "12 Fatima Okanlawon, Lagos",
+    icon: Location,
+  },
+  {
+    type: "Working Hours",
+    to: "Mon to Sat : 8Am - 9PM",
+    icon: Time,
+  },
+];
+export const privacyInfo = [
+  {
+    id: 1,
+    title: "About our Privacy",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+  },
+  {
+    id: 2,
+    title: "Who we are",
+    desc: "At Lollys, we blend style with innovation and protection with personality. Our sunglasses are more than accessories—they’re statements of identity, built with tech, sustainability, and timeless design. We create eyewear that empowers bold self-expression and redefines how you see the world. t esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidat",
+  },
+  {
+    id: 3,
+    title: "The Data we collect about you",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+  },
+  {
+    id: 4,
+    title: "Cookies and other identifiers",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+  },
+  {
+    id: 5,
+    title: "How we use your personal data",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+  },
+  {
+    id: 6,
+    title: "Legal basis for the processing of personal data",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+  },
+  {
+    id: 7,
+    title: "How we share your personal data",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+  },
+  {
+    id: 8,
+    title: "Data and security",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
   },
 ];

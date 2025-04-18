@@ -7,6 +7,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useDeleteCommentMutation } from "@/app/apis/_comment_index_api";
 import { toast } from "sonner";
+import StarRating from "./star-rating";
+import { format } from "date-fns";
 
 const ListComment = ({
   commentData,
@@ -43,7 +45,7 @@ const ListComment = ({
     }),
   };
   return (
-    <div className="grid gap-y-4  mb-5">
+    <div className="grid gap-y-4  ">
       {commentData &&
         commentData.map((item, index) => (
           <motion.div
@@ -63,7 +65,21 @@ const ListComment = ({
                 alt=""
                 className="object-cover w-[40px] h-[40px] rounded-full"
               />
-              <span className="text-gray-700">{item.comment}</span>
+              <div className="">
+                <StarRating rating={item.value} />
+
+                <div className="text-gray-800 flex gap-2 items-center">
+                  By{" "}
+                  <span className="text-[#00A6E7] capitalize ">
+                    {" "}
+                    {item.user.name}
+                  </span>
+                  <span className="text-gray-600 capitalize">
+                    | {format(new Date(item.createdAt), "MMM dd, yyyy")}
+                  </span>
+                </div>
+                <span className="text-gray-700">{item.comment}</span>
+              </div>
             </div>
             <motion.div whileTap={{ scale: 0.95 }} className="">
               {(session?.user?.role === "ADMIN" ||

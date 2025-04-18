@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { UserButton } from "./user-button";
-import { ChevronDown, Menu, ShoppingCart, X } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { ChevronDown, LogOut, Menu, ShoppingCart, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { eyeglassBrands, navbarItems } from "@/static-data/staticdata";
 import { userStore } from "@/static-data/user-session";
 import { useCartStore } from "@/static-data/cart-store";
@@ -12,6 +12,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import SearchIcon from "@/icons/search-icon";
 import CartIcon from "@/icons/cart-icon";
 import UserIcon from "@/icons/user-icon";
+import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { signOut } from "next-auth/react";
 
 const containerVariants = {
   hidden: {},
@@ -40,6 +50,7 @@ const Navbar = () => {
   const [openCollection, setOpenCollection] = useState(false);
   const collectionRef = useRef<HTMLDivElement>(null);
   const session = userStore((state) => state.session);
+  const router = useRouter();
   const fadeInVariant = {
     initial: {
       y: 100,
@@ -71,6 +82,13 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
+    router.push("/login");
+  };
+
   return (
     <>
       <div className="grid grid-flow-col bg-baseBlack px-[10px] sm:px-[30px] lg:px-[40px] relative  justify-between items-center w-full h-[108px]">
@@ -95,7 +113,7 @@ const Navbar = () => {
                 <div
                   ref={collectionRef}
                   onClick={() => setOpenCollection(!openCollection)}
-                  className="relative capitalize flex items-center gap-2 text-[22px] font-[500] z-10  text-white cursor-default"
+                  className="relative capitalize flex items-center gap-2 text-[22px] z-10  text-white cursor-default"
                 >
                   {item.title}
                   <ChevronDown className="w-5 h-5 text-white" />
@@ -104,10 +122,8 @@ const Navbar = () => {
                 <Link
                   href={item.pathName}
                   className={`${
-                    pathName === item.pathName
-                      ? "text-[#17CF97] font-medium"
-                      : "text-white"
-                  } relative capitalize flex items-center gap-2 text-[22px] font-[500] z-10  `}
+                    pathName === item.pathName ? "text-[#17CF97]" : "text-white"
+                  } relative capitalize flex items-center gap-2 text-[22px] z-10`}
                 >
                   {item.title}
                 </Link>
@@ -175,13 +191,42 @@ const Navbar = () => {
               </Link>
             </div>
           )}
-          <UserIcon
-            size={25}
-            color="#ffffff"
-            onClick={() => {
-              console.log("Cart icon clicked");
-            }}
-          />
+          {
+            session?.user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Button
+                    asChild
+                    variant={"outline"}
+                    size={"default"}
+                    className="rounded-full"
+                  >
+                    <div className="flex space-x-1 bg-black hover:bg-black">
+                      <UserIcon size={35} color="#fff" />
+                      <ChevronDown className="w-4 h-4 text-white" />
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="mr-2">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>
+                    Log Out
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href={"/like"} className="cursor-pointer">
+                      Likes
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <LogOut className="text-white" />
+            )
+            //   <Button className="text-white cursor-pointer hover:bg-baseGreen bg-baseGreen text-xl py-6 px-6 motion-preset-shake motion-duration-1000">
+            //   <Link href={"/login"}>Sign in</Link>
+            // </Button>
+          }
           <Menu
             size={35}
             onClick={() => setOpenMenu(!openMenu)}

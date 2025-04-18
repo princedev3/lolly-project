@@ -17,7 +17,7 @@ const StarRating = ({ rating }: { rating: number }) => {
         <FaStarHalfAlt
           size={35}
           key={i}
-          className=" w-4 h-4 text-yellow-500  "
+          className=" w-4 h-4 text-yellow-500 "
         />
       );
     } else {

@@ -14,9 +14,9 @@ const CardSection = ({ page }: { page: string }) => {
     return <LoadingPage />;
   }
   return (
-    <div className="">
-      <h1 className="text-2xl font-semibold capitalize text-baseGreen text-center mx-auto my-7">
-        Our Collections
+    <div className="mb-7">
+      <h1 className="text-[30px] font-semibold capitalize text-baseBlack  mx-auto my-5">
+        Our Glasses
       </h1>
 
       <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-5 ">

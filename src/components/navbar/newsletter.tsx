@@ -25,29 +25,29 @@ const Newsletter = () => {
     }
   };
   return (
-    <div className="w-full my-10 bg-baseGreen px-5 lg:px-0 rounded-sm py-6">
-      <div className="grid gap-3 md:gap-5 justify-center">
+    <div className="w-full mt-10 bg-baseGreen px-1 lg:px-0  py-12 h-[600px] ">
+      <div className="grid gap-2 md:gap-5 justify-center">
         <h1 className="mx-auto text-white font-semibold text-center text-xl md:text-2xl lg:text-3xl">
           Get our free newsletter + bonus content{" "}
         </h1>
-        <p className="mx-auto text-center text-white font-semibold md:text-lg lg:text-xl ">
+        <p className="mx-auto text-center text-white md:text-xl">
           Be the first to receive the hottest styles before anyone else
           Exclusive launch! Be among the first to own it.
         </p>
         <form
           onSubmit={handleCreateNewsLetter}
-          className="mx-auto grid grid-cols-[1fr,auto] gap-5 w-full"
+          className="mx-auto grid grid-cols-[1fr,120px]  w-full"
         >
           <input
             type="email"
             name="email"
-            placeholder="example@gmail.com"
-            className="w-full rounded-md outline-none bg-gray-300 p-2"
+            placeholder="Example@gmail.com"
+            className="w-full  outline-none bg-white p-2"
           />
           <button
             disabled={isLoading}
             type="submit"
-            className="px-4 py-2 bg-black rounded-md capitalize text-white font-medium"
+            className="px-4 py-2 bg-black capitalize text-white font-medium"
           >
             submit
           </button>

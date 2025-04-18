@@ -107,6 +107,9 @@ const Product = () => {
 
   return (
     <div className="mb-5">
+      <h1 className="text-3xl font-semibold my-10 mx-auto w-ful text-center">
+        Our Products
+      </h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

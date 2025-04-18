@@ -1,4 +1,5 @@
 import { ProductType, SingleProductType } from "@/static-data/types";
+import { Product } from "@prisma/client";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productApi = createApi({
@@ -29,6 +30,13 @@ export const productApi = createApi({
     >({
       query: ({ page, query }) => ({
         url: `/product/search-product?page=${page}&search=${query}`,
+        method: "GET",
+      }),
+      providesTags: ["Product"],
+    }),
+    getProductByBrand: builder.query<{ relatedProduct: Product[] }, string>({
+      query: (brand) => ({
+        url: `/product/related-product/${brand}`,
         method: "GET",
       }),
       providesTags: ["Product"],
@@ -68,4 +76,5 @@ export const {
   useGetSearchProductQuery,
   useUpdateProductMutation,
   useDeleteSingleProductMutation,
+  useGetProductByBrandQuery,
 } = productApi;

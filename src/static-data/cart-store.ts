@@ -16,7 +16,6 @@ type CartType = {
   products: ProductCartType[];
   totalPrice: number;
   totalItems: number;
-
   addToCart: (item: ProductCartType) => void;
   removeFromCart: (item: ProductCartType) => void;
   incrementQuantity: (id: string) => void;

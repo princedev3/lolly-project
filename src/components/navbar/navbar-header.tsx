@@ -37,7 +37,7 @@ const NavbarHeader = () => {
       {navbarHeaderItem.map((item) => (
         <div
           key={item.item}
-          className="cursor-pointer bg-red-50/40 hover:bg-red-50/60 rounded-md p-3"
+          className="cursor-pointer bg-red-50/20 rounded-md p-3"
         >
           <div className="flex items-center gap-2 ">
             <item.icon size={22} color="#4FA88D" />

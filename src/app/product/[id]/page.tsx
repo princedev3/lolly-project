@@ -4,39 +4,20 @@ import LoadingPage from "@/components/navbar/loading";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/static-data/cart-store";
 import { disAbleCart } from "@/static-data/helper-func";
-import { ratings } from "@/static-data/staticdata";
-import { Heart, LoaderCircle, Share2, Trash } from "lucide-react";
+import { ChevronDown, ChevronUp, Share2 } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "sonner";
-import { Textarea } from "@/components/ui/textarea";
-import { userStore } from "@/static-data/user-session";
-import Picker from "@emoji-mart/react";
-import emojiData from "@emoji-mart/data";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  useCreateCommentMutation,
-  useGetAllCommentQuery,
-} from "@/app/apis/_comment_index_api";
-import ListComment from "@/components/comment-section/list-comment";
-import StarRating from "@/components/comment-section/star-rating";
 import { motion } from "framer-motion";
+import SingleSecure from "@/icons/single-search";
+import { Separator } from "@/components/ui/separator";
+import RelatedProduct from "@/components/related-product";
+import ProductReviews from "@/components/product-reviews";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const [createComment, { isLoading: isCreatingComment }] =
-    useCreateCommentMutation();
-  const { data: commentData, isLoading: isGettingCommentLoading } =
-    useGetAllCommentQuery(id as string);
-  const session = userStore((state) => state.session);
 
   const fadeInVariant = {
     initial: {
@@ -53,17 +34,15 @@ const SingleProduct = () => {
   };
   const { addToCart, products: cartProductsList } = useCartStore();
   const pathname = usePathname();
+  const [showReview, setShowReview] = useState("review");
   const { data, isLoading } = useGetSingleProductQuery(id as string);
   const [copied, setCopied] = useState(false);
   const [selectColored, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [imageIndex, setImageIndex] = useState(0);
-  const [message, setMessage] = useState("");
-  const [emojiOpen, setEmojiOpen] = useState(false);
+  const [productQuantity, setProductQuantity] = useState(1);
 
-  const handleEmojiSelect = (emoji: any) => {
-    setMessage((prev) => prev + emoji.native);
-  };
+  const [isZoomed, setIsZoomed] = useState(false);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -95,11 +74,11 @@ const SingleProduct = () => {
     addToCart({
       name: data?.getSingleFetch.name as string,
       id: data?.getSingleFetch.id as string,
-      price: data?.getSingleFetch.price as number,
+      price: (data?.getSingleFetch.price as number) * productQuantity,
       image: data?.getSingleFetch.images[0] as string,
       size: selectedSize,
       color: selectColored,
-      quantity: 1,
+      quantity: productQuantity,
       initialQuantity: data?.getSingleFetch.quantity as number,
     });
   };
@@ -109,52 +88,44 @@ const SingleProduct = () => {
     data?.getSingleFetch.quantity as number
   );
 
-  const handleCreateReview = async (e: React.FormEvent<HTMLFormElement>) => {
-    try {
-      e.preventDefault();
-      console.log("Form is being submitted!");
-      const target = e.target as HTMLFormElement;
-      const formdata = new FormData(target);
-      const rating = formdata.get("rating");
-      const res = await createComment({
-        rating,
-        message,
-        userId: session?.user?.id,
-        productId: id,
-      });
-      if (res?.data?.status === 200) {
-        target.reset();
-        setMessage("");
-        toast.success(res?.data?.message);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSecureClick = () => {
+    setIsZoomed(true);
+    setTimeout(() => setIsZoomed(false), 300);
   };
-
   return (
-    <div className="">
-      <div className="grid md:grid-cols-2 my-6 gap-5 gap-y-5">
+    <div className="overflow-x-hidden  p-[10px] md:p-[20px] lg:p-[40px]">
+      <div className="grid md:grid-cols-2 gap-5 gap-y-5 ">
         <div className="w-full self-start  relative">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0, scale: isZoomed ? 1.1 : 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative w-[250px] h-[250px] mx-auto mb-4"
+            className="relative w-full h-[350px] mx-auto mb-4"
           >
             <Image
               src={data?.getSingleFetch.images[imageIndex] as string}
               alt=""
               fill
-              className="object-cover rounded-full"
+              className="object-cover"
             />
           </motion.div>
           <div className="absolute top-2 w-full  justify-between flex  px-8">
-            <Share2
-              onClick={copyToClipboard}
-              className={`${copied ? "text-gray-400" : "text-gray-600"}`}
-            />
-            <Heart className="text-gray-500" />
+            <motion.div
+              whileTap={{ scale: 0.95 }}
+              className="bg-white p-1 rounded-full cursor-pointer"
+            >
+              <Share2
+                onClick={copyToClipboard}
+                className={`${copied ? "text-gray-400" : "text-gray-600"}`}
+              />
+            </motion.div>
+            <motion.div
+              whileTap={{ scale: 0.95 }}
+              className="bg-white p-1 rounded-full cursor-pointer"
+              onClick={handleSecureClick}
+            >
+              <SingleSecure />
+            </motion.div>
           </div>
           <div className="flex gap-3 flex-wrap w-full ">
             {data?.getSingleFetch?.images?.map((item, idx) => (
@@ -180,16 +151,19 @@ const SingleProduct = () => {
             ))}
           </div>
         </div>
-        <div className="self-start grid gap-4">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold capitalize">
-            {data?.getSingleFetch.name}{" "}
+        <div className="self-start grid gap-4 md:bg-[#FFFBF5]  md:px-[30px] md:py-[50px] ">
+          <h1 className="text-lg  md:text-xl font-semibold capitalize">
+            Home / New Collection / {data?.getSingleFetch.brand}
           </h1>
-          <p className="text-red-600 text-5xl">
-            <span className="text-xl font-semibold">#</span>
-            {data?.getSingleFetch.price.toLocaleString()}{" "}
+          <h1 className="text-lg  md:text-xl font-semibold capitalize">
+            {data?.getSingleFetch.name} / {data?.getSingleFetch.quantity}
+          </h1>
+          <Separator className="bg-baseBlack/50" />
+          <p className="text-baseBlack text-2xl">
+            #{data?.getSingleFetch.price.toLocaleString()}{" "}
           </p>
           <div className="grid gap-y-1">
-            <span className="text-gray-500 text-lg">Select a color</span>
+            <span className="text-gray-500">Select a size</span>
             <div className="flex gap-2">
               {data?.getSingleFetch.colors.map((item) => (
                 <div
@@ -208,7 +182,7 @@ const SingleProduct = () => {
             </div>
           </div>
           <div className="grid gap-y-1">
-            <span className="text-gray-500 text-lg">Select a size</span>
+            <span className="text-gray-500">Select a size</span>
             <div className="flex gap-4">
               {data?.getSingleFetch.sizes.map((item) => (
                 <div
@@ -223,80 +197,84 @@ const SingleProduct = () => {
               ))}
             </div>
           </div>
-          <p className="text-xl text-gray-600">
-            {data?.getSingleFetch?.brand}{" "}
-          </p>
           <p className=" text-gray-600">{data?.getSingleFetch?.desc}</p>
-          <StarRating rating={commentData?.averageRating as number} />
-          <motion.div whileTap={{ scale: 0.95 }} className="w-full">
-            <Button
-              disabled={isOutOfStock}
-              onClick={addToCarts}
-              className="bg-baseGreen w-full hover:bg-baseGreen/80 py-4 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
-            >
-              Add to cart
-            </Button>
-          </motion.div>
+          <div className="flex items-center gap-5">
+            <div className="flex items-center gap-2 border w-[70px] h-[50px] aspect-square p-1">
+              <span className="text-xl">{productQuantity}</span>
+
+              <div className="flex items-center flex-col">
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  className="w-full"
+                  disabled={
+                    productQuantity >= (data?.getSingleFetch.quantity ?? 0)
+                  }
+                  onClick={() => setProductQuantity(productQuantity + 1)}
+                >
+                  <ChevronUp className="text-gray-600 cursor-pointer" />
+                </motion.button>
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  className="w-full disabled:cursor-not-allowed"
+                  disabled={productQuantity <= 1}
+                  onClick={() => setProductQuantity(productQuantity - 1)}
+                >
+                  <ChevronDown className="text-gray-600 cursor-pointer disabled:cursor-not-allowed" />
+                </motion.button>
+              </div>
+            </div>
+            <motion.div whileTap={{ scale: 0.95 }} className="w-full">
+              <Button
+                disabled={isOutOfStock}
+                onClick={addToCarts}
+                className="bg-baseGreen rounded-3xl font-semibold min-w-[200px]  hover:bg-baseGreen/80 py-6 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
+              >
+                Add to cart
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </div>
-      <div className="grid gap-y-4">
-        <h1 className="text-xl capitalize text-gray-700">reviews</h1>
-        <form onSubmit={handleCreateReview} className="">
-          <div className="grid grid-cols-[1fr_auto] border rounded-md shadow  ">
-            <Textarea
-              required
-              placeholder="write your review"
-              value={message}
-              className="!border-none !focus:ring-0 !focus:outline-none !shadow-none !outline-0 focus:border-none !focus:ring-0 !focus:outline-none  resize-none"
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <div className="relative h-full">
-              <button
-                type="button"
-                className="bg-gray-50 cursor-pointer w-[50px] md:w-[100px] h-full"
-                onClick={() => setEmojiOpen(!emojiOpen)}
+      <Separator className="bg-baseBlack/10 my-7" />
+      <div className="grid gap-y-10">
+        <div className="grid gap-y-10">
+          <div className="flex items-center gap-10">
+            <div className="relative">
+              <span
+                onClick={() => setShowReview("desc")}
+                className={`text-2xl text-[#000000] cursor-pointer ${
+                  showReview === "desc" ? "font-medium" : ""
+                }`}
               >
-                😊
-              </button>
-              {emojiOpen && (
-                <div className="absolute top-full right-0 z-50">
-                  <Picker data={emojiData} onEmojiSelect={handleEmojiSelect} />
-                </div>
+                Description
+              </span>
+              {showReview === "desc" && (
+                <div className="absolute -bottom-1 left-0 w-[120%] h-[3px] bg-baseGreen rounded-full" />
+              )}
+            </div>
+
+            <div className="relative">
+              <span
+                onClick={() => setShowReview("review")}
+                className={`text-2xl text-[#000000] cursor-pointer ${
+                  showReview === "review" ? "font-medium" : ""
+                }`}
+              >
+                Review
+              </span>
+              {showReview === "review" && (
+                <div className="absolute -bottom-1 left-0 w-[120%] h-[3px] bg-baseGreen rounded-full" />
               )}
             </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            <Select required name="rating">
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Rating" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1">One</SelectItem>
-                <SelectItem value="2">Two</SelectItem>
-                <SelectItem value="3">Three</SelectItem>
-                <SelectItem value="4">Four</SelectItem>
-                <SelectItem value="5">Five</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button type="submit" className="bg-baseGreen hover:bg-baseGreens">
-              {isCreatingComment ? (
-                <LoaderCircle
-                  className="animate-spin grid mx-auto"
-                  color="white"
-                  size={22}
-                />
-              ) : (
-                "Submit"
-              )}
-            </Button>
-          </div>
-        </form>
-        <ListComment
-          commentData={commentData && commentData?.createdComment}
-          isGettingCommentLoading={isGettingCommentLoading}
-        />
+        {showReview === "desc" && (
+          <div className="mb-5">{data?.getSingleFetch.desc}</div>
+        )}
+        {showReview === "review" && <ProductReviews id={id as string} />}
       </div>
+      <RelatedProduct brand={data?.getSingleFetch?.brand as string} />
     </div>
   );
 };

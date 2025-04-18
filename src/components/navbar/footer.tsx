@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="grid gap-y-10 relative mb-5 bg-white z-0">
+    <div className="grid gap-y-10 relative py-5 bg-[#FFFBF5]  z-0">
       {/* top */}
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
         <div className="self-start grid gap-y-3 z-20">
@@ -114,7 +114,7 @@ const Footer = () => {
           </div>
           <div className="self-start grid gap-y-3">
             <span className="">Sunday </span>
-            <span className="">CLOSED</span>
+            <span className="text-[#AA0000]">CLOSED</span>
           </div>
         </div>
       </div>
