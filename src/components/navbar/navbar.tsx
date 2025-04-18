@@ -184,7 +184,11 @@ const Navbar = () => {
           {totalItems > 0 && (
             <div className="relative cursor-pointer">
               <Link href="/cart">
-                <CartIcon size={25} color="#ffffff" />
+                <CartIcon
+                  size={25}
+                  color="#ffffff"
+                  className="min-w-[30px] min-h-[30px]"
+                />
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   {totalItems}
                 </span>
@@ -204,7 +208,7 @@ const Navbar = () => {
                     <div className="flex space-x-1 bg-black hover:bg-black">
                       <UserIcon
                         size={35}
-                        className="min-w-[35px] min-h-[35px]"
+                        className="min-w-[30px] min-h-[30px]"
                         color="#fff"
                       />
                       <ChevronDown className="w-4 h-4 text-white" />
@@ -225,7 +229,12 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <LogOut className="text-white" />
+              <Link href={"/login"}>
+                <LogOut
+                  size={30}
+                  className="text-white min-w-[30px] min-h-[30px]"
+                />
+              </Link>
             )
             //   <Button className="text-white cursor-pointer hover:bg-baseGreen bg-baseGreen text-xl py-6 px-6 motion-preset-shake motion-duration-1000">
             //   <Link href={"/login"}>Sign in</Link>
@@ -234,7 +243,7 @@ const Navbar = () => {
           <Menu
             size={35}
             onClick={() => setOpenMenu(!openMenu)}
-            className="text-white md:hidden"
+            className="text-white md:hidden min-w-[30px] min-h-[30px]"
           />
         </div>
       </div>
