@@ -163,7 +163,7 @@ const SingleProduct = () => {
             #{data?.getSingleFetch.price.toLocaleString()}{" "}
           </p>
           <div className="grid gap-y-1">
-            <span className="text-gray-500">Select a size</span>
+            <span className="text-gray-500">Select a color</span>
             <div className="flex gap-2">
               {data?.getSingleFetch.colors.map((item) => (
                 <div
@@ -235,7 +235,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
-      <Separator className="bg-baseBlack/10 my-7" />
+      <Separator className="bg-baseBlack/10 my-11" />
       <div className="grid gap-y-10">
         <div className="grid gap-y-10">
           <div className="flex items-center gap-10">

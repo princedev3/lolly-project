@@ -62,8 +62,8 @@ const ProductReviews = ({ id }: { id: string }) => {
   return (
     <div className="mb-[50px] grid gap-y-10">
       <div className="grid md:grid-cols-2 gap-5 gap-y-5 ">
-        <div className="self-start grid gap-y-4">
-          <h1 className="text-2xl">Average Rating</h1>
+        <div className="self-start grid gap-y-4 mt-6">
+          <h1 className="text-2xl font-semibold">Average Rating</h1>
           <h1 className="text-5xl">
             {Number.isInteger(commentData?.averageRating)
               ? `${commentData?.averageRating}.00`
@@ -74,7 +74,7 @@ const ProductReviews = ({ id }: { id: string }) => {
 
         <div className="grid gap-y-4 self-start">
           <form onSubmit={handleCreateReview} className="">
-            <div className="grid gap-y-1 mb-2">
+            <div className="grid gap-y-5 mb-2">
               <h1 className="text-xl font-medium">ADD A REVIEW</h1>
               <span className="text-gray-700 ">
                 Your email address will not be published. Require fields are
