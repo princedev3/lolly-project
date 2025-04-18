@@ -42,7 +42,7 @@ const Newsletter = () => {
             type="email"
             name="email"
             placeholder="Example@gmail.com"
-            className="w-full  outline-none bg-white p-2"
+            className="w-full rounded-none outline-none bg-white p-2"
           />
           <button
             disabled={isLoading}
