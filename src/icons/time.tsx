@@ -17,17 +17,17 @@ const Time = ({ size = 24, color = "#000", ...props }: CartIconProps) => {
     >
       <path
         d="M33 16.5L33 33L49.5 33"
-        stroke="#131927"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        stroke={color}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M33 60.5C48.1878 60.5 60.5 48.1878 60.5 33C60.5 17.8122 48.1878 5.5 33 5.5C17.8122 5.5 5.5 17.8122 5.5 33C5.5 48.1878 17.8122 60.5 33 60.5Z"
-        stroke="#131927"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        stroke={color}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
