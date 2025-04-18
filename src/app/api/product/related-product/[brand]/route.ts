@@ -2,14 +2,14 @@ import prisma from "@/static-data/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 type ParamType = {
-  params: {
+  params: Promise<{
     brand?: string;
-  };
+  }>;
 };
 
 export const GET = async (req: NextRequest, { params }: ParamType) => {
   try {
-    const { brand } = await params;
+    // const { brand } = await params;
 
     // let relatedProduct;
 
