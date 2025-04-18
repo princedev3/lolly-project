@@ -173,13 +173,13 @@ const Navbar = () => {
         </AnimatePresence>
 
         <div className="flex items-center gap-3">
-          <SearchIcon
+          {/* <SearchIcon
             size={25}
             color="#ffffff"
             onClick={() => {
               console.log("Cart icon clicked");
             }}
-          />
+          /> */}
 
           {totalItems > 0 && (
             <div className="relative cursor-pointer">
@@ -202,7 +202,10 @@ const Navbar = () => {
                     className="rounded-full"
                   >
                     <div className="flex space-x-1 bg-black hover:bg-black">
-                      <UserIcon size={35} color="#fff" />
+                      <UserIcon
+                        size={35}
+                        color="#fff min-w-[35px] min-h-[35px]"
+                      />
                       <ChevronDown className="w-4 h-4 text-white" />
                     </div>
                   </Button>
