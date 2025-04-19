@@ -94,7 +94,7 @@ const ProductReviews = ({ id }: { id: string }) => {
 
         <div className="grid gap-y-4 self-start">
           <form onSubmit={handleCreateReview} className="">
-            <div className="grid gap-y-3 mt-4 mb-2">
+            <div className="grid gap-y-2 mt-4 mb-2">
               <h1 className="text-xl font-semibold">ADD A REVIEW</h1>
               <span className="text-gray-700 text-lg">
                 Your email address will not be published. Require fields are
@@ -156,7 +156,7 @@ const ProductReviews = ({ id }: { id: string }) => {
               </Select>
               <Button
                 type="submit"
-                className="bg-baseGreen text-lg font-medium hover:bg-baseGreens py-7"
+                className="bg-baseGreen text-lg font-medium hover:bg-baseGreens py-6"
               >
                 {isCreatingComment ? (
                   <LoaderCircle
