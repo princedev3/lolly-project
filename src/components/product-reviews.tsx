@@ -156,7 +156,7 @@ const ProductReviews = ({ id }: { id: string }) => {
               </Select>
               <Button
                 type="submit"
-                className="bg-baseGreen text-lg font-medium hover:bg-baseGreens py-6"
+                className="bg-baseGreen text-lg font-semibold hover:bg-baseGreens py-6"
               >
                 {isCreatingComment ? (
                   <LoaderCircle
