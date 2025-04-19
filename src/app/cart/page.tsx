@@ -183,13 +183,14 @@ const Cart = () => {
               key={item.id}
             >
               <div className="grid grid-flow-col auto-cols-max gap-3 ">
-                <Image
-                  src={item.image}
-                  alt=""
-                  width={120}
-                  height={120}
-                  className="object-cover w-[120px] h-[120px] rounded-md"
-                />
+                <div className="relative max-w-[120px] h-full ">
+                  <Image
+                    src={item.image}
+                    alt=""
+                    fill
+                    className="object-cover rounded-md"
+                  />
+                </div>
 
                 <div className="grid gap-[1px] auto-rows-max ">
                   <span className="capitalize font-medium text-lg text-gray-700">
@@ -290,7 +291,7 @@ const Cart = () => {
                       addressRef.current = val;
                       debouncedSetAddress(val);
                     }}
-                    className="w-full outline-none py-4 px-1 rounded-sm border"
+                    className="w-full outline-none py-3 px-1 rounded-sm border"
                   />
                 </div>
                 <div className="grid  gap-2 items-center">
@@ -309,7 +310,7 @@ const Cart = () => {
                       debouncedPhoneNumber(val);
                     }}
                     placeholder="09030300300"
-                    className="w-full outline-none py-4 px-1 rounded-sm border"
+                    className="w-full outline-none py-3 px-1 rounded-sm border"
                   />
                 </div>
                 <div className="grid  gap-2 items-center">
@@ -317,7 +318,7 @@ const Cart = () => {
                   <input
                     type="text"
                     placeholder="Note"
-                    className="w-full outline-none py-4 px-1 rounded-sm border"
+                    className="w-full outline-none py-3 px-1 rounded-sm border"
                   />
                 </div>
               </>
