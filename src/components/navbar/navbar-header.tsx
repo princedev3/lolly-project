@@ -43,7 +43,7 @@ const NavbarHeader = () => {
             <item.icon
               size={22}
               color="#4FA88D"
-              className="min-w-[25px] min-h-[25px]"
+              className="min-w-[35px] min-h-[35px]"
             />
             <h1 className="item-[24px] text-[#000000] ">{item.item} </h1>
           </div>
