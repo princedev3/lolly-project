@@ -7,26 +7,24 @@ import { motion } from "framer-motion";
 const AboutPage = () => {
   return (
     <div className="mt-4 mb-10 ">
-      <div className="grid gap-y-4 h-full w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 ">
+      <div className="grid gap-y-[50px] h-full w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 px-[10px] md:px-[40px] lg:px-[70px] gap-[20px] md:gap-[50px] ">
           <div className="w-full grid place-content-center place-item-center">
             <div className="grid gap-y-2 ">
-              <h1 className="text-4xl font-bold text-baseGreen capitalize">
+              <h1 className="text-4xl mb-[10px] font-bold text-baseGreen capitalize">
                 our vision
               </h1>
               <div className="text-justify text-gray-600">
-                <span className="text-xl text-wrap font-semibold">A</span>t
-                lolly&rsquo;s we envision a world where style meets innovation,
-                and protection meets personality. We believe that sunglasses are
-                more than just an accessory—they are an extension of your
-                identity, a symbol of confidence, and a gateway to limitless
-                adventure. We are committed to combining cutting-edge
-                technology, sustainable craftsmanship, and timeless design to
-                create eyewear that doesn&rsquo;t just shield your eyes but
-                transforms the way you see the world. With a focus on comfort,
-                durability, and trendsetting aesthetics, we aim to empower
-                individuals to express themselves fearlessly—one pair of
-                sunglasses at a time.
+                <span className="text-xl text-wrap font-semibold ">A</span>t
+                lolly&rsquo;s, our vision is to redefine the online shopping
+                experience by combining quality, style, and accessibility. We
+                believe that great products should not only elevate your
+                lifestyle but also be within reach. Our goal is to become a
+                go-to destination for curated fashion and lifestyle essentials —
+                where every click feels personal, every purchase adds value, and
+                every customer is part of a community that celebrates
+                individuality. We're not just building a store; we're building a
+                brand that connects, inspires, and evolves with you.
               </div>
             </div>
           </div>
@@ -34,64 +32,56 @@ const AboutPage = () => {
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 100 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="w-full flex items-center justify-center"
+            className="w-full h-full flex items-center min-h-[300px] justify-center relative"
           >
-            <CirularUser />
+            <Image src={"/trendy.png"} fill alt="" className="object-cover" />
           </motion.div>
         </div>
-
-        <div className="w-full grid md:grid-cols-2 gap-8 h-full">
-          <div className="order-first md:order-last flex justify-center items-center">
-            <div className="grid gap-y-2 md:text-left">
-              <h1 className="text-4xl font-bold text-baseGreen capitalize">
-                our mission
-              </h1>
-              <div className="text-justify text-gray-600">
-                Our mission is to provide high-quality, fashion-forward, and
-                performance-driven eyewear that not only enhances your vision
-                but also elevates your style. Whether you&rsquo;re exploring
-                sun-soaked beaches, navigating city streets, or making a bold
-                fashion statement, our sunglasses are designed to keep up with
-                your journey. We are committed to combining cutting-edge
-                technology, sustainable craftsmanship, and timeless design to
-                create eyewear that doesn&rsquo;t just shield your eyes but
-                transforms the way you see the world. With a focus on comfort,
-                durability, and trendsetting aesthetics, we aim to empower
-                individuals to express themselves fearlessly—one pair of
-                sunglasses at a time.
-              </div>
-            </div>
+        {/* //journey */}
+        <div className="grid bg-[#FFFBF5] px-[10px] md:px-[40px] lg:px-[70px] py-[25px] gap-y-[18px] ">
+          <h1 className="text-4xl font-bold text-baseGreen text-center capitalize">
+            our Journey
+          </h1>
+          <div className="text-gray-600 text-center text-xl">
+            What started as a simple idea — to bring better, bolder products to
+            everyday people — has grown into a passionate movement of style,
+            substance, and service.
           </div>
 
           <motion.div
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="relative md:order-first min-h-[300px] rounded-sm overflow-hidden "
+            className="w-full relative h-[400px] rounded-sm overflow-hidden"
           >
-            <Image src="/face-5.jpg" alt="" fill className="object-cover " />
+            <Image src="/woman.png" alt="" fill className="object-cover" />
           </motion.div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 px-[10px] md:px-[40px] lg:px-[70px] gap-[20px] md:gap-[50px] ">
           <div className="w-full grid place-content-center place-item-center">
             <div className="grid gap-y-2 ">
-              <h1 className="text-4xl font-bold text-baseGreen capitalize">
-                our Journey
+              <h1 className="text-4xl mb-[10px] font-bold text-baseGreen capitalize">
+                our mission
               </h1>
-              <div className="text-justify text-gray-600">
-                Join us as we redefine the future of eyewear—where luxury meets
-                affordability, and where every pair tells a story. Your vision,
-                your style, your journey—we&rsquo;ve got you covered.
+              <div className="text-justify text-gray-600 text-xl">
+                To empower individuals through thoughtfully curated products
+                that blend quality, style, and affordability — creating a
+                seamless shopping experience that celebrates confidence,
+                expression, and everyday luxury.We&rsquo;re here to redefine
+                what it means to shop online: honest service, intentional
+                design, and a community-first approach that puts you at the
+                center of everything we do.
               </div>
             </div>
           </div>
           <motion.div
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 100 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="w-full relative h-[300px] rounded-sm overflow-hidden"
+            className="w-full h-full flex items-center min-h-[300px] justify-center relative"
           >
-            <Image src="/face-6.jpg" alt="" fill className="object-cover" />
+            <Image src={"/mission.png"} fill alt="" className="object-cover" />
           </motion.div>
         </div>
       </div>

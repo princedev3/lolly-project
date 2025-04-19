@@ -41,15 +41,15 @@ const NavbarHeader = () => {
         >
           <div className="flex items-center gap-2 ">
             <item.icon
-              size={30}
+              size={26}
               color="#4FA88D"
               className="min-w-[35px] min-h-[35px]"
             />
-            <h1 className="text-[20px] text-[#000000] font-semibold ">
+            <h1 className="text-[18px] text-[#000000] font-semibold ">
               {item.item}{" "}
             </h1>
           </div>
-          <span className="text-[18px] text-[#000000]/60 ">{item.desc} </span>
+          <span className="text-[17px] text-[#000000]/60 ">{item.desc} </span>
         </div>
       ))}
     </div>

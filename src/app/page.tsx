@@ -21,7 +21,6 @@ const Home = async ({ searchParams }: PageProps) => {
       <DiscountOverlay />
       <HeroSection />
       <NavbarHeader />
-      {/* <TestimonialSlider /> */}
       <CardSection page={page as string} />
       <CarouselComponent />
       <Newsletter />

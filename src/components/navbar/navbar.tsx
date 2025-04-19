@@ -50,6 +50,7 @@ const Navbar = () => {
   const [openCollection, setOpenCollection] = useState(false);
   const collectionRef = useRef<HTMLDivElement>(null);
   const session = userStore((state) => state.session);
+  const [activeItem, setActiveItem] = useState<string>(pathName);
   const router = useRouter();
   const fadeInVariant = {
     initial: {
@@ -82,13 +83,15 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
+  useEffect(() => {
+    setActiveItem(pathName);
+  }, [pathName]);
   const handleLogout = async () => {
     await signOut({ redirect: false });
     await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
     router.push("/login");
   };
-  // px-[10px] sm:px-[30px] lg:px-[40px]
+
   return (
     <>
       <div className="grid grid-flow-col mx-auto bg-baseBlack relative justify-between  items-center w-full h-[108px]">
@@ -113,18 +116,27 @@ const Navbar = () => {
                 <div
                   key={item.id}
                   ref={collectionRef}
-                  onClick={() => setOpenCollection(!openCollection)}
-                  className="relative capitalize flex items-center gap-2 text-[22px] z-10  text-white cursor-default"
+                  onClick={() => {
+                    setOpenCollection(!openCollection);
+                    setActiveItem("collection");
+                  }}
+                  className={`${openCollection ? "text-[#17CF97]" : "text-white "} relative capitalize flex items-center gap-2 text-[22px] z-10  cursor-default`}
                 >
                   {item.title}
-                  <ChevronDown className="w-5 h-5 text-white" />
+                  <ChevronDown
+                    className={`${openCollection ? "text-[#17CF97]" : "text-white "} w-5 h-5`}
+                  />
                 </div>
               ) : (
                 <Link
                   key={item.id}
                   href={item.pathName}
                   className={`${
-                    pathName === item.pathName ? "text-[#17CF97]" : "text-white"
+                    activeItem === item.pathName ||
+                    (item.title.toLowerCase() === "collection" &&
+                      activeItem === "collection")
+                      ? "text-[#17CF97]"
+                      : "text-white"
                   } relative capitalize flex items-center gap-2 text-[22px] z-10`}
                 >
                   {item.title}

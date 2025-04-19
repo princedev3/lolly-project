@@ -25,7 +25,7 @@ const Newsletter = () => {
     }
   };
   return (
-    <div className="w-full mt-10 bg-baseGreen px-1 lg:px-0  py-12 h-[600px] ">
+    <div className="w-full  bg-baseGreen px-1 lg:px-0  py-12 h-[600px] ">
       <div className="grid gap-2 md:gap-5 justify-center">
         <h1 className="mx-auto text-white font-semibold text-center text-xl md:text-2xl lg:text-3xl">
           Get our free newsletter + bonus content{" "}

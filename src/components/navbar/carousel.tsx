@@ -21,12 +21,12 @@ const CarouselComponent = () => {
   }
 
   return (
-    <div className=" h-full bg-gray-200 grid gap-y-10  p-4 rounded-2xl ">
+    <div className="bg-gray-200 grid gap-y-5 py-10">
       <div className="grid justify-center items-center gap-y-3">
-        <h1 className="capitalize font-bold text-2xl w-full justify-center flex items-center">
+        <h1 className="capitalize font-bold text-2xl text-center">
           our happy customers
         </h1>
-        <span className="text-sm text-gray-800  md:w-[60%]  text-center  mx-auto ">
+        <span className="text-sm text-gray-800 md:w-[60%] text-center mx-auto">
           We aim at serving our customers with the highest quality and unmatched
           satisfaction, ensuring every experience exceeds expectations
         </span>
