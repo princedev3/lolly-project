@@ -39,7 +39,7 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="relative bg-[#16181E] py-12 h-full overflow-hidden">
+    <div className="relative bg-[#16181E] py-12 overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}

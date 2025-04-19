@@ -26,7 +26,7 @@ const CarouselComponent = () => {
         <h1 className="capitalize font-bold text-2xl text-center">
           our happy customers
         </h1>
-        <span className="text-sm text-gray-800 md:w-[60%] text-center mx-auto">
+        <span className="text-lg text-gray-800 md:w-[60%] text-center mx-auto">
           We aim at serving our customers with the highest quality and unmatched
           satisfaction, ensuring every experience exceeds expectations
         </span>
@@ -68,7 +68,7 @@ const CarouselComponent = () => {
                             {item.comment}
                           </span>
                           <div className="mx-auto">
-                            <h2 className="font-bold text-base text-center text-gray-700">
+                            <h2 className="font-bold text-lg text-center text-gray-700">
                               {item.user.name}{" "}
                             </h2>
                             <h2 className="text-center text-gray-500">
