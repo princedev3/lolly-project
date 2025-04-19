@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Picker from "@emoji-mart/react";
 import emojiData from "@emoji-mart/data";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,12 +29,32 @@ const ProductReviews = ({ id }: { id: string }) => {
   const session = userStore((state) => state.session);
   const [message, setMessage] = useState("");
   const [emojiOpen, setEmojiOpen] = useState(false);
+  const pickerRef = useRef<HTMLDivElement | null>(null);
+
   const [createComment, { isLoading: isCreatingComment }] =
     useCreateCommentMutation();
   const handleEmojiSelect = (emoji: any) => {
     setMessage((prev) => prev + emoji.native);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        pickerRef.current &&
+        !pickerRef.current.contains(event.target as Node)
+      ) {
+        setEmojiOpen(false);
+      }
+    };
+
+    if (emojiOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [emojiOpen]);
   const handleCreateReview = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -74,14 +94,14 @@ const ProductReviews = ({ id }: { id: string }) => {
 
         <div className="grid gap-y-4 self-start">
           <form onSubmit={handleCreateReview} className="">
-            <div className="grid gap-y-5 mb-2">
-              <h1 className="text-xl font-medium">ADD A REVIEW</h1>
-              <span className="text-gray-700 ">
+            <div className="grid gap-y-5 mt-4 mb-2">
+              <h1 className="text-xl font-semibold">ADD A REVIEW</h1>
+              <span className="text-gray-700 text-lg">
                 Your email address will not be published. Require fields are
                 marked<b className="text-red-600">*</b>
               </span>
               <div className="flex items-center">
-                <span className="text-gray-700">
+                <span className="text-gray-700 text-lg">
                   You rating of this product
                 </span>
                 <Star className="w-4 h-4 text-yellow-500" />
@@ -93,6 +113,7 @@ const ProductReviews = ({ id }: { id: string }) => {
             <div className="grid grid-cols-[1fr_auto] border rounded-md shadow  ">
               <Textarea
                 required
+                cols={7}
                 placeholder="write your review*"
                 value={message}
                 className="!border-none !focus:ring-0 !focus:outline-none !shadow-none !outline-0 focus:border-none !focus:ring-0 !focus:outline-none  resize-none"
@@ -107,7 +128,10 @@ const ProductReviews = ({ id }: { id: string }) => {
                   😊
                 </button>
                 {emojiOpen && (
-                  <div className="absolute top-full right-0 z-50">
+                  <div
+                    ref={pickerRef}
+                    className="absolute top-full right-0 z-50"
+                  >
                     <Picker
                       data={emojiData}
                       onEmojiSelect={handleEmojiSelect}
@@ -119,7 +143,7 @@ const ProductReviews = ({ id }: { id: string }) => {
 
             <div className="grid grid-cols-2 gap-2 mt-2">
               <Select required name="rating">
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full py-6">
                   <SelectValue placeholder="Rating*" />
                 </SelectTrigger>
                 <SelectContent>
@@ -132,7 +156,7 @@ const ProductReviews = ({ id }: { id: string }) => {
               </Select>
               <Button
                 type="submit"
-                className="bg-baseGreen hover:bg-baseGreens"
+                className="bg-baseGreen hover:bg-baseGreens py-6"
               >
                 {isCreatingComment ? (
                   <LoaderCircle

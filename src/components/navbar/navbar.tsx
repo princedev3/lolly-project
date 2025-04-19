@@ -208,11 +208,21 @@ const Navbar = () => {
                     className="rounded-full"
                   >
                     <div className="flex space-x-1 bg-black hover:bg-black">
-                      <UserIcon
-                        size={35}
-                        className="min-w-[30px] min-h-[30px]"
-                        color="#fff"
-                      />
+                      {session?.user ? (
+                        <Image
+                          width={30}
+                          height={30}
+                          src={session.user.image || "/noavatar.png"}
+                          alt=""
+                          className="max-w-[30px] rounded-full max-h-[30px] "
+                        />
+                      ) : (
+                        <UserIcon
+                          size={35}
+                          className="min-w-[30px] min-h-[30px]"
+                          color="#fff"
+                        />
+                      )}
                       <ChevronDown className="w-4 h-4 text-white" />
                     </div>
                   </Button>

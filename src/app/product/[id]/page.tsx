@@ -156,7 +156,8 @@ const SingleProduct = () => {
             Home / New Collection / {data?.getSingleFetch.brand}
           </h1>
           <h1 className="text-lg  md:text-xl font-semibold capitalize">
-            {data?.getSingleFetch.name} / {data?.getSingleFetch.quantity}
+            {data?.getSingleFetch.name}
+            {/* / {data?.getSingleFetch.quantity} */}
           </h1>
           <Separator className="bg-baseBlack/50" />
           <p className="text-baseBlack text-2xl">
