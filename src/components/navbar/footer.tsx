@@ -20,7 +20,7 @@ const Footer = () => {
               className="object-cover w-[70px] h-[70px]"
             />
           </Link>
-          <span className="text-gray-600">
+          <span className="text-gray-600 text-lg">
             A good pair of sunglasses isn&rsquo;t just an accessory; it&rsquo;s
             an attitude. Wear them with confidence and let the world wonder
             what&rsquo;s behind the lenses. Put on some shades and find your
@@ -28,22 +28,31 @@ const Footer = () => {
           </span>
         </div>
         <div className="grid gap-y-4 self-start ">
-          <span className="text-black text-lg font-semibold uppercase">
+          <span className="text-black text-xl font-semibold uppercase">
             Navigation
           </span>
-          <Link href={"/policy"} className="text-gray-600  cursor-pointer">
+          <Link
+            href={"/policy"}
+            className="text-gray-600  text-lg cursor-pointer"
+          >
             Policy
           </Link>
-          <Link href={"/about"} className="text-gray-600  cursor-pointer">
+          <Link
+            href={"/about"}
+            className="text-gray-600  text-lg cursor-pointer"
+          >
             About us{" "}
           </Link>
-          <Link href={"/contact"} className="text-gray-600  cursor-pointer">
+          <Link
+            href={"/contact"}
+            className="text-gray-600 text-lg cursor-pointer"
+          >
             Contact us{" "}
           </Link>
         </div>
 
         <div className="grid gap-y-5 self-start ">
-          <span className="text-black text-lg font-semibold uppercase">
+          <span className="text-black text-xl font-semibold uppercase">
             FOLLOW US
           </span>
           <div className="flex items-center gap-4">
@@ -87,18 +96,20 @@ const Footer = () => {
           </div>
         </div>
         <div className="grid gap-y-4 self-start ">
-          <span className="text-black text-lg font-semibold uppercase">
+          <span className="text-black text-xl font-semibold uppercase">
             Payment
           </span>
           <ul className="flex flex-col gap-4">
-            <span className="text-gray-600  cursor-pointer">
+            <span className="text-gray-600  text-lg cursor-pointer">
               Paystack Integration
             </span>
-            <li className="text-gray-600  cursor-pointer capitalize">fast</li>
-            <li className="text-gray-600 cursor-pointer capitalize">
+            <li className="text-gray-600  text-lg cursor-pointer capitalize">
+              fast
+            </li>
+            <li className="text-gray-600 text-lg cursor-pointer capitalize">
               reliable
             </li>
-            <li className="text-gray-600  cursor-pointer capitalize">
+            <li className="text-gray-600 text-lg cursor-pointer capitalize">
               secured
             </li>
           </ul>
@@ -106,15 +117,15 @@ const Footer = () => {
       </div>
       {/* middle */}
       <div className="grid gap-y-2">
-        <h1 className="">OPENING HOURS</h1>
+        <h1 className="text-xl font-semibold">OPENING HOURS</h1>
         <div className="grid  grid-flow-col auto-cols-max gap-8">
           <div className="self-start grid gap-y-3">
-            <span className="">Monday - Saturday </span>
-            <span className=""> 8:00 am to 9:00 pm</span>
+            <span className="text-lg">Monday - Saturday</span>
+            <span className="text-lg"> 8:00 am to 9:00 pm</span>
           </div>
           <div className="self-start grid gap-y-3">
-            <span className="">Sunday </span>
-            <span className="text-[#AA0000]">CLOSED</span>
+            <span className="text-lg">Sunday </span>
+            <span className="text-[#AA0000] text-lg">CLOSED</span>
           </div>
         </div>
       </div>
@@ -123,20 +134,20 @@ const Footer = () => {
 
       <div className="grid gap-y-2 sm:grid-flow-col">
         <div className="">
-          <span className="text-gray-600 text-sm">
+          <span className="text-gray-600 text-lg">
             &copy; 2025 Restaurants. All Right Reserved. Designed by Prince
           </span>
         </div>
         <div className="grid grid-flow-col auto-cols-max gap-5 sm:justify-end">
           <Link
             href={"/policy"}
-            className="text-gray-600 text-sm cursor-pointer"
+            className="text-gray-600 text-lg cursor-pointer"
           >
             Terms of Service
           </Link>
           <Link
             href={"/policy"}
-            className="text-gray-600 text-sm cursor-pointer"
+            className="text-gray-600 text-lg cursor-pointer"
           >
             Privacy Policy
           </Link>
