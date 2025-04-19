@@ -13,6 +13,15 @@ export default function DiscountOverlay() {
 
   useEffect(() => {
     if (!data?.existingCoupon?.code) return;
+
+    const expiryTime = new Date(data?.expiryDate).getTime();
+    const now = Date.now();
+
+    if (now >= expiryTime) {
+      localStorage.removeItem("hasSeenDiscount");
+      return;
+    }
+
     const hasSeen = localStorage.getItem("hasSeenDiscount");
     if (!hasSeen) {
       localStorage.setItem("hasSeenDiscount", "true");

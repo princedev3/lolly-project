@@ -23,6 +23,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { toast } from "sonner";
 import { useGetCouponQuery } from "../apis/_coupon_index_api";
 import LoadingPage from "@/components/navbar/loading";
+import { motion } from "framer-motion";
 
 const Cart = () => {
   const router = useRouter();
@@ -32,6 +33,7 @@ const Cart = () => {
   const session = userStore((state) => state.session);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [openCheckout, setOpenCheckout] = useState(false);
   const addressRef = useRef("");
   const phoneRef = useRef("");
   const isCouponValid =
@@ -170,7 +172,7 @@ const Cart = () => {
   }
   return (
     <div>
-      <h1 className="text-center mb-4 text-xl font-semibold text-baseGreen">
+      <h1 className="text-center mb-4 text-xl font-semibold text-baseGreen my-6">
         Checkout (<span className="text-baseGreen/80">{itemCount} items</span>){" "}
       </h1>
       <div className="grid md:grid-flow-col md:grid-cols-[2fr_1.2fr] gap-4 ">
@@ -216,7 +218,7 @@ const Cart = () => {
                     </span>{" "}
                   </div>
                   <span
-                    className="text-baseOrange cursor-pointer"
+                    className="text-red-600 cursor-pointer"
                     onClick={() => remove(item)}
                   >
                     remove
@@ -245,7 +247,186 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="border rounded-lg p-3 self-start grid gap-y-3">
+        {openCheckout === false ? (
+          <div className="border rounded-lg p-3 self-start grid gap-y-5">
+            <h1 className="text-lg font-semibold text-baseGreen">
+              Billing Details
+            </h1>
+
+            {session ? (
+              <>
+                <div className="grid gap-2 items-center">
+                  <div className="w-full text-gray-700 capitalize">
+                    State <span className="text-red-600">*</span>
+                  </div>
+                  <Select onValueChange={handleStateChange}>
+                    <SelectTrigger className="w-full outline-none active:outline-none focus:outline-none">
+                      <SelectValue placeholder="Select State" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.entries(nigeriaStates).map(
+                        ([state, price], indx) => (
+                          <SelectItem
+                            className="outline-none"
+                            key={indx}
+                            value={state}
+                          >
+                            {state} - {price.toLocaleString()}
+                          </SelectItem>
+                        )
+                      )}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid  gap-2 items-center">
+                  <div className="w-full text-gray-700">
+                    Address <span className="text-red-600">*</span>
+                  </div>
+                  <input
+                    type="text"
+                    defaultValue={address}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      addressRef.current = val;
+                      debouncedSetAddress(val);
+                    }}
+                    className="w-full outline-none p-1 rounded-sm border"
+                  />
+                </div>
+                <div className="grid  gap-2 items-center">
+                  <div className="w-full text-gray-700">
+                    Phone <span className="text-red-600">*</span>
+                  </div>
+
+                  <input
+                    type="number"
+                    defaultValue={phoneNumber}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (!/^\d*$/.test(val)) return;
+                      if (val.length > 11) return;
+                      phoneRef.current = val;
+                      debouncedPhoneNumber(val);
+                    }}
+                    placeholder="09030300300"
+                    className="w-full outline-none p-1 rounded-sm border"
+                  />
+                </div>
+                <div className="grid  gap-2 items-center">
+                  <div className="w-full text-gray-700">Note</div>
+
+                  <input
+                    type="text"
+                    placeholder="Note"
+                    className="w-full outline-none p-1 rounded-sm border"
+                  />
+                </div>
+              </>
+            ) : null}
+
+            <motion.button
+              disabled={!phoneNumber || !selectedPrice || !selectedState}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setOpenCheckout(true)}
+              className={`bg-baseGreen w-full rounded-[30px] pointer-events-auto text-white font-medium cursor-pointer py-3 disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
+            >
+              Proceed to checkout
+            </motion.button>
+          </div>
+        ) : (
+          <div className="border rounded-lg p-3 self-start grid gap-y-3">
+            <h1 className="text-lg font-semibold text-baseGreen">
+              Order Summary
+            </h1>
+            <div className="grid grid-flow-col justify-between text-gray-700 items-center">
+              <span className="w-full">Total Item</span>
+              <span className="">{itemCount} </span>
+            </div>
+            <div className="grid grid-flow-col justify-between text-gray-700 items-center">
+              <span className="w-full">Shipping & handling</span>
+              <span className="">
+                ₦{deliveryFee === 0 ? "-" : deliveryFee}{" "}
+              </span>
+            </div>
+            <div className="grid grid-flow-col justify-between text-gray-700 items-center">
+              <span className="w-full">Estimated Tax</span>
+              <span className="">vax (inclusive) </span>
+            </div>
+
+            <Separator className="my-3" />
+            <div className="">
+              <div className="grid grid-flow-col justify-between items-center">
+                <span className="w-full font-semibold text-baseBlack">
+                  Product price
+                </span>
+                <span className="font-semibold text-baseBlack">
+                  <span className="font-semibold text-xl">₦</span>{" "}
+                  {finalPrice.toLocaleString()}{" "}
+                </span>
+              </div>
+              <div className="grid grid-flow-col justify-between  items-center">
+                <span className="w-full font-semibold text-baseBlack">
+                  Total{" "}
+                </span>
+                <span className="font-semibold text-baseBlack">
+                  <span className="font-semibold text-xl">₦</span>{" "}
+                  {totalAmount.toLocaleString()}
+                </span>
+              </div>
+              {validDiscountPercent > 0 && (
+                <div className="grid grid-flow-col justify-between  items-center">
+                  <span className="w-full text-baseOrange">
+                    Discount ({validDiscountPercent}%)
+                  </span>
+                  <div className="text-baseOrange">
+                    <span className="font-semibold text-xl">-#</span>{" "}
+                    {(
+                      (finalPrice * validDiscountPercent) /
+                      100
+                    ).toLocaleString()}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <PaystackButton
+              disabled={!phoneNumber || !selectedPrice || !selectedState}
+              {...componentProps}
+              className="w-full bg-baseGreen py-2 rounded-3xl text-white hover:bg-baseGreen/90 disabled:cursor-not-allowed"
+              metadata={{
+                name: componentProps.metadata.name,
+                phoneNumber: componentProps.metadata.phoneNumber,
+                custom_fields: [
+                  {
+                    display_name: "Phone Number",
+                    variable_name: "phone_number",
+                    value: componentProps.metadata.phoneNumber,
+                  },
+                ],
+              }}
+              onSuccess={(transaction) => {
+                setPhoneNumber("");
+                setAddress("");
+                clearCart();
+                toast.success("Payment successful, Thank you");
+                handleSuccess(transaction.reference, transaction.status);
+              }}
+              onClose={() => {}}
+            />
+          </div>
+        )}
+      </div>
+      <div className="my-5 text-center text-xl text-baseGreen font-medium">
+        We ship to anywhere within nigeria...
+      </div>
+    </div>
+  );
+};
+
+export default Cart;
+
+{
+  /* <div className="border rounded-lg p-3 self-start grid gap-y-3">
           <h1 className="text-lg font-semibold text-baseGreen">
             Order Summary
           </h1>
@@ -376,13 +557,5 @@ const Cart = () => {
             }}
             onClose={() => {}}
           />
-        </div>
-      </div>
-      <div className="my-5 text-center text-xl text-baseGreen font-medium">
-        We ship to anywhere within nigeria...
-      </div>
-    </div>
-  );
-};
-
-export default Cart;
+        </div> */
+}

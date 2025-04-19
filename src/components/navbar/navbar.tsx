@@ -88,20 +88,20 @@ const Navbar = () => {
     await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
     router.push("/login");
   };
-
+  // px-[10px] sm:px-[30px] lg:px-[40px]
   return (
     <>
-      <div className="grid grid-flow-col bg-baseBlack px-[10px] sm:px-[30px] lg:px-[40px] relative  justify-between items-center w-full h-[108px]">
+      <div className="grid grid-flow-col mx-auto bg-baseBlack relative justify-between  items-center w-full h-[108px]">
         <Link href={"/"}>
           <Image
             src={"/logo.svg"}
             alt=""
             width={50}
             height={50}
-            className="min-w-[30px] min-h-[30px] md:min-w-[50px] md:min-h-[50px] object-cover"
+            className="min-w-[63px] min-h-[63px] object-cover"
           />
         </Link>
-        <div className="relative gap-6 items-center   rounded-lg hidden md:flex">
+        <div className="relative gap-6 items-center rounded-lg hidden md:flex">
           {navbarItems
             .filter(
               (item) =>
@@ -111,6 +111,7 @@ const Navbar = () => {
             .map((item) => {
               return item.title.toLowerCase() === "collection" ? (
                 <div
+                  key={item.id}
                   ref={collectionRef}
                   onClick={() => setOpenCollection(!openCollection)}
                   className="relative capitalize flex items-center gap-2 text-[22px] z-10  text-white cursor-default"
@@ -120,6 +121,7 @@ const Navbar = () => {
                 </div>
               ) : (
                 <Link
+                  key={item.id}
                   href={item.pathName}
                   className={`${
                     pathName === item.pathName ? "text-[#17CF97]" : "text-white"
@@ -130,6 +132,7 @@ const Navbar = () => {
               );
             })}
         </div>
+
         <AnimatePresence>
           {openCollection && (
             <motion.div
@@ -171,7 +174,6 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
         <div className="flex items-center gap-3">
           {/* <SearchIcon
             size={25}
@@ -243,7 +245,7 @@ const Navbar = () => {
           <Menu
             size={35}
             onClick={() => setOpenMenu(!openMenu)}
-            className="text-white md:hidden min-w-[30px] min-h-[30px]"
+            className="text-white md:hidden min-w-[38px] min-h-[38px]"
           />
         </div>
       </div>

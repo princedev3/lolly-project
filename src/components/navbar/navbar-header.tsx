@@ -40,7 +40,11 @@ const NavbarHeader = () => {
           className="cursor-pointer bg-red-50/20 rounded-md p-3"
         >
           <div className="flex items-center gap-2 ">
-            <item.icon size={22} color="#4FA88D" />
+            <item.icon
+              size={22}
+              color="#4FA88D"
+              className="min-w-[25px] min-h-[25px]"
+            />
             <h1 className="item-[24px] text-[#000000] ">{item.item} </h1>
           </div>
           <span className="text-[16px] text-[#000000]/60 ">{item.desc} </span>

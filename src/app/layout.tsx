@@ -3,12 +3,10 @@ import { Geist, Geist_Mono, Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster as SoonerToast } from "@/components/ui/sonner";
 import LayoutProvider from "@/static-data/layout-provider";
-import { auth } from "@/static-data/auth";
 import AuthProvider from "@/static-data/auth-provider";
 import SessionProvider from "@/static-data/session-provider";
-
 import BackToTop from "@/components/navbar/back-to-top";
-import {} from "next/font/google";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,12 +31,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // px-[10px] sm:px-[30px] lg:px-[70px]
   return (
     <html lang="en">
       <body>
         <div
-          className={`${roboto.className} grid max-w-7xl w-full mx-auto antialiased`}
+          className={`${roboto.className} grid max-w-7xl w-full overflow-x-flow mx-auto antialiased`}
         >
           <AuthProvider>
             <SessionProvider>

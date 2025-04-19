@@ -106,7 +106,7 @@ const Product = () => {
   }
 
   return (
-    <div className="mb-5">
+    <div className="mb-5 px-3">
       <h1 className="text-3xl font-semibold my-10 mx-auto w-ful text-center">
         Our Products
       </h1>
@@ -121,7 +121,11 @@ const Product = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Search product" {...field} />
+                  <Input
+                    className="h-[60px] bg-[#FFFBF5] "
+                    placeholder="Search product"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

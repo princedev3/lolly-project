@@ -17,7 +17,7 @@ const Home = async ({ searchParams }: PageProps) => {
   const { page } = await searchParams;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <DiscountOverlay />
       <HeroSection />
       <NavbarHeader />

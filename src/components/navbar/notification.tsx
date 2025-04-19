@@ -53,7 +53,7 @@ const Notification = () => {
   return (
     <Marquee
       speed={20}
-      className={`${isScrolled ? "bg-white" : "bg-slate-50/50"} h-[60px] w-full transition-all duration-100`}
+      className={`${isScrolled ? "bg-white" : "bg-slate-50"} h-[60px] w-full transition-all duration-100`}
     >
       <div className="flex items-center gap-4 px-4">
         <Image

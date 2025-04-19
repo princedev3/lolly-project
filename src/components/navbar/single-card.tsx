@@ -93,7 +93,7 @@ const SingleCard = ({
                   >
                     <Eye
                       size={30}
-                      className="shadow-sm rounded-full  text-baseBlack"
+                      className="shadow-sm min-w-[27px] min-h-[27px] rounded-full  text-baseBlack"
                     />
                   </Link>
                 </TooltipTrigger>
