@@ -82,7 +82,7 @@ const Cart = () => {
       phoneNumber: phoneNumber ? phoneNumber : "",
     },
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY as string,
-    text: "payment for purchase",
+    text: "Payment for purchase",
     onSuccess: () => {
       alert("thank you for purchase");
     },
@@ -290,7 +290,7 @@ const Cart = () => {
                       addressRef.current = val;
                       debouncedSetAddress(val);
                     }}
-                    className="w-full outline-none py-6 px-1 rounded-sm border"
+                    className="w-full outline-none py-4 px-1 rounded-sm border"
                   />
                 </div>
                 <div className="grid  gap-2 items-center">
@@ -309,7 +309,7 @@ const Cart = () => {
                       debouncedPhoneNumber(val);
                     }}
                     placeholder="09030300300"
-                    className="w-full outline-none py-6 px-1 rounded-sm border"
+                    className="w-full outline-none py-4 px-1 rounded-sm border"
                   />
                 </div>
                 <div className="grid  gap-2 items-center">
@@ -317,7 +317,7 @@ const Cart = () => {
                   <input
                     type="text"
                     placeholder="Note"
-                    className="w-full outline-none py-6 px-1 rounded-sm border"
+                    className="w-full outline-none py-4 px-1 rounded-sm border"
                   />
                 </div>
               </>
@@ -391,7 +391,7 @@ const Cart = () => {
             <PaystackButton
               disabled={!phoneNumber || !selectedPrice || !selectedState}
               {...componentProps}
-              className="w-full bg-baseGreen py-2 rounded-3xl text-white hover:bg-baseGreen/90 disabled:cursor-not-allowed"
+              className="w-full bg-baseGreen py-4 font-semibold text-xl  rounded-3xl text-white hover:bg-baseGreen/90 disabled:cursor-not-allowed"
               metadata={{
                 name: componentProps.metadata.name,
                 phoneNumber: componentProps.metadata.phoneNumber,
