@@ -108,7 +108,7 @@ const SingleCard = ({
 
       <div className="flex flex-col mt-[20px] gap-2 items-center w-full">
         <div className="max-w-full w-full text-center">
-          <span className="text-gray-700 text-center capitalize break-words whitespace-normal">
+          <span className="text-gray-700 text-center text-lg capitalize break-words whitespace-normal">
             {name}
           </span>
         </div>

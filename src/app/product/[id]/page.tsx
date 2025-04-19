@@ -115,8 +115,9 @@ const SingleProduct = () => {
               className="bg-white p-1 rounded-full cursor-pointer"
             >
               <Share2
+                size={35}
                 onClick={copyToClipboard}
-                className={`${copied ? "text-gray-400" : "text-gray-600"}`}
+                className={`${copied ? "text-gray-400" : "text-gray-600"} min-h-[35px] min-w-[35px] `}
               />
             </motion.div>
             <motion.div
@@ -124,7 +125,7 @@ const SingleProduct = () => {
               className="bg-white p-1 rounded-full cursor-pointer"
               onClick={handleSecureClick}
             >
-              <SingleSecure />
+              <SingleSecure size={35} className="min-h-[35px] min-w-[35px] " />
             </motion.div>
           </div>
           <div className="flex gap-3 flex-wrap w-full ">
@@ -164,7 +165,7 @@ const SingleProduct = () => {
             #{data?.getSingleFetch.price.toLocaleString()}{" "}
           </p>
           <div className="grid gap-y-1">
-            <span className="text-gray-500">Select a color</span>
+            <span className="text-gray-500 text-lg">Select a color</span>
             <div className="flex gap-2">
               {data?.getSingleFetch.colors.map((item) => (
                 <div
@@ -183,7 +184,7 @@ const SingleProduct = () => {
             </div>
           </div>
           <div className="grid gap-y-1">
-            <span className="text-gray-500">Select a size</span>
+            <span className="text-gray-500 text-lg">Select a size</span>
             <div className="flex gap-4">
               {data?.getSingleFetch.sizes.map((item) => (
                 <div
@@ -198,7 +199,7 @@ const SingleProduct = () => {
               ))}
             </div>
           </div>
-          <p className=" text-gray-600">{data?.getSingleFetch?.desc}</p>
+          <p className=" text-lg text-gray-600">{data?.getSingleFetch?.desc}</p>
           <div className="flex items-center gap-5">
             <div className="flex items-center gap-2 border w-[70px] h-[50px] aspect-square p-1">
               <span className="text-xl">{productQuantity}</span>
@@ -228,7 +229,7 @@ const SingleProduct = () => {
               <Button
                 disabled={isOutOfStock}
                 onClick={addToCarts}
-                className="bg-baseGreen rounded-3xl font-semibold min-w-[200px]  hover:bg-baseGreen/80 py-6 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
+                className="bg-baseGreen rounded-3xl font-semibold min-w-[200px] text-lg hover:bg-baseGreen/80 py-6 disabled:cursor-not-allowed disabled:bg-baseGreen/80"
               >
                 Add to cart
               </Button>
@@ -271,7 +272,7 @@ const SingleProduct = () => {
         </div>
 
         {showReview === "desc" && (
-          <div className="mb-5">{data?.getSingleFetch.desc}</div>
+          <div className="mb-5 text-lg">{data?.getSingleFetch.desc}</div>
         )}
         {showReview === "review" && <ProductReviews id={id as string} />}
       </div>

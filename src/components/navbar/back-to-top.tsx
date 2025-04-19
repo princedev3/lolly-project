@@ -33,7 +33,10 @@ export default function BackToTop() {
         className="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full shadow-lg  transition"
         aria-label="Back to Top"
       >
-        <ArrowUp />
+        <ArrowUp
+          size={35}
+          className="min-w-[35px] min-h-[35px] cursor-pointer"
+        />
       </Button>
     )
   );
