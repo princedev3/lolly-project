@@ -256,11 +256,11 @@ const Cart = () => {
             {session ? (
               <>
                 <div className="grid gap-2 items-center">
-                  <div className="w-full text-gray-700 capitalize">
+                  <div className="w-full text-gray-700 capitalize text-lg">
                     State <span className="text-red-600">*</span>
                   </div>
                   <Select onValueChange={handleStateChange}>
-                    <SelectTrigger className="w-full outline-none active:outline-none focus:outline-none">
+                    <SelectTrigger className="w-full py-6 outline-none active:outline-none focus:outline-none">
                       <SelectValue placeholder="Select State" />
                     </SelectTrigger>
                     <SelectContent>
@@ -279,7 +279,7 @@ const Cart = () => {
                   </Select>
                 </div>
                 <div className="grid  gap-2 items-center">
-                  <div className="w-full text-gray-700">
+                  <div className="w-full text-gray-700 text-lg">
                     Address <span className="text-red-600">*</span>
                   </div>
                   <input
@@ -290,11 +290,11 @@ const Cart = () => {
                       addressRef.current = val;
                       debouncedSetAddress(val);
                     }}
-                    className="w-full outline-none p-1 rounded-sm border"
+                    className="w-full outline-none py-6 px-1 rounded-sm border"
                   />
                 </div>
                 <div className="grid  gap-2 items-center">
-                  <div className="w-full text-gray-700">
+                  <div className="w-full text-gray-700 text-lg">
                     Phone <span className="text-red-600">*</span>
                   </div>
 
@@ -309,16 +309,15 @@ const Cart = () => {
                       debouncedPhoneNumber(val);
                     }}
                     placeholder="09030300300"
-                    className="w-full outline-none p-1 rounded-sm border"
+                    className="w-full outline-none py-6 px-1 rounded-sm border"
                   />
                 </div>
                 <div className="grid  gap-2 items-center">
-                  <div className="w-full text-gray-700">Note</div>
-
+                  <div className="w-full text-gray-700 text-lg">Note</div>
                   <input
                     type="text"
                     placeholder="Note"
-                    className="w-full outline-none p-1 rounded-sm border"
+                    className="w-full outline-none py-6 px-1 rounded-sm border"
                   />
                 </div>
               </>
@@ -328,17 +327,17 @@ const Cart = () => {
               disabled={!phoneNumber || !selectedPrice || !selectedState}
               whileTap={{ scale: 0.95 }}
               onClick={() => setOpenCheckout(true)}
-              className={`bg-baseGreen w-full rounded-[30px] pointer-events-auto text-white font-medium cursor-pointer py-3 disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
+              className={`bg-baseGreen font-semibold w-full rounded-[30px] pointer-events-auto text-white text-lg cursor-pointer py-3 disabled:cursor-not-allowed disabled:bg-baseGreen/80`}
             >
               Proceed to checkout
             </motion.button>
           </div>
         ) : (
-          <div className="border rounded-lg p-3 self-start grid gap-y-3">
-            <h1 className="text-lg font-semibold text-baseGreen">
+          <div className="border rounded-lg p-3 text-[19px] self-start grid gap-y-3">
+            <h1 className="text-xl font-semibold text-baseGreen">
               Order Summary
             </h1>
-            <div className="grid grid-flow-col justify-between text-gray-700 items-center">
+            <div className="grid grid-flow-col  justify-between text-gray-700 items-center">
               <span className="w-full">Total Item</span>
               <span className="">{itemCount} </span>
             </div>
