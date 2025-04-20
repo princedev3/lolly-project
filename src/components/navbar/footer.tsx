@@ -21,7 +21,7 @@ const Footer = () => {
             />
           </Link>
           <span className="text-gray-600 text-lg">
-            A great accessory isn&rsquo;t just about the look; ivts about the
+            A great accessory isn&rsquo;t just about the look; its about the
             attitude it brings. Wear it with confidence, and let the world
             wonder about the story you&rsquo;re telling. Embrace your style, and
             let every step you take be a statement of who you are. 💡

@@ -433,7 +433,7 @@ const Cart = () => {
                     Discount ({validDiscountPercent}%)
                   </span>
                   <div className="text-baseOrange">
-                    <span className="font-semibold text-xl">-#</span>{" "}
+                    <span className="font-semibold text-xl">-₦</span>{" "}
                     {(
                       (finalPrice * validDiscountPercent) /
                       100
