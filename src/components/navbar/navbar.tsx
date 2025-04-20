@@ -298,7 +298,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ duration: 0.4 }}
-              className="md:hidden w-full h-full fixed top-0 left-0 bg-[#17CF97] !z-[1000000]"
+              className="md:hidden w-full h-full fixed top-0 p-3 left-0 bg-gradient-to-br from-emerald-400 to-teal-600 !z-[1000000]"
             >
               <div
                 onClick={() => setOpenMenu(false)}
@@ -313,17 +313,35 @@ const Navbar = () => {
                 animate="visible"
                 className="flex flex-col justify-center items-center w-full h-full gap-5"
               >
-                {navbarItems.map((item) => (
-                  <motion.div key={item.id} variants={itemVariants}>
-                    <Link
-                      onClick={() => setOpenMenu(false)}
-                      href={item.pathName}
-                      className="text-xl cursor-pointer capitalize text-white font-medium"
-                    >
-                      {item.title}
-                    </Link>
-                  </motion.div>
-                ))}
+                {navbarItems.map((item) => {
+                  if (item.title === "admin") {
+                    if (session && session.user?.role === "ADMIN") {
+                      return (
+                        <motion.div key={item.id} variants={itemVariants}>
+                          <Link
+                            onClick={() => setOpenMenu(false)}
+                            href={item.pathName}
+                            className="text-2xl cursor-pointer capitalize text-white font-semibold"
+                          >
+                            {item.title}
+                          </Link>
+                        </motion.div>
+                      );
+                    }
+                  } else {
+                    return (
+                      <motion.div key={item.id} variants={itemVariants}>
+                        <Link
+                          onClick={() => setOpenMenu(false)}
+                          href={item.pathName}
+                          className="text-2xl cursor-pointer capitalize text-white font-semibold"
+                        >
+                          {item.title}
+                        </Link>
+                      </motion.div>
+                    );
+                  }
+                })}
               </motion.div>
             </motion.div>
           </motion.div>
