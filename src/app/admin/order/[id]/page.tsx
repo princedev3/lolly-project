@@ -17,6 +17,8 @@ import {
   useUpdateOrderMutation,
 } from "@/app/apis/_order_index.api";
 import LoadingPage from "@/components/navbar/loading";
+import Link from "next/link";
+import Image from "next/image";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -57,6 +59,13 @@ const OrderDetails = () => {
           ) : (
             <p className="text-sm text-muted-foreground">Date not available</p>
           )}
+
+          <Link
+            href={`/order/${order?.id}`}
+            className="text-lg font-semibold text-baseBlack"
+          >
+            Click here to view product
+          </Link>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

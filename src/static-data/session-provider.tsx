@@ -11,10 +11,10 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
     if (status === "loading") {
       return;
     }
-    if (!session) {
-      return router.push("/login");
-    }
-    setSession(session);
+    // if (!session) {
+    //   return router.push("/login");
+    // }
+    if (session) setSession(session);
   }, [session]);
   return <>{children}</>;
 };

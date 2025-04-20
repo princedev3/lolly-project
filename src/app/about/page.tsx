@@ -23,7 +23,7 @@ const AboutPage = () => {
                 go-to destination for curated fashion and lifestyle essentials —
                 where every click feels personal, every purchase adds value, and
                 every customer is part of a community that celebrates
-                individuality. We're not just building a store; we're building a
+                individuality. We're not just building a store, we're building a
                 brand that connects, inspires, and evolves with you.
               </div>
             </div>

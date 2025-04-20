@@ -64,11 +64,11 @@ const CarouselComponent = () => {
                             />
                             <StarRating rating={item.value} />
                           </div>
-                          <span className="text-gray-500 text-center text-[12px] font-semibold w-full">
+                          <span className="text-gray-500 text-center text-lg font-semibold w-full">
                             {item.comment}
                           </span>
                           <div className="mx-auto">
-                            <h2 className="font-bold text-lg text-center text-gray-700">
+                            <h2 className="font-bold capitalize text-lg text-center text-gray-700">
                               {item.user.name}{" "}
                             </h2>
                             <h2 className="text-center text-gray-500">

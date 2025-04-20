@@ -33,9 +33,15 @@ const Cart = () => {
   const session = userStore((state) => state.session);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [note, setNote] = useState("");
   const [openCheckout, setOpenCheckout] = useState(false);
   const addressRef = useRef("");
   const phoneRef = useRef("");
+  const noteRef = useRef("");
+  const emailRef = useRef("");
+  const nameRef = useRef("");
   const isCouponValid =
     data?.existingCoupon &&
     new Date(data.existingCoupon.expiryDate) > new Date();
@@ -46,8 +52,17 @@ const Cart = () => {
   const debouncedSetAddress = useDebouncedCallback((val: string) => {
     setAddress(val);
   }, 300);
+  const debouncedSetEmail = useDebouncedCallback((val: string) => {
+    setEmail(val);
+  }, 300);
+  const debouncedSetNote = useDebouncedCallback((val: string) => {
+    setNote(val);
+  }, 400);
   const debouncedPhoneNumber = useDebouncedCallback((val: string) => {
     setPhoneNumber(val);
+  }, 300);
+  const debouncedSetName = useDebouncedCallback((val: string) => {
+    setName(val);
   }, 300);
 
   const selectedPrice: number | null = selectedState
@@ -75,10 +90,10 @@ const Cart = () => {
   const totalAmount = discountedPrice + deliveryFee;
 
   const componentProps = {
-    email: session?.user?.email as string,
+    email: session ? (session?.user?.email as string) : emailRef.current,
     amount: totalAmount * 100,
     metadata: {
-      name: session?.user?.name as string,
+      name: session ? (session?.user?.name as string) : nameRef.current,
       phoneNumber: phoneNumber ? phoneNumber : "",
     },
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY as string,
@@ -102,6 +117,9 @@ const Cart = () => {
       userId: session?.user?.id as string,
       orderAddress: addressRef.current,
       phoneNumber: phoneRef.current,
+      note: noteRef.current,
+      email: session ? session.user?.email : emailRef.current,
+      name: session ? session.user?.name : nameRef.current,
       product,
       payStackId,
       paymentStatus,
@@ -114,10 +132,7 @@ const Cart = () => {
   if (isLoading) {
     return <LoadingPage />;
   }
-  if (!session) {
-    toast.error("login or created an account");
-    router.push("/login");
-  }
+
   if (!product.length) {
     return (
       <div className="w-full h-[400px] bg-gray-50 shadow-md rounded-lg my-8 flex items-center justify-center ">
@@ -183,12 +198,12 @@ const Cart = () => {
               key={item.id}
             >
               <div className="grid grid-flow-col auto-cols-max gap-3 ">
-                <div className="relative max-w-[120px] h-full ">
+                <div className="relative w-[120px] h-full ">
                   <Image
                     src={item.image}
                     alt=""
                     fill
-                    className="object-cover rounded-md"
+                    className="object-contain rounded-md"
                   />
                 </div>
 
@@ -253,76 +268,115 @@ const Cart = () => {
             <h1 className="text-lg font-semibold text-baseGreen">
               Billing Details
             </h1>
+            <>
+              <div className="grid  gap-2 items-center">
+                <div className="w-full text-gray-700 text-lg">
+                  Name <span className="text-red-600">*</span>
+                </div>
+                <input
+                  type="text"
+                  defaultValue={
+                    session ? (session?.user?.name as string) : name
+                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    nameRef.current = val;
+                    debouncedSetName(val);
+                  }}
+                  className="w-full outline-none py-3 px-1 rounded-sm border"
+                />
+              </div>
+              <div className="grid  gap-2 items-center">
+                <div className="w-full text-gray-700 text-lg">
+                  Email <span className="text-red-600">*</span>
+                </div>
+                <input
+                  type="email"
+                  defaultValue={
+                    session ? (session?.user?.email as string) : email
+                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    emailRef.current = val;
+                    debouncedSetEmail(val);
+                  }}
+                  className="w-full outline-none py-3 px-1 rounded-sm border"
+                />
+              </div>
+              <div className="grid gap-2 items-center">
+                <div className="w-full text-gray-700 capitalize text-lg">
+                  State <span className="text-red-600">*</span>
+                </div>
+                <Select onValueChange={handleStateChange}>
+                  <SelectTrigger className="w-full py-6 outline-none active:outline-none focus:outline-none">
+                    <SelectValue placeholder="Select State" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(nigeriaStates).map(
+                      ([state, price], indx) => (
+                        <SelectItem
+                          className="outline-none"
+                          key={indx}
+                          value={state}
+                        >
+                          {state} - {price.toLocaleString()}
+                        </SelectItem>
+                      )
+                    )}
+                  </SelectContent>
+                </Select>
+              </div>
 
-            {session ? (
-              <>
-                <div className="grid gap-2 items-center">
-                  <div className="w-full text-gray-700 capitalize text-lg">
-                    State <span className="text-red-600">*</span>
-                  </div>
-                  <Select onValueChange={handleStateChange}>
-                    <SelectTrigger className="w-full py-6 outline-none active:outline-none focus:outline-none">
-                      <SelectValue placeholder="Select State" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.entries(nigeriaStates).map(
-                        ([state, price], indx) => (
-                          <SelectItem
-                            className="outline-none"
-                            key={indx}
-                            value={state}
-                          >
-                            {state} - {price.toLocaleString()}
-                          </SelectItem>
-                        )
-                      )}
-                    </SelectContent>
-                  </Select>
+              <div className="grid  gap-2 items-center">
+                <div className="w-full text-gray-700 text-lg">
+                  Address <span className="text-red-600">*</span>
                 </div>
-                <div className="grid  gap-2 items-center">
-                  <div className="w-full text-gray-700 text-lg">
-                    Address <span className="text-red-600">*</span>
-                  </div>
-                  <input
-                    type="text"
-                    defaultValue={address}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      addressRef.current = val;
-                      debouncedSetAddress(val);
-                    }}
-                    className="w-full outline-none py-3 px-1 rounded-sm border"
-                  />
+                <input
+                  type="text"
+                  defaultValue={address}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    addressRef.current = val;
+                    debouncedSetAddress(val);
+                  }}
+                  className="w-full outline-none py-3 px-1 rounded-sm border"
+                />
+              </div>
+              <div className="grid  gap-2 items-center">
+                <div className="w-full text-gray-700 text-lg">
+                  Phone <span className="text-red-600">*</span>
                 </div>
-                <div className="grid  gap-2 items-center">
-                  <div className="w-full text-gray-700 text-lg">
-                    Phone <span className="text-red-600">*</span>
-                  </div>
 
-                  <input
-                    type="number"
-                    defaultValue={phoneNumber}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (!/^\d*$/.test(val)) return;
-                      if (val.length > 11) return;
-                      phoneRef.current = val;
-                      debouncedPhoneNumber(val);
-                    }}
-                    placeholder="09030300300"
-                    className="w-full outline-none py-3 px-1 rounded-sm border"
-                  />
-                </div>
-                <div className="grid  gap-2 items-center">
-                  <div className="w-full text-gray-700 text-lg">Note</div>
-                  <input
-                    type="text"
-                    placeholder="Note"
-                    className="w-full outline-none py-3 px-1 rounded-sm border"
-                  />
-                </div>
-              </>
-            ) : null}
+                <input
+                  type="number"
+                  defaultValue={phoneNumber}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (!/^\d*$/.test(val)) return;
+                    if (val.length > 11) return;
+                    phoneRef.current = val;
+                    debouncedPhoneNumber(val);
+                  }}
+                  placeholder="09030300300"
+                  className="w-full outline-none py-3 px-1 rounded-sm border"
+                />
+              </div>
+              <div className="grid  gap-2 items-center">
+                <div className="w-full text-gray-700 text-lg">Note</div>
+                <input
+                  defaultValue={note}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    noteRef.current = val;
+                    debouncedSetNote(val);
+                  }}
+                  type="text"
+                  name="note"
+                  placeholder="Note"
+                  className="w-full outline-none py-3 px-1 rounded-sm border"
+                />
+              </div>
+            </>
 
             <motion.button
               disabled={!phoneNumber || !selectedPrice || !selectedState}

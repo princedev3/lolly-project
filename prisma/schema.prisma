@@ -30,7 +30,6 @@ model User {
   role UserRole @default(USER)
   createdAt DateTime @default(now())
   product Product[]
-  order Order[]
   userLikesProduct UserLikesProduct[]
   rating Rating[]
 }
@@ -125,16 +124,14 @@ model  Order{
   paymentStatus String
   payStackId String @unique
   amount Int
-  userId String 
+  userId String?
   username String
   userPhone String?
   useremail String
+  note String?
   orderAddress String
   deliveryStatus DeliveryNum @default(one)
-  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   createdAt DateTime @default(now())
-
-
 }
 enum DeliveryNum{
   one

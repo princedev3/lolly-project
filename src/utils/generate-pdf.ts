@@ -1,8 +1,9 @@
-import chromium from "@sparticuz/chromium";
-import puppeteer from "puppeteer-core";
+// import chromium from "@sparticuz/chromium";
+// import puppeteer from "puppeteer-core";
 import path from "path";
 import { Order } from "@prisma/client";
 import { format } from "date-fns";
+import fs from "fs";
 
 type ProductItem = {
   name: string;
@@ -10,6 +11,23 @@ type ProductItem = {
   price: number;
 };
 
+const isProd = process.env.NODE_ENV === "production";
+
+let puppeteer: any;
+let chromium: any;
+
+if (isProd) {
+  chromium = require("@sparticuz/chromium");
+  puppeteer = require("puppeteer-core");
+} else {
+  puppeteer = require("puppeteer");
+}
+
+const ensureDirExists = (dirPath: string) => {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+};
 export const generateOrderPdf = async (
   orderDetails: Order
 ): Promise<string> => {
@@ -186,19 +204,45 @@ export const generateOrderPdf = async (
     </html>
   `;
 
-  const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
-    headless: chromium.headless,
-  });
+  // const browser = await puppeteer.launch({
+  //   args: chromium.args,
+  //   defaultViewport: chromium.defaultViewport,
+  //   executablePath: await chromium.executablePath(),
+  //   headless: chromium.headless,
+  // });
+
+  const browser = await puppeteer.launch(
+    isProd
+      ? {
+          args: chromium.args,
+          defaultViewport: chromium.defaultViewport,
+          executablePath: await chromium.executablePath(),
+          headless: chromium.headless,
+        }
+      : {
+          headless: true,
+        }
+  );
 
   const page = await browser.newPage();
-  await page.setContent(htmlContent);
+  await page.setContent(htmlContent, { waitUntil: "networkidle0" });
 
-  const filePath = path.join("/tmp", `order-${orderDetails.id}.pdf`);
+  // const page = await browser.newPage();
+  // await page.setContent(htmlContent);
+  const outputDir = isProd ? "/tmp" : path.join(process.cwd(), "public", "tmp");
+  ensureDirExists(outputDir);
 
+  const filePath = path.join(outputDir, `order-${orderDetails.id}.pdf`);
   await page.pdf({ path: filePath, format: "A4" });
+  // const filePath = path.join(
+  //   isProd ? "/tmp" : "public/tmp",
+  //   `order-${orderDetails.id}.pdf`
+  // );
+  // await page.pdf({ path: filePath, format: "A4" });
+
+  // const filePath = path.join("/tmp", `order-${orderDetails.id}.pdf`);
+
+  // await page.pdf({ path: filePath, format: "A4" });
   await browser.close();
 
   return filePath;

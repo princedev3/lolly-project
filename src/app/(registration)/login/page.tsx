@@ -16,7 +16,7 @@ const Login = async () => {
     redirect("/");
   }
   return (
-    <div className="grid md:grid-cols-2 ">
+    <div className="grid md:grid-cols-2">
       <div className="z-40 hidden md:block relative">
         <Image src={"/sun.jpg"} alt="" className="object-cover" fill />
       </div>

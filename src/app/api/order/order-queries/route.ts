@@ -8,11 +8,10 @@ export const POST = async (req: NextRequest) => {
   try {
     const session = await auth();
     const body = await req.json();
-    if (!session || session?.user?.id !== body.userId) {
-      return NextResponse.json({
-        message: "can not create order",
-        status: 500,
-      });
+    let userId = "";
+
+    if (session) {
+      userId = session.user?.id as string;
     }
 
     const createdOrder = await prisma.$transaction(async (tx) => {
@@ -39,11 +38,11 @@ export const POST = async (req: NextRequest) => {
         data: {
           product: body.product,
           amount: body.amount,
-          useremail: session?.user?.email as string,
+          useremail: body.email as string,
           orderAddress: body.orderAddress,
-          userId: body.userId,
+          userId,
           userPhone: body.phoneNumber,
-          username: session?.user?.name as string,
+          username: body.name as string,
           deliveryStatus: "one",
           paymentStatus: body.paymentStatus,
           payStackId: body.payStackId,
@@ -62,6 +61,7 @@ export const POST = async (req: NextRequest) => {
         status: 200,
       });
     }
+    return NextResponse.json({ message: " create order", status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "can not create order", status: 500 });

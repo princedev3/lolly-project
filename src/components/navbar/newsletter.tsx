@@ -25,7 +25,7 @@ const Newsletter = () => {
     }
   };
   return (
-    <div className="w-full  bg-baseGreen px-1 lg:px-0  py-12 h-[600px] ">
+    <div className="w-full  bg-baseGreen px-1 lg:px-0  py-12 ">
       <div className="grid gap-2 md:gap-5 justify-center">
         <h1 className="mx-auto text-white font-semibold text-center text-xl md:text-2xl lg:text-3xl">
           Get our free newsletter + bonus content{" "}
@@ -52,7 +52,7 @@ const Newsletter = () => {
             submit
           </button>
         </form>
-        <p className="text-center text-white text-sm md:text-base font-medium mx-auto">
+        <p className="text-center text-white text-lg md:text-base font-medium mx-auto">
           You are subiscribing to email updates, your data is safe and you can
           unsubscribe at anytime with a single click
         </p>

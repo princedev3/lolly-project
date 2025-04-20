@@ -49,7 +49,7 @@ const SingleCard = ({
   const handleLike = async () => {
     try {
       if (!session) {
-        toast.error("kindly logins");
+        toast.error("kindly login");
         return;
       }
 

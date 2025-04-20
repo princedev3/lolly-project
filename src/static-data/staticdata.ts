@@ -40,26 +40,15 @@ export const navbarItems = [
 ];
 
 export const eyeglassBrands = [
-  "Ray-Ban",
-  "Oakley",
-  "Gucci",
-  "Prada",
-  "Versace",
-  "Armani Exchange",
-  "Tom Ford",
-  "Warby Parker",
-  "Persol",
-  "Michael Kors",
-  "Burberry",
-  "Dolce & Gabbana",
-  "Maui Jim",
-  "Fendi",
-  "Cartier",
-  "Coach",
-  "Hugo Boss",
-  "Costa Del Mar",
-  "Chanel",
-  "Vogue Eyewear",
+  "Men's Clothing",
+  "Women's Clothing",
+  "Kids & Baby Wear",
+  "Shoes & Footwear",
+  "Accessories",
+  "Bags & Wallets",
+  "Lingerie & Underwear",
+  "Activewear",
+  "Lip-care",
 ];
 
 export const carouselData = [

@@ -7,8 +7,6 @@ import { store } from "./rtk-store";
 import Notification from "@/components/navbar/notification";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/navbar/footer";
-import CartPopup from "./cartpopup";
-
 const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   const [readyState, setReadyState] = useState(false);
   const authRoute = [
@@ -24,7 +22,9 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
   if (readyState) {
     return (
-      <div className=" grid w-full pt-[168px] mx-auto  ">
+      <div
+        className={`${!authRoute.includes(pathName) ? "pt-[168px]" : ""} grid w-full mx-auto`}
+      >
         <Provider store={store}>
           <div className="fixed top-0 left-0  w-full z-50">
             <div className="mx-auto w-full grid max-w-7xl">
@@ -34,7 +34,6 @@ const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           {children}
-          {/* {!authRoute.includes(pathName) && <CartPopup />} */}
           {!authRoute.includes(pathName) && <Footer />}
           <Toaster position="bottom-right" />
         </Provider>

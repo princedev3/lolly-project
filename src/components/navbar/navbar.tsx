@@ -2,17 +2,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { UserButton } from "./user-button";
-import { ChevronDown, LogOut, Menu, ShoppingCart, X } from "lucide-react";
+import { ChevronDown, LogIn, Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { eyeglassBrands, navbarItems } from "@/static-data/staticdata";
 import { userStore } from "@/static-data/user-session";
 import { useCartStore } from "@/static-data/cart-store";
 import { motion, AnimatePresence } from "framer-motion";
-import SearchIcon from "@/icons/search-icon";
 import CartIcon from "@/icons/cart-icon";
 import UserIcon from "@/icons/user-icon";
 import { Button } from "../ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -91,7 +95,6 @@ const Navbar = () => {
     await signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
     router.push("/login");
   };
-
   return (
     <>
       <div className="grid grid-flow-col mx-auto bg-baseBlack relative justify-between  items-center w-full h-[108px]">
@@ -224,7 +227,7 @@ const Navbar = () => {
                         <Image
                           width={30}
                           height={30}
-                          src={session.user.image || "/noavatar.png"}
+                          src={session?.user?.image || "/noavatar.png"}
                           alt=""
                           className="max-w-[30px] rounded-full max-h-[30px] "
                         />
@@ -253,12 +256,21 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Link href={"/login"}>
-                <LogOut
-                  size={30}
-                  className="text-white min-w-[30px] min-h-[30px]"
-                />
-              </Link>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link href={"/login"}>
+                      <LogIn
+                        size={30}
+                        className="text-white min-w-[30px] min-h-[30px]"
+                      />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Login</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             )
             //   <Button className="text-white cursor-pointer hover:bg-baseGreen bg-baseGreen text-xl py-6 px-6 motion-preset-shake motion-duration-1000">
             //   <Link href={"/login"}>Sign in</Link>
