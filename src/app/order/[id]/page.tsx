@@ -21,12 +21,12 @@ const SngleOrderPage = () => {
     return <LoadingPage />;
   }
   return (
-    <div className="grid gap-y-4 my-4">
+    <div className="grid gap-y-6 my-4 p-3">
       <p className="mx-auto flex text-gray-600">
-        <MessageCircleWarning className="text-gray-600" />
+        <MessageCircleWarning className="text-gray-600 text-lg" />
         kindly check mail inbox/spam for your copy
       </p>
-      <div className="flex justify-between">
+      <div className="flex justify-between text-lg">
         <div
           className="grid gap-x-4 gap-y-3"
           style={{ gridTemplateColumns: "auto minmax(auto,1fr)" }}
@@ -55,12 +55,12 @@ const SngleOrderPage = () => {
           <span className="capitalize text-gray-700 text-sm ">
             {data.message.orderAddress}{" "}
           </span>
-          <span className="capitalize text-gray-700 text-sm font-medium">
+          {/* <span className="capitalize text-gray-700 text-sm font-medium">
             orderId
           </span>
           <span className="capitalize text-gray-700 text-sm ">
             {data.message.id}{" "}
-          </span>
+          </span> */}
           <span className="capitalize text-gray-700 text-sm font-medium">
             product Qty
           </span>
@@ -75,7 +75,7 @@ const SngleOrderPage = () => {
           </span>
 
           <span className="capitalize text-gray-700 text-sm">
-            #{data.message.amount}{" "}
+            ₦{data.message.amount}{" "}
           </span>
           <span className="capitalize text-gray-700 text-sm font-medium">
             payment status
@@ -128,7 +128,7 @@ const SngleOrderPage = () => {
                 ID
               </th>
               <th className="border  border-gray-300 px-4 py-2  text-center capitalize">
-                Price
+                Price ₦
               </th>
               <th className="border hidden lg:table-cell border-gray-300 px-4 py-2  text-center capitalize">
                 name

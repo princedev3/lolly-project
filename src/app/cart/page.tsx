@@ -227,7 +227,7 @@ const Cart = () => {
                   <div className="text-gray-700 capitalize">
                     price:
                     <span className="font-semibold text-xl ml-2">
-                      #{" "}
+                      ₦{" "}
                       <span className="text-base">
                         {item.price.toLocaleString()}
                       </span>
