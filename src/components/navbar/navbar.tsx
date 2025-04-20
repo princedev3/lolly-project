@@ -243,13 +243,15 @@ const Navbar = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mr-2">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuLabel className="text-xl">
+                    My Account
+                  </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout}>
+                  <DropdownMenuItem className="text-xl" onClick={handleLogout}>
                     Log Out
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href={"/like"} className="cursor-pointer">
+                    <Link href={"/like"} className="cursor-pointer text-xl">
                       Likes
                     </Link>
                   </DropdownMenuItem>
