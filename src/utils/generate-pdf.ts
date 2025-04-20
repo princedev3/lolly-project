@@ -139,7 +139,6 @@ export const generateOrderPdf = async (
               Placed on ${format(new Date(orderDetails?.createdAt), "yyyy-MM-dd")}
             </div>
           </div>
-
           <div class="grid">
             <div class="grid-item">
               <div class="label">Username</div>
@@ -208,7 +207,7 @@ export const generateOrderPdf = async (
   //   args: chromium.args,
   //   defaultViewport: chromium.defaultViewport,
   //   executablePath: await chromium.executablePath(),
-  //   headless: chromium.headless,
+  //   headless: chromium.headless
   // });
 
   const browser = await puppeteer.launch(
