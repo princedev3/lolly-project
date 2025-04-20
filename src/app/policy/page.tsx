@@ -4,8 +4,8 @@ import React from "react";
 
 const Policy = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto shadow-lg p-10 my-5">
-      <h1 className="text-3xl text-baseGreen text-center py-6 font-medium">
+    <div className="w-full max-w-3xl mx-auto shadow-lg p-5 md:p-10">
+      <h1 className="text-3xl text-baseGreen text-center py-3 font-medium">
         Privacy
       </h1>
       <div className="grid gap-y-6">

@@ -13,6 +13,9 @@ const Newsletter = () => {
       const target = e.target as HTMLFormElement;
       const formdata = new FormData(target);
       const email = formdata.get("email") as string;
+      if (!email || email === "") {
+        return toast.error("enter your email");
+      }
       const res = await createNewsLetter({ email });
       if (res.data.status === 200) {
         target.reset();

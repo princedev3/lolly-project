@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="grid gap-y-10 relative py-5 bg-[#FFFBF5]  z-0">
+    <div className="grid gap-y-10 relative pt-5 pb-10 bg-[#FFFBF5] z-0">
       {/* top */}
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
         <div className="self-start grid gap-y-3 z-20">
@@ -21,10 +21,10 @@ const Footer = () => {
             />
           </Link>
           <span className="text-gray-600 text-lg">
-            A good pair of sunglasses isn&rsquo;t just an accessory; it&rsquo;s
-            an attitude. Wear them with confidence and let the world wonder
-            what&rsquo;s behind the lenses. Put on some shades and find your
-            sunshine💡
+            A great accessory isn&rsquo;t just about the look; ivts about the
+            attitude it brings. Wear it with confidence, and let the world
+            wonder about the story you&rsquo;re telling. Embrace your style, and
+            let every step you take be a statement of who you are. 💡
           </span>
         </div>
         <div className="grid gap-y-4 self-start ">
@@ -141,13 +141,13 @@ const Footer = () => {
         <div className="grid grid-flow-col auto-cols-max gap-5 sm:justify-end">
           <Link
             href={"/policy"}
-            className="text-gray-600 text-lg cursor-pointer"
+            className="text-gray-600 text-lg cursor-pointer font-semibold"
           >
             Terms of Service
           </Link>
           <Link
             href={"/policy"}
-            className="text-gray-600 text-lg cursor-pointer"
+            className="text-gray-600 text-lg cursor-pointer font-semibold"
           >
             Privacy Policy
           </Link>

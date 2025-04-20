@@ -5,6 +5,10 @@ import TelIcon from "@/icons/tel-icon";
 import Email from "@/icons/email";
 import Location from "@/icons/location";
 import Time from "@/icons/time";
+import DeliveryTruck from "@/icons/delivery-truck";
+import ReturnIcon from "@/icons/return-icon";
+import SecureIcon from "@/icons/secure-icon";
+import SupportIcon from "@/icons/support-icon";
 
 export const navbarItems = [
   {
@@ -34,6 +38,11 @@ export const navbarItems = [
   },
   {
     id: "6",
+    title: "privacy",
+    pathName: "/policy",
+  },
+  {
+    id: "7",
     title: "admin",
     pathName: "/admin",
   },
@@ -272,41 +281,68 @@ export const privacyInfo = [
   {
     id: 1,
     title: "About our Privacy",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: "At Lollys, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard the data you share with us when you use our website or services.",
   },
   {
     id: 2,
     title: "Who we are",
-    desc: "At Lollys, we blend style with innovation and protection with personality. Our sunglasses are more than accessories—they’re statements of identity, built with tech, sustainability, and timeless design. We create eyewear that empowers bold self-expression and redefines how you see the world. t esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidat",
+    desc: "At Lollys, we blend style with innovation and protection with personality. Our Product/ Accessories are more than accessories—they’re statements of identity, built with tech, sustainability, and timeless design. We create eyewear that empowers bold self-expression and redefines how you see the world.",
   },
   {
     id: 3,
     title: "The Data we collect about you",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: "We ONLY collect personal data that you voluntarily provide to us, including your name, email address, phone number, and delivery information when you place an order, sign up for our newsletter, or contact us directly.",
   },
   {
     id: 4,
     title: "Cookies and other identifiers",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: " We use cookies and similar technologies to improve the functionality of our website, enhance user experience, personalize content, and analyze traffic patterns. These technologies may include device identifiers and session cookies, which allow us to remember user preferences, maintain secure login sessions, and understand how visitors interact with our website. Users have the option to disable or manage cookies through their browser settings. By continuing to use our website, you acknowledge and consent to our use of cookies in accordance with our Privacy Policy.",
   },
   {
     id: 5,
     title: "How we use your personal data",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: "We use the data we collect to process and fulfill your orders, communicate with you regarding your purchases or inquiries, and send promotional emails or newsletters if you have subscribed. Additionally, your data helps us improve our website, products, and overall customer experience. It also enables us to ensure the security and integrity of our platform, and to comply with applicable legal and regulatory obligations.",
   },
   {
     id: 6,
     title: "Legal basis for the processing of personal data",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: "We process your personal data based on legal grounds that include your consent, the necessity of fulfilling a contract with you, compliance with legal obligations, and our legitimate business interests. In some cases, we may also process data to protect your vital interests or those of others. Where consent is required, you may withdraw it at any time without affecting the legality of processing carried out before your withdrawal.",
   },
   {
     id: 7,
     title: "How we share your personal data",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: "You have control over your personal data and how it's used. You may update, correct, or delete your personal information by contacting us directly. If you no longer wish to receive marketing emails or newsletters, you can unsubscribe at any time using the link provided in our emails. Additionally, you can manage or disable cookies and tracking technologies through your browser settings.",
   },
   {
     id: 8,
     title: "Data and security",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate veli",
+    desc: "Your privacy is important to us. This Privacy Policy outlines the types of information we collect, how we use it, and the choices you have regarding your data. By using our website or services, you agree to the terms outlined here. We are committed to protecting your personal information and ensuring transparency in how it is handled.",
+  },
+];
+
+export const navbarHeaderItem = [
+  {
+    id: "1",
+    item: "Delivery",
+    desc: "For all orders",
+    icon: DeliveryTruck,
+  },
+  {
+    id: "2",
+    item: "Return Policy",
+    desc: "If goods have problems",
+    icon: ReturnIcon,
+  },
+  {
+    id: "3",
+    item: "Secure Payment",
+    desc: "100% secure payment",
+    icon: SecureIcon,
+  },
+  {
+    id: "4",
+    item: "24/7 Support",
+    desc: "Dedicated support",
+    icon: SupportIcon,
   },
 ];
