@@ -17,6 +17,7 @@ const ListComment = ({
   isGettingCommentLoading: boolean;
   commentData: CreatedComment[] | undefined;
 }) => {
+  console.log(commentData);
   const session = userStore((state) => state.session);
   const [deleteComment, { isLoading }] = useDeleteCommentMutation();
   const handleDelete = async (id: string) => {
