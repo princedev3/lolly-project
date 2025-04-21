@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({
-      message: "can not create comments",
+      message: "kindly, login to comment",
       status: 500,
     });
   }

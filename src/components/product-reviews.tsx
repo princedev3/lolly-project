@@ -71,7 +71,9 @@ const ProductReviews = ({ id }: { id: string }) => {
         target.reset();
         setMessage("");
         toast.success(res?.data?.message);
+        return;
       }
+      toast.error(res?.data?.message);
     } catch (error) {
       console.log(error);
     }
