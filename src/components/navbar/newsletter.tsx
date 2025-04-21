@@ -33,7 +33,7 @@ const Newsletter = () => {
         <h1 className="mx-auto text-white font-semibold text-center text-xl md:text-2xl lg:text-3xl">
           Get our free newsletter + bonus content{" "}
         </h1>
-        <p className="mx-auto text-center text-white md:text-xl">
+        <p className="mx-auto text-center text-lg text-white md:text-xl">
           Be the first to receive the hottest styles before anyone else
           Exclusive launch! Be among the first to own it.
         </p>
@@ -45,12 +45,12 @@ const Newsletter = () => {
             type="email"
             name="email"
             placeholder="Example@gmail.com"
-            className="w-full rounded-none outline-none bg-white p-2"
+            className="w-full rounded-none outline-none bg-white px-2 py-4"
           />
           <button
             disabled={isLoading}
             type="submit"
-            className="px-4 py-2 bg-black capitalize text-white font-medium"
+            className="px-4 py-4 bg-black capitalize text-white font-medium"
           >
             submit
           </button>

@@ -113,7 +113,8 @@ const Cart = () => {
       startVelocity: 40,
     });
     const order = await createOrder({
-      amount: finalPrice + (selectedPrice !== null ? selectedPrice : 0),
+      amount: totalAmount,
+      // amount: finalPrice + (selectedPrice !== null ? selectedPrice : 0),
       userId: session?.user?.id as string,
       orderAddress: addressRef.current,
       phoneNumber: phoneRef.current,
