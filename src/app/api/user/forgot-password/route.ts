@@ -6,17 +6,20 @@ import { sendResetEmail } from "@/action/send-reset-email";
 export const POST = async (req: NextRequest) => {
   try {
     const { email } = await req.json();
+
     const findExistingUser = await prisma.user.findUnique({
       where: {
         email,
       },
     });
+
     if (!findExistingUser) {
       return NextResponse.json({ message: "can not find user", status: 500 });
     }
     const generateResetToken = await generateResetPasswordToken(
       findExistingUser?.email as string
     );
+
     await sendResetEmail(
       findExistingUser?.email as string,
       generateResetToken.token
@@ -28,6 +31,6 @@ export const POST = async (req: NextRequest) => {
     });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: "can not find user", status: 500 });
+    return NextResponse.json({ message: "error in finding user", status: 500 });
   }
 };
