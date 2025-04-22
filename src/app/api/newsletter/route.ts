@@ -4,6 +4,17 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
+    const existingSubcriber = await prisma.newsletterSubscriber.findFirst({
+      where: {
+        email: body.email,
+      },
+    });
+    if (existingSubcriber) {
+      return NextResponse.json({
+        message: "you already subscribed to newsletter.",
+        status: 200,
+      });
+    }
     const newsletterAction = await prisma.newsletterSubscriber.create({
       data: {
         email: body.email,
