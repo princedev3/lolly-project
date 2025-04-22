@@ -16,16 +16,10 @@ export const DELETE = async (req: NextRequest, { params }: ParamType) => {
         status: 500,
       });
     }
-    if (session.user?.role !== "ADMIN") {
+    if (session.user?.id !== userId && session.user?.role !== "ADMIN") {
       return NextResponse.json({
-        message: "can not delete comment",
-        status: 500,
-      });
-    }
-    if (session.user?.id !== userId) {
-      return NextResponse.json({
-        message: "can not delete comment",
-        status: 500,
+        message: "You are not authorized to delete this comment",
+        status: 403,
       });
     }
     await prisma.rating.delete({
