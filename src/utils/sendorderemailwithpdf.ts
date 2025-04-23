@@ -69,7 +69,6 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
 
     const orderLink = `${process.env.BASE_URL_!}/order/${orderDetails.id}`;
 
-    // Set content based on delivery status
     let subject = "Your Order Confirmation";
     let message = `<p>Thank you for your order! Your order details are attached.</p>`;
 
