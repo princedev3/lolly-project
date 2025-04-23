@@ -59,7 +59,8 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
     const pdfPath = await generateOrderPdf(orderDetails);
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp-relay.brevo.com",
+      port: 587,
       auth: {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS_KEY,

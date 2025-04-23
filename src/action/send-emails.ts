@@ -3,7 +3,8 @@ import Mail from "nodemailer/lib/mailer";
 import { createTransport } from "nodemailer";
 
 const transport = createTransport({
-  service: "gmail",
+  host: "smtp-relay.brevo.com",
+  port: 587,
   auth: {
     user: process.env.NODEMAILER_USER as string,
     pass: process.env.NODEMAILER_PASS_KEY as string,
