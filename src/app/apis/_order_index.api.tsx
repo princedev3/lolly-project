@@ -35,6 +35,9 @@ export const orderApi = createApi({
         url: `/order/order-queries/${orderId}`,
         method: "GET",
       }),
+      providesTags: (result, error, orderId) => [
+        { type: "Order", id: orderId },
+      ],
     }),
     deleteSingleOrder: builder.mutation({
       query: (orderId) => ({

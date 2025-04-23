@@ -13,7 +13,7 @@ export const POST = async (req: NextRequest) => {
       },
     });
 
-    await transporter.sendMail({
+    const res = await transporter.sendMail({
       from: `"Lolly Collection" <${process.env.NODEMAILER_FROM_EMAIL}>`,
       to: "lollycollectionfit@gmail.com",
       subject: "New Contact Form Submission",

@@ -6,8 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import React, { useState } from "react";
-import { Order } from "@prisma/client";
+import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from "date-fns";
@@ -18,7 +17,6 @@ import {
 } from "@/app/apis/_order_index.api";
 import LoadingPage from "@/components/navbar/loading";
 import Link from "next/link";
-import Image from "next/image";
 
 const OrderDetails = () => {
   const { id } = useParams();
