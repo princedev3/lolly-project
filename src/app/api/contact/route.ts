@@ -5,7 +5,8 @@ export const POST = async (req: NextRequest) => {
   const { name, email, message } = await req.json();
   try {
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp-relay.brevo.com",
+      port: 587,
       auth: {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS_KEY,
@@ -13,7 +14,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     await transporter.sendMail({
-      from: `"Contact Form" <${process.env.NODEMAILER_USER}>`,
+      from: `"Lolly Collection" <${process.env.NODEMAILER_FROM_EMAIL}>`,
       to: process.env.NODEMAILER_USER,
       subject: "New Contact Form Submission",
       html: `
