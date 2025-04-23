@@ -62,8 +62,8 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
       host: "smtp-relay.brevo.com",
       port: 587,
       auth: {
-        user: process.env.NODEMAILER_USER,
-        pass: process.env.NODEMAILER_PASS_KEY,
+        user: process.env.NODEMAILER_USER as string,
+        pass: process.env.NODEMAILER_PASS_KEY as string,
       },
     });
 
@@ -82,7 +82,7 @@ export const sendEmailWithPdf = async (orderDetails: Order) => {
     }
 
     const mailOptions = {
-      from: `Lolly Collections ${process.env.EMAIL}`,
+      from: `"Lolly Collection" <${process.env.NODEMAILER_FROM_EMAIL}>`,
       to: orderDetails.useremail,
       subject,
       html: `

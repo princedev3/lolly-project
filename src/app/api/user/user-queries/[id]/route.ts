@@ -12,11 +12,17 @@ export const DELETE = async (req: NextRequest, { params }: UserType) => {
     if (session?.user?.role !== "ADMIN") {
       return NextResponse.json({ message: "can not delete user", status: 500 });
     }
+
+    await prisma.product.deleteMany({
+      where: { userId: id },
+    });
+
     const deletedUser = await prisma.user.delete({
       where: {
         id,
       },
     });
+    console.log(deletedUser);
     return NextResponse.json({ message: "user deleted", status: 200 });
   } catch (error) {
     console.log(error);

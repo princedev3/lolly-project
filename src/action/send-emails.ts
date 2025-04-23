@@ -14,7 +14,7 @@ const transport = createTransport({
 export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${process.env.BASE_URL_!}/verify-email?token=${token}`;
   const mailOptions: Mail.Options = {
-    from: `Lolly's Collection <${process.env.NODEMAILER_USER} > `,
+    from: `"Lolly Collection" <${process.env.NODEMAILER_FROM_EMAIL}>`,
     to: email,
     subject: "Email Confirmation",
     html: `

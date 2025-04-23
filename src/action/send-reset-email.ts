@@ -14,7 +14,7 @@ const transport = createTransport({
 export const sendResetEmail = async (email: string, token: string) => {
   const confirmLink = `${process.env.BASE_URL_!}/forgot-password?token=${token}`;
   const mailOptions: Mail.Options = {
-    from: '"Lolly Collection" <support@lollycollection.store>',
+    from: `"Lolly Collection" <${process.env.NODEMAILER_FROM_EMAIL}>`,
     to: email,
     subject: "Reset Password Email Confirmation",
     html: `
