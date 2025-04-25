@@ -73,7 +73,6 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 group-hover:text-white"
-                // className="border p-2 rounded-full group hover:bg-baseBlue cursor-pointer flex items-center justify-center"
               >
                 <Instagram
                   size={30}
@@ -134,8 +133,8 @@ const Footer = () => {
 
       <div className="grid gap-y-2 sm:grid-flow-col">
         <div className="">
-          <span className="text-gray-600 text-lg">
-            &copy; 2025 Restaurants. All Right Reserved. Designed by Prince
+          <span className="text-gay-600 text-lg">
+            &copy; 2025. All Right Reserved. Designed by Prince
           </span>
         </div>
         <div className="grid grid-flow-col auto-cols-max gap-5 sm:justify-end">
