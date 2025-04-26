@@ -162,7 +162,7 @@ const SingleProduct = () => {
           </h1>
           <Separator className="bg-baseBlack/50" />
           <p className="text-baseBlack text-2xl">
-            #{data?.getSingleFetch.price.toLocaleString()}{" "}
+            ₦{data?.getSingleFetch.price.toLocaleString()}{" "}
           </p>
           <div className="grid gap-y-1">
             <span className="text-gray-500 text-lg">Select a color</span>
